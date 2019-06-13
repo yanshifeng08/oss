@@ -4,7 +4,7 @@ Ossbrowser is a graphical management tool developed by Alibaba Cloud. It provide
 
 **Note:** 
 
--   You can only move or copy objects smaller than 5 GB by using ossbrowser. For objects larger than 5 GB, we recommend you use [ossutil](intl.en-US/Tools/ossutil/Quick start.md#).
+-   You can only move or copy objects smaller than 5 GB by using ossbrowser. For objects larger than 5 GB, we recommend you use [ossutil](reseller.en-US/Tools/ossutil/Quick start.md#).
 -   Ossbrowser supports Linux, Mac, and Windows \(Windows 7 and later\). We recommend you do not use ossbrowser in Windows XP and Windows Server.
 
 ## Installation {#section_mq4_l33_wdb .section}
@@ -22,15 +22,15 @@ Ossbrowser is a graphical management tool developed by Alibaba Cloud. It provide
 
 2.  Start ossbrowser.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/4906/156040640840359_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/4906/156040645040359_en-US.png)
 
     Set the following parameters to log on to ossbrowser:
 
     -   **Endpoint**: Select the region \(endpoint\) that you want to log on.
         -   Default: Log on to ossbrowser with the default endpoint.
-        -   Customize: Enter the endpoint you want to use to log on to ossbrowser. You can enter a URL starting with "http" or "https" to log on to ossbrowser through the HTTP or HTTPS method, for example, https://oss-cn-beijing.aliyuncs.com. For more information about the regions and endpoints, see [Regions and endpoints](../../../../intl.en-US/Developer Guide/Endpoint/Regions and endpoints.md#).
-        -   cname: You can log on to ossbrowser with a custom domain name \(CNAME\) attached to your OSS resources. For more information about attaching a CNAME, see [Attach a custom domain name](../../../../intl.en-US/Console User Guide/Manage buckets/Manage a domain/Attach a custom domain name.md#).
-    -   AccessKeyId/AccessKeySecret：Enter the Accesskey \(AK\) of your account. To ensure data security, we recommend that you use the AK of a RAM user to log on to ossbrowser. For more information about AK, see [Create an AccessKey](../../../../intl.en-US/General Reference/Create an AccessKey.md#).
+        -   Customize: Enter the endpoint you want to use to log on to ossbrowser. You can enter a URL starting with "http" or "https" to log on to ossbrowser through the HTTP or HTTPS method, for example, https://oss-cn-beijing.aliyuncs.com. For more information about the regions and endpoints, see [Regions and endpoints](../../../../reseller.en-US/Developer Guide/Endpoint/Regions and endpoints.md#).
+        -   cname: You can log on to ossbrowser with a custom domain name \(CNAME\) attached to your OSS resources. For more information about attaching a CNAME, see [Attach a custom domain name](../../../../reseller.en-US/Console User Guide/Manage buckets/Manage a domain/Attach a custom domain name.md#).
+    -   AccessKeyId/AccessKeySecret：Enter the Accesskey \(AK\) of your account. To ensure data security, we recommend that you use the AK of a RAM user to log on to ossbrowser. For more information about AK, see [Create an AccessKey](../../../../reseller.en-US/General Reference/Create an AccessKey.md#).
     -   **Preset OSS Path**:
         -   Administrator RAM users with administration permissions on all buckets: No configuration is required.
         -   Operator RAM users: Configurations are required. Enter the path of the OSS bucket or sub-directory that you want to access \(the RAM user must have permission to access the OSS bucket or sub-directory\). The path format is as follows: **oss:// bucket name/sub-directory name/**.
@@ -47,8 +47,8 @@ Ossbrowser supports simple management operations on OSS resources.
         2.  Set the following information about the bucket:
             -   **Name**: The name of a bucket can be 63 characters in maximum and must be unique.
             -   **Region**: Select the region where the bucket belongs to.
-            -   **ACL**: Select the ACL for the bucket. For more information about ACL, see [ACL](../../../../intl.en-US/Developer Guide/Access and control/Access control based on ACLs.md#).
-            -   **Type**: Select the default storage class of the bucket. For more information about storage class, see [Introduction to storage classes](../../../../intl.en-US/Developer Guide/Storage classes/Overview.md#).
+            -   **ACL**: Select the ACL for the bucket. For more information about ACL, see [ACL](../../../../reseller.en-US/Developer Guide/Access and control/Access control based on ACLs.md#).
+            -   **Type**: Select the default storage class of the bucket. For more information about storage class, see [Introduction to storage classes](../../../../reseller.en-US/Developer Guide/Storage classes/Overview.md#).
         3.  Click **OK**.
     -   Delete a bucket.
 
@@ -84,7 +84,7 @@ Ossbrowser supports simple management operations on OSS resources.
         1.  In the specified bucket or directory, select the objects or directories that you want to copy, and then click **Copy**.
         2.  Enter the bucket or directory where you want to copy the data to, and then click **Paste**.
 
-            **Note:** If the source address and target address of the copied object are the same, the original object is overwritten. If the storage class of the overwritten object is IA or Archive and the storage period of the object does not reach the required value, fees incur for the advanced deletion. For more information, see [Billing items](../../../../intl.en-US/Pricing/Billing items.md#table_v24_5ft_lgb).
+            **Note:** If the source address and target address of the copied object are the same, the original object is overwritten. If the storage class of the overwritten object is IA or Archive and the storage period of the object does not reach the required value, fees incur for the advanced deletion. For more information, see [Billing items](../../../../reseller.en-US/Pricing/Billing items.md#table_v24_5ft_lgb).
 
     -   Move objects/directories.
         1.  In the specified bucket or directory, select the objects or directories that you want to move, and then click **More** \> **Move**.
@@ -142,11 +142,11 @@ Ossbrowser supports simple management operations on OSS resources.
 
         -   Method 1: Click **Settings**, and then click **Open debug**.
 
-            ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/4906/156040640843798_en-US.png)
+            ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/4906/156040645043798_en-US.png)
 
         -   Method 2: Continually click the OSS Browser logo at the upper left corner for 10 times.
 
-            ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/4906/156040640943802_en-US.png)
+            ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/4906/156040645143802_en-US.png)
 
     -   Enable logging.
 
