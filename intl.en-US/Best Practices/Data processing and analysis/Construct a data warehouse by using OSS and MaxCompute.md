@@ -37,10 +37,10 @@ Financial applications on the Internet need to store a large number of financial
 
 ## Example: Analyze data collected from Internet of Things \(IoT\) {#section_qzx_kgn_tgb .section}
 
-1.  Activate OSS. For more information, see [Sign up for OSS](../../../../../reseller.en-US/Quick Start/Sign up for OSS.md#).
-2.  Create a bucket. For more information, see [创建Bucket](../../../../../reseller.en-US/Console User Guide/Manage buckets/Create a bucket.md#).
-3.  Activate MaxCompute. For more information, see [Activate MaxCompute](../../../../../reseller.en-US/Prepare/Activate MaxCompute.md#).
-4.  Create a MaxCompute project. For more information, see [创建MaxCompute Project](../../../../../reseller.en-US/Prepare/Create a project.md#).
+1.  Activate OSS. For more information, see [Sign up for OSS](../../../../reseller.en-US/Quick Start/Sign up for OSS.md#).
+2.  Create a bucket. For more information, see [Create a bucket](../../../../reseller.en-US/Console User Guide/Manage buckets/Create a bucket.md#).
+3.  Activate MaxCompute. For more information, see [Activate MaxCompute](../../../../reseller.en-US/Prepare/Activate MaxCompute.md#).
+4.  Create a MaxCompute project. For more information, see [Create a project](../../../../reseller.en-US/Prepare/Create a project.md#).
 5.  Grant OSS access permissions to MaxCompute.
 
     You must grant OSS access permissions to the account you used to access MaxCompute because MaxCompute needs to directly access data in OSS. You can log on to the RAM console with your Alibaba Cloud account to [grant permissions](https://ram.console.aliyun.com/?spm=a2c4g.11186623.2.16.761b1cdfvC1ITJ#role/authorize?request=%7B%22Requests%22:%20%7B%22request1%22:%20%7B%22RoleName%22:%20%22AliyunODPSDefaultRole%22,%20%22TemplateId%22:%20%22DefaultRole%22%7D%7D,%20%22ReturnUrl%22:%20%22https:%2F%2Fram.console.aliyun.com%2F%22,%20%22Service%22:%20%22ODPS%22%7D).
@@ -49,9 +49,9 @@ Financial applications on the Internet need to store a large number of financial
 
     **Note:** You can use any data set to test the procedures described in this topic. In this example, a CSV file named vehicle.csv has been uploaded to the /demo directory in an OSS bucket named oss-odps-test. The endpoint of the bucket is oss-cn-beijing-internal.aliyuncs.com.
 
-7.  Run the following commands to create an external table in MaxCompute. For more information, see [创建表](../../../../../reseller.en-US/Quick Start/Create and view a table.md#).
+7.  Run the following commands to create an external table in MaxCompute. For more information, see [Create a table](../../../../reseller.en-US/Quick Start/Create and view a table.md#).
 
-    ```
+    ``` {#codeblock_ac5_k1a_d4t}
     CREATE EXTERNAL TABLE IF NOT EXISTS ambulance_data_csv_external
     (
         vehicleId int,
@@ -67,11 +67,11 @@ Financial applications on the Internet need to store a large number of financial
         LOCATION 'oss://oss-cn-beijing-internal.aliyuncs.com/oss-odps-test/Demo/';
     ```
 
-8.  Use MaxCompute to query the external table. You can use an external table in the same way as you use a normal table. For more information, see [../../../../../dita-oss-bucket/SP\_76/DNODPS1883056/EN-US\_TP\_11952.md\#section\_ynz\_3mq\_kgb](../../../../../reseller.en-US/Quick Start/Run SQL.md#section_ynz_3mq_kgb).
+8.  Use MaxCompute to query the external table. You can use an external table in the same way as you use a normal table. For more information, see [Obtain and analyze data](../../../../reseller.en-US/Quick Start/Run SQL statements and export data.md#section_ynz_3mq_kgb).
 
     Assume that the /demo/vehicle.csv file includes the following data:
 
-    ```
+    ``` {#codeblock_kub_ca0_0dj}
     1,1,51,1,46.81006,-92.08174,9/14/2014 0:00,S
     1,2,13,1,46.81006,-92.08174,9/14/2014 0:00,NE
     1,3,48,1,46.81006,-92.08174,9/14/2014 0:00,NE
@@ -86,13 +86,13 @@ Financial applications on the Internet need to store a large number of financial
 
     Run the following SQL statement:
 
-    ```
+    ``` {#codeblock_nb9_4e7_60u}
     select recordId, patientId, direction from ambulance_data_csv_external where patientId > 25;
     ```
 
     The following results are returned.
 
-    ```
+    ``` {#codeblock_gzl_53r_yo0}
     +------------+------------+-----------+
     | recordId   | patientId  | direction |
     +------------+------------+-----------+
@@ -106,6 +106,6 @@ Financial applications on the Internet need to store a large number of financial
     +------------+------------+-----------+
     ```
 
-    For more information about the usage of OSS-external tables, see [Overview of External tables](../../../../../reseller.en-US/User Guide/External table/Overview of External tables.md#).
+    For more information about the usage of OSS-external tables, see [Overview of External tables](../../../../reseller.en-US/User Guide/External table/Overview of External tables.md#).
 
 
