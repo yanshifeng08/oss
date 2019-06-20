@@ -13,7 +13,7 @@ Browsers that support JavaScript use the same-origin policy to ensure security. 
 
 |Operating method|Description|
 |----------------|-----------|
-|[Console](../../../../reseller.en-US/Console User Guide/Manage buckets/Set anti-leech.md#)|Web application, which is intuitive and easy to use|
+|[Console](../../../../reseller.en-US/Console User Guide/Manage buckets/Configure CORS rules.md#)|Web application, which is intuitive and easy to use|
 |[Java SDK](../../../../reseller.en-US/SDK Reference/Java/CORS.md#)|SDK demos in various languages|
 |[Python SDK](../../../../reseller.en-US/SDK Reference/Python/CORS.md#)|
 |[PHP SDK](../../../../reseller.en-US/SDK Reference/PHP/CORS.md#)|
