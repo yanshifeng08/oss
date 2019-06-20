@@ -1,6 +1,6 @@
 # cors {#concept_303816 .concept}
 
-cors命令用于添加、修改、查询、删除Bucket的CORS配置。
+cors命令用于添加、修改、查询、删除Bucket的跨域资源共享（CORS）配置。
 
 **说明：** CORS介绍请参见[设置跨域资源共享](../../../../cn.zh-CN/开发指南/存储空间（Bucket）/设置跨域资源共享.md#)。
 
@@ -33,7 +33,7 @@ cors命令用于添加、修改、查询、删除Bucket的CORS配置。
     ./ossutil cors --method get oss://bucket  [local_xml_file]
     ```
 
-    local\_xml\_file为文件路径参数。若填写，则将CORS的配置保存为本地文件；若置空，则将CORS配置的输出到屏幕上。
+    local\_xml\_file为文件路径参数。若填写，则将CORS的配置保存为本地文件；若置空，则将CORS的配置输出到屏幕上。
 
 -   删除CORS配置
 
