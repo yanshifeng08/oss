@@ -2,7 +2,7 @@
 
 bucket-encryption命令用于添加、修改、查询、删除Bucket的加密配置。
 
-**说明：** Bucket加密介绍请参见[服务端加密](https://help.aliyun.com/document_detail/119320.html)。
+**说明：** Bucket加密介绍请参见[服务器端加密编码](../../../../cn.zh-CN/开发指南/数据加密/服务器端加密编码.md#)。
 
 ## 命令格式 {#section_qz7_p38_o8w .section}
 
