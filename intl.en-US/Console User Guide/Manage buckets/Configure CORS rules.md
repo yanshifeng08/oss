@@ -7,13 +7,13 @@ OSS provides Cross-Origin Resource Sharing \(CORS\) in the HTML5 protocol to hel
 1.  Log on to the [OSS console](https://partners-intl.console.aliyun.com/#/oss).
 2.  In the left-side bucket list, click the name of the bucket that you want to configure CORS rules.
 3.  Click the **Basic Settings** tab. In the **Cross-Origin Resource Sharing \(CORS\)** area, click **Configure**.
-4.  Click **Create Rule**. In the CORS Rule dialog box, set the following parameters:![](images/33159_en-US.png)
+4.  Click **Create Rule**. In the CORS Rule dialog box, set the following parameters:![](images/33159_en-US.png) 
 
     |Parameter|Required|Description|
     |:--------|:-------|:----------|
     |**Source**|Yes|Specifies the sources of allowed CORS requests. You can configure multiple matching rules for the source. Multiple rules must be configured in separate lines. Up to one asterisk \(\*\) wildcard can be used in a rule. If a rule includes only an asterisk \(\*\) wildcard, it allows CORS requests from all sources.|
     |**Allowed Methods**|Yes|Specifies the allowed CORS request methods.|
-    |**Allowed Headers**|No|Specifies the response headers for the allowed CORS requests. You can configure multiple matching rules for the allowed headers. Multiple rules must be configured in separate lines. Up to one asterisk \(\*\) wildcard can be used in a rule.|
+    |**Allowed Headers**|No|Specifies the response headers for the allowed CORS requests. You can configure multiple matching rules for the allowed headers. Multiple rules must be configured in separate lines. Up to one asterisk \(\*\) wildcard can be used in a rule. Set this parameter to \* if there is no special business requirements.|
     |**Exposed Headers**|No|Specifies the response headers that users are allowed to access from an application \(for example, a Javascript XMLHttpRequest object\). Asterisks \(\*\) cannot be used in exposed headers.|
     |**Cache Timeout**|No|Specifies the cache time for the returned results of browser prefetch \(OPTIONS\) requests to a specific resource.|
 
