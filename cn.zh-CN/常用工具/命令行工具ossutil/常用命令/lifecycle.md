@@ -69,7 +69,7 @@ lifecycle命令用于添加、修改、查询、删除生命周期规则配置�
     <LifecycleConfiguration>
       <Rule>
         <ID>1</ID>
-        <Prefix>Prefix</Prefix>
+        <Prefix>test/</Prefix>
         <Status>Enabled</Status>
         <Transition>
           <Days>10</Days>
@@ -91,7 +91,7 @@ lifecycle命令用于添加、修改、查询、删除生命周期规则配置�
     <?xml version="1.0" encoding="UTF-8"?>
     <LifecycleConfiguration>
       <Rule>
-        <ID>RuleID</ID>
+        <ID>2</ID>
         <Prefix>test/</Prefix>
         <Status>Enabled</Status>
         <Expiration>
