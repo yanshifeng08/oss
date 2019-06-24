@@ -1,5 +1,7 @@
 # RTMP推流地址及签名 {#reference_tkt_5bd_xdb .reference}
 
+本文介绍RTMP推流地址及其签名规则。
+
 RTMP推流地址形如：rtmp://your-bucket.oss-cn-hangzhou.aliyuncs.com/live/test-channel
 
 其组成规则为: `rtmp://${bucket}.${host}/live/${channel}?${params}`
@@ -27,7 +29,7 @@ RTMP推流地址形如：rtmp://your-bucket.oss-cn-hangzhou.aliyuncs.com/live/te
 
 Signature的计算规则如下：
 
-```
+``` {#codeblock_knp_b5b_e7j}
 base64(hmac-sha1(AccessKeySecret,
     + Expires + "\n"
     + CanonicalizedParams
