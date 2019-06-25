@@ -53,7 +53,7 @@ OSS的错误码列表如下：
 |TooManyBuckets|Bucket数目超过限制|同一阿里云账号在同一地域内创建的Bucket数量不能超过 30 个。 有调整Bucket数量需求请[提交工单](https://workorder.console.aliyun.com/#/ticket/createIndex)。
 
  |
-|RequestIsNotMultiPartContent|Post请求content-type非法|Post操作提交表单编码不是`multipart/form-data`类型。 Post操作提交表单编码必须为`multipart/form-data`，即Header中Content-Type为multipart/form-data;boundary=xxxxxx 这样的形式，boundary为边界字符串。原因及排查请参考[PostObject](../../../../cn.zh-CN/API 参考/关于Object操作/PostObject.md#)
+|RequestIsNotMultiPartContent|Post请求content-type非法|Post操作提交表单编码不是`multipart/form-data`类型。 Post操作提交表单编码必须为`multipart/form-data`，即Header中Content-Type为multipart/form-data;boundary=xxxxxx 这样的形式，boundary为边界字符串。原因及排查请参考[PostObject](../../../../cn.zh-CN/API 参考/关于Object操作/PostObject.md#)。
 
  |
 |RequestTimeout|请求超时|因网络环境或网络配置等引起的网络超时。 请参见[网络超时处理](cn.zh-CN/常见错误排除/网络超时处理.md#)进行排查。
@@ -107,7 +107,7 @@ OSS的错误码列表如下：
 |403|AccessDenied|拒绝访问|无指定操作的权限。 请参考[OSS 权限问题及排查](cn.zh-CN/常见错误排除/OSS 权限问题及排查.md#)。
 
  |
-|InvalidAccessKeyId|无效的AccessKeyId|AccessKeyId无效或过期。 请参考[OSS 403错误及排查](cn.zh-CN/常见错误排除/OSS 403错误及排查.md#)
+|InvalidAccessKeyId|无效的AccessKeyId|AccessKeyId无效或过期。 请参考[OSS 403错误及排查](cn.zh-CN/常见错误排除/OSS 403错误及排查.md#)。
 
  |
 |InvalidObjectState|无效的Object状态|下载归档类型Object时，以下两种情况会导致报错无效的Object状态。 -   没有提交RestoreObject请求或者上一次提交RestoreObject已经超时。
@@ -155,23 +155,23 @@ OSS的错误码列表如下：
 
 OSS常见错误及排查
 
--   [上传回调错误及排除](cn.zh-CN/常见错误排除/上传回调错误及排除.md#)
--   [403错误及排查](cn.zh-CN/常见错误排除/OSS 403错误及排查.md#)
--   [PostObject错误及排查](cn.zh-CN/常见错误排除/Post Object错误及排查.md#)
--   [权限问题及排查](cn.zh-CN/常见错误排除/OSS 权限问题及排查.md#)
--   [跨域资源共享CORS错误及排除](cn.zh-CN/常见错误排除/OSS跨域资源共享（CORS）错误及排除.md#)
--   [防盗链Referer配置及错误排除](cn.zh-CN/常见错误排除/OSS防盗链（Referer）配置及错误排除.md#)
--   [STS常见问题及排查](cn.zh-CN/常见错误排除/STS常见问题及排查.md#)
+-    [上传回调错误及排除](cn.zh-CN/常见错误排除/上传回调错误及排除.md#) 
+-    [403错误及排查](cn.zh-CN/常见错误排除/OSS 403错误及排查.md#) 
+-    [PostObject错误及排查](cn.zh-CN/常见错误排除/Post Object错误及排查.md#) 
+-    [权限问题及排查](cn.zh-CN/常见错误排除/OSS 权限问题及排查.md#) 
+-    [跨域资源共享CORS错误及排除](cn.zh-CN/常见错误排除/OSS跨域资源共享（CORS）错误及排除.md#) 
+-    [防盗链Referer配置及错误排除](cn.zh-CN/常见错误排除/OSS防盗链（Referer）配置及错误排除.md#) 
+-    [STS常见问题及排查](cn.zh-CN/常见错误排除/STS常见问题及排查.md#) 
 
 SDK/Tool常见错误及排查
 
--   Java SDK：[常见问题](../../../../cn.zh-CN/SDK 示例/Java/常见问题.md#)
--   Python SDK：[常见问题](../../../../cn.zh-CN/SDK 示例/Python/常见问题.md#)
--   C SDK：[常见问题](../../../../cn.zh-CN/SDK 示例/C/常见问题.md#)
--   Node.js SDK：[常见问题](../../../../cn.zh-CN/SDK 示例/Node.js/常见问题.md#)
--   [ossfs](../../../../cn.zh-CN/常用工具/ossfs/常见问题.md#)
--   [ossftp](../../../../cn.zh-CN/常用工具/ossftp/常见问题.md#)
--   [ossutil](https://help.aliyun.com/document_detail/101135.html)
+-   Java SDK：[常见问题](../../../../cn.zh-CN/SDK 示例/Java/常见问题.md#) 
+-   Python SDK：[常见问题](../../../../cn.zh-CN/SDK 示例/Python/常见问题.md#) 
+-   C SDK：[常见问题](../../../../cn.zh-CN/SDK 示例/C/常见问题.md#) 
+-   Node.js SDK：[常见问题](../../../../cn.zh-CN/SDK 示例/Node.js/常见问题.md#) 
+-    [ossfs](../../../../cn.zh-CN/常用工具/ossfs/常见问题.md#) 
+-    [ossftp](../../../../cn.zh-CN/常用工具/ossftp/常见问题.md#) 
+-    [ossutil](https://help.aliyun.com/document_detail/101135.html) 
 
 ## 不支持的操作 {#section_ecd_wr3_wdb .section}
 
