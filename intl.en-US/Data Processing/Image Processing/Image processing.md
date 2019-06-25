@@ -1,69 +1,81 @@
 # Image processing {#concept_m4f_dcn_vdb .concept}
 
-Alibaba Cloud OSS Image Processing \(IMG\) is an image processing service that features massive capacity, high security, low costs, and high reliability. By uploading and storing original images in OSS, you can process images anytime, anywhere, on any Internet device through a simple RESTful API. IMG offers image processing APIs. To upload images, use the OSS upload API. IMG is a great solution for you to build image-related services.
+This topic describes the basic features and versions of Alibaba Cloud OSS Image Processing \(IMG\) service and how to use this service. Featuring high capacity and cost efficiency, IMG provides two image processing APIs that allow you to build image-related services.
 
 **Note:** 
 
-IMG is activated automatically when you activate OSS.
+IMG is activated automatically when you activate OSS. For information about how to activate OSS, see [Sign up for OSS](../../../../reseller.en-US/Quick Start/Sign up for OSS.md#).
 
-## Basic features {#section_jky_lcn_vdb .section}
+## Basic features {#section_rqv_sdo_b3e .section}
 
-IMG provides the following features:
+-   Query image metadata
+-   Convert image formats
+-   Scale, crop, and rotate images
+-   Attach images, text, and text-and-image watermarks to images
+-   Customize image processing styles
+-   Call multiple image processing features by using pipelines
 
--   Retrieving image information
--   Converting image formats
--   Scaling, cropping, and rotating images
--   Adding images, texts, and text-and-image watermarks to images
--   Customizing image processing styles
--   Calling multiple image processing features in a set sequence through pipelines
+## Versions {#section_m69_ymd_uxf .section}
 
-## Previous versions {#section_irr_ncn_vdb .section}
+There are two versions of IMG.
 
-IMG now has two API versions.
+**Note:** This topic describes the features of the latest version of IMG. The API of the previous version will no longer receive updates. For details related to compatibility, see [FAQ on using old and new versions of APIs and domain names](reseller.en-US/Data Processing/Image Processing/FAQ on using old and new versions of APIs and domain names.md#).
 
-**Note:** This article introduces the features of the new version. Features of the old APIs will not be updated. For compatibility details, see [FAQ on using old and new versions of APIs and domain names](reseller.en-US/Data Processing/Image Processing/FAQ on using old and new versions of APIs and domain names.md#).
+## Quick start {#section_qqp_nor_rzd .section}
 
-## Quick start {#section_asc_qcn_vdb .section}
+-   Create an image style by completing the following steps:
+    1.  Log on to the [OSS console](https://partners-intl.console.aliyun.com/#/oss).
+    2.  Click your bucket name to go to the Overview page of the bucket.
+    3.  Choose the **Image Processing** tab, and then click **Create Rule**.
+    4.  On the Create Rule page, configure the image style by performing graphical operations on the **Basic Edit** tab page or by using an SDK or parameters on the **Advanced Edit** tab page.
 
-**Create an image style**
+        The parameters on the **Basic Edit** tab page are as follows:
 
-1.  Log on to the [OSS console](https://partners-intl.console.aliyun.com/#/oss).
-2.  Click your bucket name to go to the **Overview** page of the bucket.
-3.  On the **Overview** page, click **Image Processing**, and then click **Create Style**.
-4.  Create an image style in the Image Style page.
+        -   Rule Name: the name of the image style. The name must be 1 to 64 characters in length, and can contain numbers, letters, underscores \(\_\), hyphens \(-\), and periods \(.\).
+        -   Format: the format of images. Values: Original | jpg | jpeg | png | bmp | gif | webp | tiff.
+        -   Fade In: Specifies whether to enable the Fade In function.
+        -   Adaptive Orientation: Specifies whether to enable the Adaptive Orientation function.
 
-    Details about the Image Style page:
+            We recommend that you enable the Adaptive Orientation function. When this function is enabled, an image is rotated according to its EXIF data before it is resized.
 
-    -   **Style Name**: Name of the image style to create. We recommend you give the style a meaningful name so that you can remember it easily, such as XX watermark image rotation.
-        -   The length of the name must be within 1-64 characters.
-        -   A name can only include numbers, letters, underscores \( \_ \), short crosslines \(-\), and the decimal point \(.\).
-    -   **Editing Type**: You can select "Basic editing" to edit the image style with graphical operations. You can also select "Advanced editing" to edit the image style using an SDK or parameters.
-    -   **Resize Mode**: Set the scaling mode for the image.
+        -   Image Quality: the quality of images. Values: Relative | Absolute | Uncompressed.
+        -   Resize Type: the method of resizing images. Values: Thumbnail Disabled | Proportional Scale Down | Proportional Scale Up | Fixed Width and/or Height.
 
-        **Note:** The "long side" refers the side with a bigger source size to target size ratio. The same applies to the "short side". For example, for an original image that is scaled from 400x200 to 800x100, the original-to-target ratios are 0.5 \(400/800\) and 2 \(200/100\). Because 0.5 is less than 2, the 200 side is the longer side, and the 400 side the shorter one.
+            **Note:** The "long side" refers the side with a larger source size to target size ratio. The same applies to the "short side." For example, for an original image that is scaled from 400x200 to 800x100, the original-to-target ratios are 0.5 \(400/800\) and 2 \(200/100\). Given that 0.5 is less than 2, the 200 side is the longer side and the 400 side the shorter one.
 
-    -   **Adaptive Orientation**: Set the adaptive orientation for the image.
+        -   Image Brightness: the image brightness.
+        -   Image Contrast: the level of contrast in an image.
+        -   Image Sharpening: Specifies whether to sharpen an image. If this function is enabled, the level of sharpening applied to an image.
+        -   Image Blurring: Specifies whether to blur an image. If this function is enabled, the level of blur effect applied to an image.
 
-        It is recommended that you enabled it by default. An image is firstly rotated and then resized based on the EXIF information.
+            When the Image Blurring function is enabled, you can set Blur Radius and Blur Sigma.
 
-    -   Save format: the original format, JPG, PNG, webp, and BMP formats are available for selection.
-    -   **Image Sharpening**: Set whether the image needs to be sharpened.
-    -   **Image Quality**: Set the image quality.
-    -   **Watermark**: Set the image watermark mode.
-5.  Edit the image style and click **OK** to save the style.
+        -   Image Rotation: the angle of rotation of an image.
+        -   Watermark: Specifies whether to enable the Watermark function. If this function is enabled, the type of watermark added to an image.
+        The parameters on the **Advanced Edit** tab page are as follows:
 
-After creating the new image style, you can apply it to your images through OSS.
+        -   Rule Name: the same as the Rule Name parameter on the **Basic Edit** tab page.
+        -   Code: You can enter API code to edit an image.
 
-**Apply an image style**
+            **Examples:** 
 
-1.  Log on to the [OSS console](https://partners-intl.console.aliyun.com/#/oss).
-2.  Click your bucket name to go to the **Overview** page of the bucket.
-3.  On the Overview page, click **Files** to select an existing image or upload a new image to open the Preview page.
+            -   `image/resize,w_200`
+            -   `image/crop,w_100,h_100/rounded-corners,r_10/format,png`
+            **Note:** You can edit images only by using the API of the latest version.
 
-    For new image uploading, see [Upload objects](../../../../../reseller.en-US/Console User Guide/Manage objects/Upload objects.md#). 
+    5.  Click **OK**.
 
-4.  Select a picture style from the **Image Style** drop-down list.
+        After the new image style is created, you can apply it to your images through OSS.
 
-    You can view the processed image in the preview window immediately. A public network access address with the image style is generated at the same time. You only need to click **Copy File URL** to get the access address to the file.
+-   Apply an image style.
+    1.  Log on to the [OSS console](https://partners-intl.console.aliyun.com/#/oss).
+    2.  Click your bucket name to go to the Overview page of the bucket.
+    3.  Choose the **Files** tab, select an existing image or upload a new image to open the Preview page.
+
+        For information about how to upload an image, see [Upload objects](../../../../reseller.en-US/Console User Guide/Upload、download and manage objects/Upload objects.md#).
+
+    4.  Select an image style from the **Image Style** drop-down list.
+
+        You can view the effect of the image that is processed according to the selected style. Additionally, an address that carries the image style is generated accordingly. You can click **Copy File URL** to obtain the URL.
 
 
