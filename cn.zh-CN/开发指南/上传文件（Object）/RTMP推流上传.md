@@ -20,7 +20,7 @@ OSS支持使用RTMP协议推送H264编码的视频流和AAC编码的音频流到
 
     以Python SDK为例，获取未签名以及签名推流地址的代码如下：
 
-    ```
+    ``` {#codeblock_ynm_4gs_9pi}
     from oss2 import *
     from oss2.models import *
     host = "oss-cn-hangzhou.aliyuncs.com" #just for example
@@ -38,7 +38,7 @@ OSS支持使用RTMP协议推送H264编码的视频流和AAC编码的音频流到
 
     获得的推流地址示例如下：
 
-    ```
+    ``` {#codeblock_saf_cwb_xxg}
     publish_url = rtmp://your-bucket.oss-cn-hangzhou.aliyuncs.com/live/test-channel
     signed_publish_url = rtmp://your-bucket.oss-cn-hangzhou.aliyuncs.com/live/your-channel?OSSAccessKeyId=LGarxxxxxxHjKWg6&playlistName=t.m3u8&Expires=1472201595&Signature=bjKraZTTyzz9%2FpYoomDx4Wgh%2FlM%3D"
     ```
@@ -47,7 +47,7 @@ OSS支持使用RTMP协议推送H264编码的视频流和AAC编码的音频流到
 
     可以使用ffmpeg推送本地的视频文件到OSS，命令如下：
 
-    ```
+    ``` {#codeblock_cjh_89q_3z9}
     ffmpeg -i 1.flv -c copy -f flv "rtmp://your-bucket.oss-cn-hangzhou.aliyuncs.com/live/test-channel?OSSAccessKeyId=LGarxxxxxxHjKWg6&Expires=1472199095&Signature=%2FAvRo7FTss1InBKgwn7Gz%2FUlp9w%3D"
     ```
 
@@ -57,7 +57,7 @@ OSS支持使用RTMP协议推送H264编码的视频流和AAC编码的音频流到
 
     如下图所示，请注意推流地址的拆分方式：
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/4367/15573940721068_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/4367/15615999861068_zh-CN.png)
 
 
 ## 播放推送到OSS的音视频数据 {#section_qss_fnb_5db .section}
@@ -71,7 +71,7 @@ OSS支持使用RTMP协议推送H264编码的视频流和AAC编码的音频流到
     -   PC端可以安装vlc播放器进行播放。
     为了直播流畅，可以设置比较小的FragDuration，例如2s；另外，GOP的大小最好固定且与LiveChannel的FragDuration配置一致。OBS的GOP （即keyframe Interval）设置方法如下：
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/4367/15573940721069_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/4367/15615999871069_zh-CN.png)
 
 -   点播场景
 
