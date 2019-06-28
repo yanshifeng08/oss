@@ -104,7 +104,7 @@ OSS的错误码列表如下：
 
  |
 |EntityTooLarge|实体过大|
-|403|AccessDenied|拒绝访问|无指定操作的权限。 请参考[OSS 权限问题及排查](cn.zh-CN/常见错误排除/OSS 权限问题及排查.md#)。
+|403|AccessDenied|拒绝访问|无指定操作的权限。 请参考[OSS 权限问题及排查](cn.zh-CN/常见错误排除/OSS权限问题及排查.md#)。
 
  |
 |InvalidAccessKeyId|无效的AccessKeyId|AccessKeyId无效或过期。 请参考[OSS 403错误及排查](cn.zh-CN/常见错误排除/OSS 403错误及排查.md#)。
@@ -150,28 +150,36 @@ OSS的错误码列表如下：
  |
 |503|DownloadTrafficRateLimitExceeded|下载流量超过限制|内外网默认下载流量上限为5Gbit/s。有调整需求请[提交工单](https://workorder.console.aliyun.com/#/ticket/createIndex)。|
 |UploadTrafficRateLimitExceeded|上传流量超过限制|内外网默认上传流量上限为5Gbit/s。有调整需求请[提交工单](https://workorder.console.aliyun.com/#/ticket/createIndex)。|
+|MetaOperationQpsLimitExceeded|超出默认设置的QPS阈值|OSS针对以下管控类API进行QPS限制： -   Service的操作：GetService \(ListBuckets\)
+-   Bucket的操作，如PutBucket、GetBucketLifecycle等
+-   跨域资源共享的操作，如PutBucketCORS、GetBucketCORS等
+-   LiveChannel的操作，如PutLiveChannel、DeleteLiveChannel等
+
+ 超出阈值，则返回503。建议您延迟几秒后进行重试。
+
+ |
 
 ## 常见错误及排查 {#section_g4x_wq3_wdb .section}
 
 OSS常见错误及排查
 
--    [上传回调错误及排除](cn.zh-CN/常见错误排除/上传回调错误及排除.md#) 
--    [403错误及排查](cn.zh-CN/常见错误排除/OSS 403错误及排查.md#) 
--    [PostObject错误及排查](cn.zh-CN/常见错误排除/Post Object错误及排查.md#) 
--    [权限问题及排查](cn.zh-CN/常见错误排除/OSS 权限问题及排查.md#) 
--    [跨域资源共享CORS错误及排除](cn.zh-CN/常见错误排除/OSS跨域资源共享（CORS）错误及排除.md#) 
--    [防盗链Referer配置及错误排除](cn.zh-CN/常见错误排除/OSS防盗链（Referer）配置及错误排除.md#) 
--    [STS常见问题及排查](cn.zh-CN/常见错误排除/STS常见问题及排查.md#) 
+-   [上传回调错误及排除](cn.zh-CN/常见错误排除/上传回调错误及排除.md#)
+-   [403错误及排查](cn.zh-CN/常见错误排除/OSS 403错误及排查.md#)
+-   [PostObject错误及排查](cn.zh-CN/常见错误排除/Post Object错误及排查.md#)
+-   [权限问题及排查](cn.zh-CN/常见错误排除/OSS权限问题及排查.md#)
+-   [跨域资源共享CORS错误及排除](cn.zh-CN/常见错误排除/OSS跨域资源共享（CORS）错误及排除.md#)
+-   [防盗链Referer配置及错误排除](cn.zh-CN/常见错误排除/OSS防盗链（Referer）配置及错误排除.md#)
+-   [STS常见问题及排查](cn.zh-CN/常见错误排除/STS常见问题及排查.md#)
 
 SDK/Tool常见错误及排查
 
--   Java SDK：[常见问题](../../../../cn.zh-CN/SDK 示例/Java/常见问题.md#) 
--   Python SDK：[常见问题](../../../../cn.zh-CN/SDK 示例/Python/常见问题.md#) 
--   C SDK：[常见问题](../../../../cn.zh-CN/SDK 示例/C/常见问题.md#) 
--   Node.js SDK：[常见问题](../../../../cn.zh-CN/SDK 示例/Node.js/常见问题.md#) 
--    [ossfs](../../../../cn.zh-CN/常用工具/ossfs/常见问题.md#) 
--    [ossftp](../../../../cn.zh-CN/常用工具/ossftp/常见问题.md#) 
--    [ossutil](https://help.aliyun.com/document_detail/101135.html) 
+-   Java SDK：[常见问题](../../../../cn.zh-CN/SDK 示例/Java/常见问题.md#)
+-   Python SDK：[常见问题](../../../../cn.zh-CN/SDK 示例/Python/常见问题.md#)
+-   C SDK：[常见问题](../../../../cn.zh-CN/SDK 示例/C/常见问题.md#)
+-   Node.js SDK：[常见问题](../../../../cn.zh-CN/SDK 示例/Node.js/常见问题.md#)
+-   [ossfs](../../../../cn.zh-CN/常用工具/ossfs/常见问题.md#)
+-   [ossftp](../../../../cn.zh-CN/常用工具/ossftp/常见问题.md#)
+-   [ossutil](https://help.aliyun.com/document_detail/101135.html)
 
 ## 不支持的操作 {#section_ecd_wr3_wdb .section}
 
