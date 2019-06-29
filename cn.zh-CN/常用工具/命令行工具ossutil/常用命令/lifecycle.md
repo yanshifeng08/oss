@@ -62,7 +62,7 @@ lifecycle命令用于添加、修改、查询、删除生命周期规则配置�
     ./ossutil lifecycle --method put oss://bucket1  /file/lifecycle.xml
     ```
 
-    website.xml文件内容为：
+    lifecycle.xml文件内容为：
 
     ``` {#codeblock_y97_m4t_oy1}
     <?xml version="1.0" encoding="UTF-8"?>
@@ -85,7 +85,7 @@ lifecycle命令用于添加、修改、查询、删除生命周期规则配置�
     ./ossutil lifecycle --method put oss://bucket1  /file/lifecycle.xml
     ```
 
-    website.xml文件内容为：
+    lifecycle.xml文件内容为：
 
     ``` {#codeblock_x3u_77l_gpk}
     <?xml version="1.0" encoding="UTF-8"?>
