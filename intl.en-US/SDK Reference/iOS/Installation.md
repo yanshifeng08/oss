@@ -2,46 +2,51 @@
 
 This topic describes how to install the OSS iOS SDK.
 
+## Environment requirements {#section_pt3_7d9_u60 .section}
+
+-   iOS: 8.0 or later
+-   MacOS: 10.10 or later
+
 ## Directly import the framework {#section_bjm_zgj_lfb .section}
 
 For more information about how to obtain the OSS iOS SDK framework, see [GitHub](https://github.com/aliyun/aliyun-oss-ios-sdk/blob/master/README-CN.md).
 
 In Xcode, drag the framework and drop it to your target area. In the dialog box that appears, select **Copy items if needed**.
 
-## Pod dependency { .section}
+## Pod dependency {#section_uzg_y12_ikm .section}
 
 If your project uses Cocoapods to manage dependencies, add the following dependency to the Podfile. In this case, you do not need to import the OSS iOS SDK framework.
 
-```
+``` {#codeblock_2oi_pal_z8v}
 pod 'AliyunOSSiOS'
-
+			
 ```
 
 For more information about the Cocoapods management tool, see [CocoaPods installation and use tutorial](http://code4app.com/article/cocoapods-install-usage).
 
 **Note:** You can choose either of the preceding methods.
 
-## Import the header file to your project { .section}
+## Import the header file to your project {#section_g65_qzc_2ap .section}
 
-```language-objc
+``` {#codeblock_cax_ov4_l86 .language-objc}
 #import <AliyunOSSiOS/OSSService.h>
-
+			
 ```
 
 **Note:** After you import the framework, add `-ObjC` to `Other Linker Flags` of `Build Settings` in your project. If the `-force_load` option is configured for your project, add `-force_load <framework path>/AliyunOSSiOS`.
 
-## Compatible with IPv6-only networks { .section}
+## Compatible with IPv6-only networks {#section_jv3_il6_au7 .section}
 
 Domain name resolution in wireless networks is subject to hijackings. To address this issue, the OSS mobile SDK imports HTTPDNS for domain name resolution and directly uses IP addresses to request the OSS server. In an IPv6-only network, compatibility issues may occur. The App Store has officially issued the review requirements for applications, requiring applications to be IPv6-only network compatible. To meet this requirement, the SDK starts to be compatible from V2.5.0. In the later version, aside from -ObjC settings, two system libraries must be imported:
 
-```
+``` {#codeblock_8cg_2z0_5lk}
 libresolv.tbd
 CoreTelephony.framework
 SystemConfiguration.framework
-
+			
 ```
 
-## About the ATS policy of Apple { .section}
+## About the ATS policy of Apple {#section_8zg_w96_b6i .section}
 
 During WWDC 2016, Apple announced that all the applications in Apple App Store must implement App Transport Security \(ATS\) from January 1, 2017. In other words, all newly submitted applications are not allowed to use `NSAllowsArbitraryLoads` to bypass the ATS limitation. Additionally, the application submitters must ensure that all network requests from the application are encrypted through HTTPS. Otherwise, the application may fail the review.
 
