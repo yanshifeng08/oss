@@ -2,9 +2,11 @@
 
 DeleteMultipleObjects接口用于删除同一个存储空间（Bucket）中的多个文件（Object）。
 
+**说明：** DeleteMultipleObjects接口一次最多允许删除1000个文件。
+
 ## 请求语法 {#section_iqs_fvv_wdb .section}
 
-```
+``` {#codeblock_3iw_098_zsj}
 POST /?delete HTTP/1.1
 Host: BucketName.oss-cn-hangzhou.aliyuncs.com
 Date: GMT Date
@@ -116,13 +118,13 @@ OSS会根据以下请求头验证收到的消息体，消息体正确才会执�
 
 **关闭简单响应模式的请求示例**
 
-```
+``` {#codeblock_g4d_vx4_eju}
 POST /?delete HTTP/1.1
 Host: oss-example.oss-cn-hangzhou.aliyuncs.com
 Date: Wed, 29 Feb 2012 12:26:16 GMT
 Content-Length:151
 Content-MD5: ohhnqLBJFiKkPSBO1eNaUA==
-Authorization: OSS qn6qrrqxo2oawuk53otfjbyc:+z3gBfnFAxBcBDgx27Y/jEfbfu8=
+Authorization: OSS qn6qrrqxo2oawuk53otfjbyc:+z3gBfnFAxBcBDgx27Y/jEfb****
 <?xml version="1.0" encoding="UTF-8"?>
 <Delete> 
   <Quiet>false</Quiet>  
@@ -140,7 +142,7 @@ Authorization: OSS qn6qrrqxo2oawuk53otfjbyc:+z3gBfnFAxBcBDgx27Y/jEfbfu8=
 
 **返回示例**
 
-```
+``` {#codeblock_5pb_hao_hxc}
 HTTP/1.1 200 OK
 x-oss-request-id: 78320852-7eee-b697-75e1-b6db0f4849e7
 Date: Wed, 29 Feb 2012 12:26:16 GMT
@@ -164,13 +166,13 @@ Server: AliyunOSS
 
 **打开简单响应模式的请求示例**
 
-```
+``` {#codeblock_7hi_cra_suc}
 POST /?delete HTTP/1.1
 Host: oss-example.oss-cn-hangzhou.aliyuncs.com
 Date: Wed, 29 Feb 2012 12:33:45 GMT
 Content-Length:151
 Content-MD5: ohhnqLBJFiKkPSBO1eNaUA==
-Authorization: OSS qn6qrrqxo2oawuk53otfjbyc:WuV0Jks8RyGSNQrBca64kEExJDs=
+Authorization: OSS qn6qrrqxo2oawuk53otfjbyc:WuV0Jks8RyGSNQrBca64kEEx****
 <?xml version="1.0" encoding="UTF-8"?>
 <Delete> 
   <Quiet>true</Quiet>  
@@ -188,7 +190,7 @@ Authorization: OSS qn6qrrqxo2oawuk53otfjbyc:WuV0Jks8RyGSNQrBca64kEExJDs=
 
 **返回示例**
 
-```
+``` {#codeblock_8p0_jy5_1fk}
 HTTP/1.1 200 OK
 x-oss-request-id: 559CC9BDC755F95A64485981
 Date: Wed, 29 Feb 2012 12:33:45 GMT
@@ -199,16 +201,16 @@ Server: AliyunOSS
 
 ## SDK {#section_egl_m2c_5gb .section}
 
--   [Java](../../../../../intl.zh-CN/SDK 参考/Java/管理文件/删除文件.md)
--   [Python](../../../../../intl.zh-CN/SDK 参考/Python/管理文件/删除文件.md)
--   [PHP](../../../../../intl.zh-CN/SDK 参考/Python/管理文件/删除文件.md)
--   [Go](../../../../../intl.zh-CN/SDK 参考/Go/管理文件/删除文件.md)
--   [C](../../../../../intl.zh-CN/SDK 参考/C/管理文件/删除文件.md)
--   [.NET](../../../../../intl.zh-CN/SDK 参考/.NET/管理文件/删除文件.md)
--   [iOS](../../../../../intl.zh-CN/SDK 参考/iOS/管理文件/概述.md)
--   [Node.js](../../../../../intl.zh-CN/SDK 参考/Node.js/管理文件.md)
--   [Browser.js](../../../../../intl.zh-CN/SDK 参考/Browser.js/管理文件.md)
--   [Ruby](../../../../../intl.zh-CN/SDK 参考/Ruby/管理文件.md)
+-   [Java](../../../../intl.zh-CN/SDK 示例/Java/管理文件/删除文件.md)
+-   [Python](../../../../intl.zh-CN/SDK 示例/Python/管理文件/删除文件.md)
+-   [PHP](../../../../intl.zh-CN/SDK 示例/Python/管理文件/删除文件.md)
+-   [Go](../../../../intl.zh-CN/SDK 示例/Go/管理文件/删除文件.md)
+-   [C](../../../../intl.zh-CN/SDK 示例/C/管理文件/删除文件.md)
+-   [.NET](../../../../intl.zh-CN/SDK 示例/.NET/管理文件/删除文件.md)
+-   [iOS](../../../../intl.zh-CN/SDK 示例/iOS/管理文件/概述.md)
+-   [Node.js](../../../../intl.zh-CN/SDK 示例/Node.js/管理文件/概述.md)
+-   [Browser.js](../../../../intl.zh-CN/SDK 示例/Browser.js/管理文件.md)
+-   [Ruby](../../../../intl.zh-CN/SDK 示例/Ruby/管理文件.md)
 
 ## 错误码 {#section_nfp_nfc_5gb .section}
 
