@@ -2,21 +2,16 @@
 
 Enables the access logging function for a bucket. When this function is enabled, OSS automatically records the details about the requests to this bucket, and follows the user-specified rules to write the access logs as an object into a user-specified bucket on an hourly basis.
 
-**Note:** OSS provides bucket access logs for bucket owners to understand and analyze bucket access behaviors easily. The bucket access logs provided by OSS do not guarantee that every single access record is logged.
+**Note:** 
 
 -   When the source bucket is deleted, the corresponding logging rules are also deleted.
 -   OSS generates a bucket access log file every hour. However, all requests during the hour may not be recorded in the log file, but may get recorded in the previous or next log file.
--   Each time OSS generates a bucket access log file, this is considered a PUT operation and the occupied space is recorded, but the generated traffic is not recorded.  After log files are generated, you can operate these log files as common objects.
--   OSS ignores all query-string parameters prefixed by “x-“ but such query-string parameters are recorded in access logs.  If you want to mark a special request from massive access logs, you can add a query-string parameter prefixed by “x-“ to the URL.  For example:
-
-    `http://oss-example.regionid.example.com/aliyun-logo.png`
-
-    `http://oss-example.regionid.example.com/aliyun-logo.png?x-user=admin`
-
+-   Each time OSS generates a bucket access log file, this is considered a PUT operation and the occupied space is recorded, but the generated traffic is not recorded. After log files are generated, you can operate these log files as common objects.
+-   OSS ignores all query-string parameters prefixed by “x-“ but such query-string parameters are recorded in access logs. If you want to mark a special request from massive access logs, you can add a query-string parameter prefixed by “x-“ to the URL. For example, you can add mark `http://oss-example.regionid.example.com/aliyun-logo.png` by adding a parameter prefixed by "x-" as follows: `http://oss-example.regionid.example.com/aliyun-logo.png?x-user=admin`. The added parameter is ignored. However, you can locate the request by searching "x-user=admin".
 
 ## Request syntax {#section_rfs_rnr_bz .section}
 
-```
+``` {#codeblock_mf7_adh_eas}
 PUT /? logging HTTP/1.1
 Date: GMT Date
 Content-Length：ContentLength
@@ -38,32 +33,32 @@ Host: BucketName.oss-cn-hangzhou.aliyuncs.com
 
 |Element|Type|Required|Description|
 |-------|----|--------|-----------|
-|BucketLoggingStatus|Container|Yes|Specifies the container for storing access log status informationSub-node: LoggingEnabled
+|BucketLoggingStatus|Container|Yes|Specifies the container for storing access log status information Sub-node: LoggingEnabled
 
-Parent node: None
+ Parent node: None
 
-|
-|LoggingEnabled|Container|No|Specifies the container for storing access log information. This element is required only when server access logging is enabled. Sub-node: TargetBucket, TargetPrefix
+ |
+|LoggingEnabled|Container|No|Specifies the container for storing access log information. This element is required only when server access logging is enabled. Sub-node: TargetBucket, TargetPrefix
 
-Parent node: BucketLoggingStatus
+ Parent node: BucketLoggingStatus
 
-|
-|TargetBucket|String|This element is required when server access logging is enabled|Specifies the bucket for storing access logs. The source bucket and target bucket can be the same or different buckets. You can save logs from multiple source buckets to the same target bucket \(in this case, we recommend that you assign different values to TargetPrefix\).Sub-node: None
+ |
+|TargetBucket|String|This element is required when server access logging is enabled|Specifies the bucket for storing access logs. The source bucket and target bucket can be the same or different buckets. You can save logs from multiple source buckets to the same target bucket \(in this case, we recommend that you assign different values to TargetPrefix\). Sub-node: None
 
-Parent node: BucketLoggingStatus.LoggingEnabled
+ Parent node: BucketLoggingStatus.LoggingEnabled
 
-|
-|TargetPrefix|String|No|Specifies the prefix of the names of saved access log files, which can be null.  Sub-node: None
+ |
+|TargetPrefix|String|No|Specifies the prefix of the names of saved access log files, which can be null. Sub-node: None
 
-Parent node: BucketLoggingStatus.LoggingEnabled
+ Parent node: BucketLoggingStatus.LoggingEnabled
 
-|
+ |
 
 ## Naming rules for the objects storing access logs {#section_kv3_ynr_bz .section}
 
 The format of an object name is as follows:
 
-```
+``` {#codeblock_ixt_uyw_2dx}
 <TargetPrefix><SourceBucket>-YYYY-mm-DD-HH-MM-SS-UniqueString
 ```
 
@@ -72,12 +67,12 @@ The following table describes the parameters in an object name:
 |Parameter|Description|
 |:--------|:----------|
 |TargetPrefix|Specifies the prefix of the object name.|
-|YYYY-mm-DD-HH-MM-SS|Indicates the time when the object is created. YYYY, mm, DD, HH, MM, and SS indicate the year, month, day, hour, minutes, and seconds individually. For example: `2012-09-10-04-00-00`。|
+|YYYY-mm-DD-HH-MM-SS|Indicates the time when the object is created. YYYY, mm, DD, HH, MM, and SS indicate the year, month, day, hour, minutes, and seconds individually. For example: `2012-09-10-04-00-00`.|
 |UniqueString|Indicates the unique UUID generated by OSS to identify a log.|
 
 An example object name is as follows:
 
-```
+``` {#codeblock_7ng_0kw_bog}
 MyLog-oss-example-2012-09-10-04-00-00-0000
 ```
 
@@ -100,7 +95,7 @@ In the preceding example, MyLog- is the prefix specified by the user, oss-exampl
 |HTTP Status|200|HTTP status code returned by OSS|
 |SentBytes|5576|Traffic that the user downloads from OSS|
 |RequestTime \(ms\)|71|Time utilized in completing this request \(in ms\)|
-|Referer| ```
+|Referer| ``` {#codeblock_5hq_oc8_31f}
 http://www.aliyun.com/product/oss
 ```
 
@@ -117,7 +112,7 @@ http://www.aliyun.com/product/oss
 |Server Cost Time \(ms\)|17|Time utilized by OSS server to process this request \(in ms\)|
 |Error Code|NoSuchBucket|Error code returned by OSS|
 |Request Length|302|Length of user request \(byte\)|
-|UserID|16571\*\*\*\*\*\*83691| ID of the bucket owner|
+|UserID|16571\*\*\*\*\*\*83691|ID of the bucket owner|
 |Delta DataSize|280|Bucket size variation, “-“ for no change|
 |Sync Request|-|Whether this is an origin retrieval request from CDN, “-“ for no|
 |Reserved|-|Reserved field|
@@ -126,7 +121,7 @@ http://www.aliyun.com/product/oss
 
 **Example of a request for enabling bucket access logging:**
 
-```
+``` {#codeblock_r02_7i2_7cw}
 PUT /? logging HTTP/1.1
 Host: oss-example.oss-cn-hangzhou.aliyuncs.com
 Content-Length: 186
@@ -143,7 +138,7 @@ Authorization: OSS qn6qrrqxo2oawuk53otfjbyc:KU5h8YMUC78M30dXqf3JxrTZHiA=
 
 **Response example:**
 
-```
+``` {#codeblock_mtz_3ut_cud}
 HTTP/1.1 200 OK
 x-oss-request-id: 534B371674E88A4D8906008B
 Date: Fri, 04 May 2012 03:21:12 GMT
@@ -154,7 +149,7 @@ Server: AliyunOSS
 
 **Example of a request for disabling bucket access logging:**
 
-```
+``` {#codeblock_3dj_0xy_g44}
 PUT /? logging HTTP/1.1
 Host: oss-example.oss-cn-hangzhou.aliyuncs.com
 Content-Type: application/xml
@@ -168,7 +163,7 @@ Authorization: OSS qn6qrrqxo2oawuk53otfjbyc:KU5h8YMUC78M30dXqf3JxrTZHiA=
 
 **Response example:**
 
-```
+``` {#codeblock_cgs_phb_ey7}
 HTTP/1.1 200 OK
 x-oss-request-id: 534B371674E88A4D8906008B
 Date: Fri, 04 May 2012 04:21:12 GMT
@@ -181,14 +176,14 @@ Server: AliyunOSS
 
 The SDKs of this API are as follows:
 
--   [Java](../../../../../reseller.en-US/SDK Reference/Java/Set logging.md)
--   [Python](../../../../../reseller.en-US/SDK Reference/Python/Set logging.md)
--   [PHP](../../../../../reseller.en-US/SDK Reference/PHP/Set logging.md)
--   [Go](../../../../../reseller.en-US/SDK Reference/Go/Set logging.md)
--   [C](../../../../../reseller.en-US/SDK Reference/C/Set logging.md)
--   [.NET](../../../../../reseller.en-US/SDK Reference/. NET/Set logging.md)
--   [Node.js](../../../../../reseller.en-US/SDK Reference/Node. js/Set logging.md)
--   [Ruby](../../../../../reseller.en-US/SDK Reference/Ruby/Set logging.md)
+-   [Java](../../../../reseller.en-US/SDK Reference/Java/Set logging.md)
+-   [Python](../../../../reseller.en-US/SDK Reference/Python/Set logging.md)
+-   [PHP](../../../../reseller.en-US/SDK Reference/PHP/Set logging.md)
+-   [Go](../../../../reseller.en-US/SDK Reference/Go/Set logging.md)
+-   [C](../../../../reseller.en-US/SDK Reference/C/Set logging.md)
+-   [.NET](../../../../reseller.en-US/SDK Reference/. NET/Set logging.md)
+-   [Node.js](../../../../reseller.en-US/SDK Reference/Node. js/Set logging.md)
+-   [Ruby](../../../../reseller.en-US/SDK Reference/Ruby/Set logging.md)
 
 ## Error codes {#section_dsv_grs_qgb .section}
 
