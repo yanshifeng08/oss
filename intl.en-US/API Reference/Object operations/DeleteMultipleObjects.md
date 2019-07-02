@@ -4,7 +4,7 @@ Deletes multiple objects from the same bucket.
 
 **Versioning**
 
-You can use DeleteMultipleObjects to delete multiple objects in a bucket with versioning enabled. If you do not specify the versionId in the request, delete markers are added to the objects that you want to delete. If you specify the versionId in the request, the specified versions of the objects that you want to delete are permanently deleted.
+You can use DeleteMultipleObjects to delete multiple objects in a bucket with the versioning function enabled. If you do not specify the versionId in the request, delete markers are added to the objects that you want to delete. If you specify the versionId in the request, the specified versions of the objects that you want to delete are permanently deleted.
 
 ## Request syntax {#section_h7y_zur_vt3 .section}
 
