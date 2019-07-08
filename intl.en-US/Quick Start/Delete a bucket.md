@@ -29,7 +29,7 @@ You can also use ossbrowser, which is a graphical management tool, to delete a b
 
 You can use OSS API and SDKs in different languages to delete a bucket. For more information, see the following URLs:
 
--   API: [DeleteBucket](../../../../reseller.en-US/API Reference/Object operations/DeleteObject.md#)
+-   API: [DeleteBucket](../../../../reseller.en-US/API Reference/Bucket operations/DeleteBucket.md#)
 -   Java SDK: [Delete a bucket](../../../../reseller.en-US/SDK Reference/Java/Manage a bucket.md#section_ftd_mjf_2gb)
 -   Python SDK: [Delete a bucket](../../../../reseller.en-US/SDK Reference/Python/Bucket.md#)
 -   PHP SDK: [Delete a bucket](../../../../reseller.en-US/SDK Reference/PHP/Bucket.md#)
