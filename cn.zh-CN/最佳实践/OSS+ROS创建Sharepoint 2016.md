@@ -1,14 +1,12 @@
 # OSS+ROS创建Sharepoint 2016 {#concept_htx_xbn_vdb .concept}
 
-## 目标 {#section_vy1_1cn_vdb .section}
-
-通过阿里云的服务快速创建 Sharepoint2016。
+本文介绍如何通过阿里云的服务快速创建 Sharepoint2016。
 
 ## 背景 {#section_ygm_ccn_vdb .section}
 
 -   对象存储 OSS
 
-    海量、安全、低成本、高可靠的云存储服务，提供99.999999999%的数据可靠性。使用RESTful API，可以在互联网任何位置存储和访问。容量和处理能力可弹性扩展，并能提供多种可选择的存储类型，全面优化存储成本。
+    海量、安全、低成本、高可靠的云存储服务，提供99.9999999999%（12个9）的数据可靠性。使用RESTful API，可以在互联网任何位置存储和访问。容量和处理能力可弹性扩展，并能提供多种可选择的存储类型，全面优化存储成本。
 
 -   资源编排 ROS
 
@@ -41,17 +39,17 @@
 
     首先，在 OSS 中创建新的 Bucket，其中 Bucket ACL 建议设置为私有。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/4440/2308_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/4440/15629132572308_zh-CN.png)
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/4440/2309_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/4440/15629132582309_zh-CN.png)
 
     Bucket 创建完成后，请从[此处](https://www.microsoft.com/en-us/download/details.aspx?spm=a2c4g.11186623.2.4.H1NvQs&id=51493)下载 img 文件，并存放至 OSS 中。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/4440/2310_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/4440/15629132582310_zh-CN.png)
 
     这里建议将 img 文件的读写权限设置成公共读。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/4440/2312_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/4440/15629132582312_zh-CN.png)
 
     该步骤完成后，我们可以获得一个阿里云提供的 URL 以访问该文件。
 
@@ -61,15 +59,15 @@
 
     1.  进入ROS管理控制台，单击 **资源栈管理** \> **新建资源栈**，开始创建。
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/4440/2318_zh-CN.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/4440/15629132592318_zh-CN.png)
 
     2.  在输入脚本页面当中，用户需要选择将脚本中所创建的机器部署到哪一个Region。
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/4440/2319_zh-CN.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/4440/15629132592319_zh-CN.png)
 
         参考脚本如下：
 
-        ```
+        ``` {#codeblock_zr5_6ra_wh3}
         {
         "ROSTemplateFormatVersion": "2015-09-01",
         "Description": "One simple ECS instance and a security group. The user only needs to specify the image ID.",
@@ -279,9 +277,9 @@
         }
         ```
 
-    3.  完成模版输入后，单击 **下一步**，对资源栈进行参数配置。
+    3.  完成模版输入后，单击**下一步**，对资源栈进行参数配置。
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/4440/2322_zh-CN.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/4440/15629132592322_zh-CN.png)
 
         需要配置的参数如下（关于参数的描述，请参考[参数](https://help.aliyun.com/document_detail/28861.html) ）:
 
@@ -309,11 +307,11 @@
 
         InstanceType：ECS的规格。
 
-    4.  模版创建完成后，在启动资源栈前输入参数内容。输入完成后，单击 **创建** 按钮。ROS会根据脚本以及输入的参数开始创建资源。
+    4.  模版创建完成后，在启动资源栈前输入参数内容。输入完成后，单击**创建** 按钮。ROS会根据脚本以及输入的参数开始创建资源。
 
-        资源创建完成后，可以在 **资源栈管理** 列表当中看到相应的资源栈。
+        资源创建完成后，可以在**资源栈管理**列表当中看到相应的资源栈。
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/4440/2328_zh-CN.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/4440/15629132592328_zh-CN.png)
 
         以上是整个执行流程中需要用到的参数文件。
 
@@ -330,66 +328,66 @@
 
     1.  机器首次启动后，系统将会下载 OSS 中的 SharePoint 文件，同时修改 Windows 的注册表，启用系统免密码自动登录。此外，系统还会设定在下一次启动时运行 Domain 的安装脚本。
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/4440/2329_zh-CN.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/4440/15629132602329_zh-CN.png)
 
     2.  SharePoint 文件下载完成后，系统将会重启，并且开始执行 Domain 的安装脚本。该脚本会对用户在 ROS 中设定的 Domain 进行配置。并将下一步需要执行的脚本写入注册表，等待下一次启动时运行。
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/4440/2330_zh-CN.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/4440/15629132602330_zh-CN.png)
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/4440/2332_zh-CN.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/4440/15629132602332_zh-CN.png)
 
     3.  创建用户并安装必要先决服务及软件。
-        1.  系统将会根据用户在ROS当中设定的 DomainAdminUser 和 SPFarmAccount 创建2个用户，分别用于管理 Domain 和 SP 服务器场。
+        1.  系统将会根据用户在ROS当中设定的DomainAdminUser和SPFarmAccount创建2个用户，分别用于管理 Domain 和 SP 服务器场。
         2.  开始安装以下内容：.NET Framework Feature, ‘Application Server’ role, ‘Web Server’ role, WAS Feature, 及 Windows Identity Foundation Feature
 
-            ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/4440/2336_zh-CN.png)
+            ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/4440/15629132602336_zh-CN.png)
 
         3.  开始下载并安装 MS SQL SERVER EXPRESS 2012 版本（这里演示程序默认下载EXPRESS 版本的MSSQL）
 
-            ```
+            ``` {#codeblock_lly_0ea_opx}
             C:\SQLEXPR_x64_ENU.exe" /Q /IACCEPTSQLSERVERLICENSETERMS /ACTION=install  /ROLE=AllFeatures_WithDefaults  /INSTANCENAME=$($instanceName) /SQLSVCACCOUNT="$($serviceAccount)
             ```
 
         4.  关闭 IE ESC 选项，并离线下载和安装 SharePoint 2016 Preparation softer ware。因为某些原因，直接联网下载 Preparation softer ware 可能会失败，所以这里配置了脚本，使系统先下载文件，再进行安装。
 
-            ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/4440/2337_zh-CN.png)
+            ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/4440/15629132602337_zh-CN.png)
 
-            ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/4440/2338_zh-CN.png)
+            ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/4440/15629132612338_zh-CN.png)
 
     4.  当所有的先决服务和软件都安装成功后，脚本自动开始运行 SharePoint 的安装程序。安装程序会首先检查先决服务和软件是否安装完成。
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/4440/2339_zh-CN.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/4440/15629132612339_zh-CN.png)
 
         如果所有的准备工作都已完成，系统开始正式安装 SharePoint。
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/4440/2340_zh-CN.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/4440/15629132612340_zh-CN.png)
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/4440/2341_zh-CN.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/4440/15629132612341_zh-CN.png)
 
     5.  SharePoint 安装完成后，系统将进行更新，并开始进入下一个阶段，进行 SharePoint 的配置。
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/4440/2342_zh-CN.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/4440/15629132612342_zh-CN.png)
 
         系统会在 MSSQL 中创建相应的数据库，并开放端口（9527）作为默认的管理端登录端口。
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/4440/2343_zh-CN.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/4440/15629132622343_zh-CN.png)
 
-    6.  配置过程完成后，我们可以打开 [http://localhost:9527/default.aspx](http://localhost:9527/default.aspx) 进入 SharePoint 的管理站点。
+    6.  配置过程完成后，我们可以打开[http://localhost:9527/default.aspx](http://localhost:9527/default.aspx)进入 SharePoint 的管理站点。
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/4440/2345_zh-CN.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/4440/15629132622345_zh-CN.png)
 
         在管理员站点当中，我们可以创建自己的 Web application。
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/4440/2347_zh-CN.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/4440/15629132622347_zh-CN.png)
 
         在该网站集下，我们可以继续创建自己的站点。
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/4440/2348_zh-CN.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/4440/15629132632348_zh-CN.png)
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/4440/2349_zh-CN.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/4440/15629132632349_zh-CN.png)
 
         完成站点的创建后，我们就可以开始体验 SharePoint 上的功能了。
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/4440/2350_zh-CN.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/4440/15629132632350_zh-CN.png)
 
 
