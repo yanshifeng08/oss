@@ -1,6 +1,6 @@
 # 什么是对象存储 OSS {#concept_ybr_fg1_tdb .concept}
 
-阿里云对象存储服务（Object Storage Service，简称 OSS），是阿里云提供的海量、安全、低成本、高可靠的云存储服务。其数据设计持久性不低于 99.999999999%，服务设计可用性不低于 99.99%。OSS 具有不受平台限制的 RESTful API 接口，您可以在任何应用、任何时间、任何地点存储和访问任意类型的数据。
+阿里云对象存储服务（Object Storage Service，简称 OSS），是阿里云提供的海量、安全、低成本、高可靠的云存储服务。其数据设计持久性不低于 99.9999999999%（12个9），服务设计可用性不低于 99.99%。OSS 具有不受平台限制的 RESTful API 接口，您可以在任何应用、任何时间、任何地点存储和访问任意类型的数据。
 
 您可以使用阿里云提供的 API、SDK 接口或者 OSS 迁移工具轻松地将海量数据移入或移出阿里云 OSS。数据存储到阿里云 OSS 以后，您可以选择标准类型（Standard）的阿里云 OSS 服务作为移动应用、大型网站、图片分享或热点音视频的主要存储方式，也可以选择成本更低、存储期限更长的低频访问类型（Infrequent Access）和归档类型（Archive）的阿里云 OSS 服务作为不经常访问数据的备份和归档。
 
@@ -71,6 +71,6 @@ OSS 仅按照您的实际使用容量收费，您无需预先购买存储和流�
 -   钉钉群号：23331544
 -   钉钉群二维码：
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/4313/156148010650213_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/4313/156291281650213_zh-CN.png)
 
 
