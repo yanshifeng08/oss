@@ -1,6 +1,6 @@
 # cp {#concept_303810 .concept}
 
- cp命令用于上传、下载、拷贝文件。
+cp命令用于上传、下载、拷贝文件。
 
 ## 命令格式 {#section_ctf_575_0y4 .section}
 
@@ -74,9 +74,9 @@
 
     -   批量上传符合条件的文件
 
-        您可以使用`--include/--exclude`，在cp、set-meta、set-acl操作时批量选择对应条件的文件。
+        您可以使用`--include/--exclude`，在cp操作时批量选择对应条件的文件。
 
-        -    `--include/--exclude`选项支持格式：
+        -   `--include/--exclude`选项支持格式：
 
             -   \*：通配符，匹配所有字符。例如：\*.txt表示匹配所有txt格式的文件。
             -   ?：匹配单个字符，例如：abc?.jpg表示匹配所有文件名为abc+任意单个字符的jpg格式的文件，如 abc1.jpg
@@ -85,7 +85,7 @@
             **说明：** 
 
             -   不支持带目录的格式，例如：`--include "/usr/test/.jpg"`。
-            -    `--include`和`--exclude`可以出现多次，当多个规则出现时，这些规则按从左往右的顺序应用。
+            -   `--include`和`--exclude`可以出现多次，当多个规则出现时，这些规则按从左往右的顺序应用。
             -   指定`--include/--exclude`选项时，需同时指定`--recursive（-r）`选项。
         示例：
 
@@ -117,6 +117,24 @@
             ./ossutil cp dir/ oss://my-bucket/path --meta X-oss-Storage-Class:IA -r
             ```
 
+    -   上传文件并指定服务器端加密方式
+
+        您可以在上传文件时指定文件的服务器端加密方式，将文件加密后保存在Bucket内，关于服务器端加密功能介绍请参见[服务器端加密编码](../../../../cn.zh-CN/开发指南/数据加密/服务器端加密编码.md#)。
+
+        -   上传文件并指定加密方式为AES256
+
+            ``` {#codeblock_ydq_m6o_m0q}
+            ./ossutil cp a.txt oss://my-bucket/path --meta=x-oss-server-side-encryption:AES256
+            ```
+
+        -   上传文件并指定加密方式为KMS
+
+            ``` {#codeblock_yat_ubu_zkq}
+            ./ossutil cp a.txt oss://my-bucket/path --meta=x-oss-server-side-encryption:KMS
+            ```
+
+            使用KMS加密时，OSS会为这个文件在KMS平台上创建一个主密钥，会产生少量KMS密钥API调用费用，详情请参见[KMS计费标准](../../../../cn.zh-CN/产品定价/计费方式.md#section_br1_k3j_kfb)。
+
     -   上传文件夹并跳过已有文件
 
         批量上传时，若指定`--update`（可缩写为`-u`）选项，只有当目标文件不存在，或源文件的最后修改时间晚于目标文件时，ossutil才会执行上传操作。命令如下：
@@ -137,16 +155,20 @@
 
         **说明：** 
 
-        -    `--snapshot-path`选项用于在某些场景下加速增量上传/下载批量文件\(拷贝不支持该选项\)。例如，文件数较多且两次上传期间没有其他用户更改OSS上对应的Object。
-        -    `--snapshot-path`命令通过在本地记录成功上传/下载的文件的本地lastModifiedTime，从而在下次上传/下载时通过比较lastModifiedTime来决定是否跳过相同文件，所以在使用该选项时，请确保两次上传/下载期间没有其他用户更改了OSS上的对应Object。当不满足该场景时，如果想要增量上传/下载批量文件，请使用`--update`选项。
+        -   `--snapshot-path`选项用于在某些场景下加速增量上传/下载批量文件\(拷贝不支持该选项\)。例如，文件数较多且两次上传期间没有其他用户更改OSS上对应的Object。
+        -   `--snapshot-path`命令通过在本地记录成功上传/下载的文件的本地lastModifiedTime，从而在下次上传/下载时通过比较lastModifiedTime来决定是否跳过相同文件，所以在使用该选项时，请确保两次上传/下载期间没有其他用户更改了OSS上的对应Object。当不满足该场景时，如果想要增量上传/下载批量文件，请使用`--update`选项。
         -   ossutil不会主动删除snapshot-path下的快照信息，为了避免快照信息过多，当您确定快照信息无用时，请自行清理snapshot-path。
         -   由于读写snapshot信息需要额外开销，当要批量上传/下载的文件数比较少或网络状况比较好或有其他用户操作相同Object时，并不建议使用该选项。可以使用`--update`选项来增量上传/下载。
-        -    `--update`选项和`--snapshot-path`选项可以同时使用，ossutil 会优先根据snapshot-path信息判断是否跳过此文件，如果不满足跳过条件，再根据`--update`判断是否跳过此文件。
+        -   `--update`选项和`--snapshot-path`选项可以同时使用，ossutil 会优先根据snapshot-path信息判断是否跳过此文件，如果不满足跳过条件，再根据`--update`判断是否跳过此文件。
     -   上传文件到开通了请求者付费模式的Bucket
 
         ``` {#codeblock_smd_e4w_ye0}
         ./ossutil cp dir/test.mp4 oss://payer/ --payer=requester
         ```
+
+    -   上传文件并指定服务端加密方式
+
+        OSS支持在文件上传的请求中携带`X-OSS-server-side-encrpytion`header，并指定其值为AES256或KMS
 
 -   下载文件
     -   下载单个文件
@@ -199,7 +221,7 @@
 
     -   批量下载符合指定条件的文件
 
-        您可以使用`--include/--exclude`，在下载时选定符合条件的文件。详情请参见[过滤选项](#li_1ff_wwf_29y)。
+        您可以使用`--include/--exclude`参数，在下载时选定符合条件的文件。详情请参见[过滤选项](#li_1ff_wwf_29y)。
 
         -   下载所有文件格式不为jpg的文件
 
@@ -262,6 +284,24 @@
 
             -   存储类型为归档类型的文件不能通过cp命令直接转换成其他类型，必须先通过[restore](cn.zh-CN/常用工具/命令行工具ossutil/常用命令/restore.md#)命令将该文件解冻，之后再使用cp命令转换文件类型。
             -   使用cp覆写文件时涉及到数据覆盖操作。如果**低频访问型**或**归档型**文件分别在创建后30和60天内被覆盖，则它们会产生提前删除费用。详情请参见[计量项和计费项](../../../../cn.zh-CN/计量计费/计量项和计费项.md#table_v24_5ft_lgb)。
+    -   拷贝文件并指定服务器端加密方式
+
+        您可以在拷贝文件时指定文件的服务器端加密方式，将文件加密后保存在Bucket内，关于服务器端加密功能介绍请参见[服务器端加密编码](../../../../cn.zh-CN/开发指南/数据加密/服务器端加密编码.md#)。
+
+        -   拷贝文件并指定加密方式为AES256
+
+            ``` {#codeblock_hqm_cne_g9s}
+            ./ossutil cp oss://bucket/path1/a oss://bucket/path2/ --meta=x-oss-server-side-encryption:AES256
+            ```
+
+        -   拷贝文件并指定加密方式为KMS
+
+            ``` {#codeblock_9ed_gyy_5an}
+            ./ossutil cp oss://bucket/path1/a oss://bucket/path2/ --meta=x-oss-server-side-encryption:KMS
+            ```
+
+            使用KMS加密时，OSS会为这个文件在KMS平台上创建一个主密钥，会产生少量KMS密钥API调用费用，详情请参见[KMS计费标准](../../../../cn.zh-CN/产品定价/计费方式.md#section_br1_k3j_kfb)。
+
     -   拷贝单个文件并指定`--meta`选项
 
         拷贝文件的同时可以使用 `--meta` 选项设置 Object 的 meta 信息，其内容格式为`header:value#header:value...`。
@@ -319,44 +359,44 @@
 
 |选项名称|描述|
 |----|--|
-| `-r，--recursive` |递归进行操作。当指定该选项时，命令会对Bucket下所有符合条件的Object进行操作，否则只对指定的单个Object进行操作。|
-| `-f，--force` |强制操作，不进行询问提示。|
-| `-u，--update` |只有当目标文件不存在，或源文件的最后修改时间晚于目标文件时，ossutil才会执行上传/下载/拷贝操作。|
-| `--output-dir` |指定输出文件所在的目录，输出文件目前包含：cp命令批量拷贝文件出错时所产生的report文件。默认值为：当前目录下的ossutil\_output目录。|
-| `--bigfile-threshold` |开启大文件断点续传的文件大小阀值，单位为Byte，默认值：100MByte，取值范围：0-9223372036854775807（Byte）。|
-| `--part-size` |分片大小，单位为Byte。默认情况下ossutil根据文件大小自行计算合适的分片大小值。如果有特殊需求或者需要性能调优，可以设置该值，取值范围：1-9223372036854775807\(Byte\)。|
-| `--checkpoint-dir` |checkpoint目录的路径（默认值为：.ossutil\_checkpoint），断点续传操作失败时，ossutil会自动创建该目录，并在该目录下记录checkpoint信息，操作成功会删除该目录。如果指定了该选项，请确保所指定的目录可以被删除。|
-| `--range` |下载文件时，指定文件下载的范围，格式为：3-9或3-或-9。|
-| `--encoding-type` |输入或者输出的文件名的编码方式，目前只支持url编码，即指定该选项时，取值为url。如果不指定该选项，则表示文件名未经过编码。Bucket名不支持url编码。|
-| `--include` |包含对象匹配模式，如：\*.jpg。|
-| `--exclude` |不包含对象匹配模式，如：\*.txt。|
-| `--meta` |设置Object的meta为\[header:value\#header:value...\]，如：Cache-Control:no-cache\#Content-Encoding:gzip。更多详情请参见[set-meta](cn.zh-CN/常用工具/命令行工具ossutil/常用命令/set-meta.md#)。|
-| `--acl` |设置Object的访问权限，默认为default。可配置项为： -   default：继承Bucket
+|`-r，--recursive`|递归进行操作。当指定该选项时，命令会对Bucket下所有符合条件的Object进行操作，否则只对指定的单个Object进行操作。|
+|`-f，--force`|强制操作，不进行询问提示。|
+|`-u，--update`|只有当目标文件不存在，或源文件的最后修改时间晚于目标文件时，ossutil才会执行上传/下载/拷贝操作。|
+|`--output-dir`|指定输出文件所在的目录，输出文件目前包含：cp命令批量拷贝文件出错时所产生的report文件。默认值为：当前目录下的ossutil\_output目录。|
+|`--bigfile-threshold`|开启大文件断点续传的文件大小阀值，单位为Byte，默认值：100MByte，取值范围：0-9223372036854775807（Byte）。|
+|`--part-size`|分片大小，单位为Byte。默认情况下ossutil根据文件大小自行计算合适的分片大小值。如果有特殊需求或者需要性能调优，可以设置该值，取值范围：1-9223372036854775807\(Byte\)。|
+|`--checkpoint-dir`|checkpoint目录的路径（默认值为：.ossutil\_checkpoint），断点续传操作失败时，ossutil会自动创建该目录，并在该目录下记录checkpoint信息，操作成功会删除该目录。如果指定了该选项，请确保所指定的目录可以被删除。|
+|`--range`|下载文件时，指定文件下载的范围，格式为：3-9或3-或-9。|
+|`--encoding-type`|输入或者输出的文件名的编码方式，目前只支持url编码，即指定该选项时，取值为url。如果不指定该选项，则表示文件名未经过编码。Bucket名不支持url编码。|
+|`--include`|包含对象匹配模式，如：\*.jpg。|
+|`--exclude`|不包含对象匹配模式，如：\*.txt。|
+|`--meta`|设置Object的meta为\[header:value\#header:value...\]，如：Cache-Control:no-cache\#Content-Encoding:gzip。更多详情请参见[set-meta](cn.zh-CN/常用工具/命令行工具ossutil/常用命令/set-meta.md#)。|
+|`--acl`|设置Object的访问权限，默认为default。可配置项为： -   default：继承Bucket
 -   private：私有
 -   public-read：公共读
 -   public-read-write：公共读写
 
  |
-| `--snapshot-path` |批量上传/下载时，若指定`--snapshot-path`选项，ossutil在指定的目录下生成文件上传/下载的快照信息，在下一次指定该选项上传/下载时，ossutil会读取指定路径下的快照信息进行增量上传/下载。 **说明：** 
+|`--snapshot-path`|批量上传/下载时，若指定`--snapshot-path`选项，ossutil在指定的目录下生成文件上传/下载的快照信息，在下一次指定该选项上传/下载时，ossutil会读取指定路径下的快照信息进行增量上传/下载。 **说明：** 
 
--    `--snapshot-path`选项用于在某些场景下加速增量上传/下载批量文件\(拷贝不支持该选项\)。例如，文件数较多且两次上传期间没有其他用户更改OSS上对应的Object。
--    `--snapshot-path`命令通过在本地记录成功上传/下载的文件的本地lastModifiedTime，从而在下次上传/下载时通过比较lastModifiedTime来决定是否跳过相同文件，所以在使用该选项时，请确保两次上传/下载期间没有其他用户更改了OSS上的对应Object。当不满足该场景时，如果想要增量上传/下载批量文件，请使用`--update`选项。
+-   `--snapshot-path`选项用于在某些场景下加速增量上传/下载批量文件\(拷贝不支持该选项\)。例如，文件数较多且两次上传期间没有其他用户更改OSS上对应的Object。
+-   `--snapshot-path`命令通过在本地记录成功上传/下载的文件的本地lastModifiedTime，从而在下次上传/下载时通过比较lastModifiedTime来决定是否跳过相同文件，所以在使用该选项时，请确保两次上传/下载期间没有其他用户更改了OSS上的对应Object。当不满足该场景时，如果想要增量上传/下载批量文件，请使用`--update`选项。
 -   ossutil不会主动删除snapshot-path下的快照信息，为了避免快照信息过多，当您确定快照信息无用时，请自行清理snapshot-path。
 -   由于读写snapshot信息需要额外开销，当要批量上传/下载的文件数比较少或网络状况比较好或有其他用户操作相同Object时，并不建议使用该选项。可以使用`--update`选项来增量上传/下载。
--    `--update`选项和`--snapshot-path`选项可以同时使用，ossutil 会优先根据snapshot-path信息判断是否跳过此文件，如果不满足跳过条件，再根据`--update`判断是否跳过此文件。
+-   `--update`选项和`--snapshot-path`选项可以同时使用，ossutil 会优先根据snapshot-path信息判断是否跳过此文件，如果不满足跳过条件，再根据`--update`判断是否跳过此文件。
 
  |
-| `--disable-crc64` |该选项关闭CRC64，默认情况下，ossutil进行数据传输都打开CRC64校验。|
-| `--maxupspeed` |最大上传速度，单位：KB/s，缺省值为0（不受限制）。|
-| `--payer` |请求的支付方式，如果为请求者付费模式，可以将该值设置成requester。|
-| `--partition-download` |分区下载使用。一个ossutil命令下载一个分区，其值格式为“分区编号：总分区数”，比如1：5，表示当前ossutil下载分区1，总共有5个分区，分区编号从1开始，Object的分区规则由工具内部算法决定。利用该选项，将待下载的Object分成多个区，可以由多个ossutil命令同时下载，每个ossutil命令下载各自的分区，多个ossutil命令可以并行在不同机器上执行。|
-| `-j，--jobs` |多文件操作时的并发任务数，默认值：3，取值范围：1-10000。|
-| `--parallel` |单文件内部操作的并发任务数，取值范围：1-10000，默认将由ossutil根据操作类型和文件大小自行决定。|
-| `--loglevel` |设置日志级别，默认为空，表示不输出日志文件。可选值为： -   info：输出提示信息日志。
+|`--disable-crc64`|该选项关闭CRC64，默认情况下，ossutil进行数据传输都打开CRC64校验。|
+|`--maxupspeed`|最大上传速度，单位：KB/s，缺省值为0（不受限制）。|
+|`--payer`|请求的支付方式，如果为请求者付费模式，可以将该值设置成requester。|
+|`--partition-download`|分区下载使用。一个ossutil命令下载一个分区，其值格式为“分区编号：总分区数”，比如1：5，表示当前ossutil下载分区1，总共有5个分区，分区编号从1开始，Object的分区规则由工具内部算法决定。利用该选项，将待下载的Object分成多个区，可以由多个ossutil命令同时下载，每个ossutil命令下载各自的分区，多个ossutil命令可以并行在不同机器上执行。|
+|`-j，--jobs`|多文件操作时的并发任务数，默认值：3，取值范围：1-10000。|
+|`--parallel`|单文件内部操作的并发任务数，取值范围：1-10000，默认将由ossutil根据操作类型和文件大小自行决定。|
+|`--loglevel`|设置日志级别，默认为空，表示不输出日志文件。可选值为： -   info：输出提示信息日志。
 -   debug：输出详细信息日志（包括http请求和响应信息）。
 
  |
-| `--retry-times` |当错误发生时的重试次数，默认值：10，取值范围：1-500。|
+|`--retry-times`|当错误发生时的重试次数，默认值：10，取值范围：1-500。|
 
 **说明：** 更多通用选项请参见[查看选项](cn.zh-CN/常用工具/命令行工具ossutil/查看选项.md#)。
 
