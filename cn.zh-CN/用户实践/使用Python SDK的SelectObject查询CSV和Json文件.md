@@ -90,17 +90,17 @@ print(result.read())
 
 您可以在OSS控制台上查看上传后的python\_select.csv及python\_select.json文件。
 
-![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/895636/156289729551302_zh-CN.png)
+![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/895636/156289751651302_zh-CN.png)
 
 CSV及Json的示例输出如下：
 
 -   CSV示例输出
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/895636/156289729551303_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/895636/156289751651303_zh-CN.png)
 
 -   Json示例输出
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/895636/156289729651305_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/895636/156289751651305_zh-CN.png)
 
 
 ## 常见SQL语句 {#section_uku_u8v_1ze .section}
