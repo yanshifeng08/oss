@@ -4,7 +4,7 @@ GetBucketLifecycle接口用于查看存储空间（Bucket）的生命周期规�
 
 ## 请求语法 {#section_kn3_zhw_bz .section}
 
-```
+``` {#codeblock_4l9_abg_nw8}
 GET /?lifecycle HTTP/1.1
 Host: BucketName.oss.aliyuncs.com
 Date: GMT Date
@@ -13,72 +13,73 @@ Authorization: SignatureValue
 
 ## 示例 {#section_xzz_13w_bz .section}
 
-**请求示例**
+请求示例
 
-```
+``` {#codeblock_miy_nn1_tkg}
 Get /?lifecycle HTTP/1.1
 Host: oss-example.oss.aliyuncs.com  
 Date: Mon, 14 Apr 2014 01:17:29 GMT  
-Authorization: OSS qn6qrrqxo2oawuk53otfjbyc:ceOEyZavKY4QcjoUWYSpYbJ3naA=
-
+Authorization: OSS qn6qrrqxo2oawuk53otfjbyc:ceOEyZavKY4QcjoUWYSpYbJ3****                    
 ```
 
-**返回示例（已设置生命周期规则）**
+返回示例
 
-```
-HTTP/1.1 200
-x-oss-request-id: 534B371674E88A4D8906008B
-Date: Mon, 14 Apr 2014 01:17:29 GMT
-Connection: keep-alive
-Content-Length: 255
-Server: AliyunOSS
+-   已设置生命周期规则的返回示例
 
-<?xml version="1.0" encoding="UTF-8"?>
-<LifecycleConfiguration>
-  <Rule>
-    <ID>delete after one day</ID>
-    <Prefix>logs/</Prefix>
-    <Status>Enabled</Status>
-    <Expiration>
-      <Days>1</Days>
-    </Expiration>
-  </Rule>
-</LifecycleConfiguration>
+    ``` {#codeblock_map_p9n_w51}
+    HTTP/1.1 200
+    x-oss-request-id: 534B371674E88A4D8906****
+    Date: Mon, 14 Apr 2014 01:17:29 GMT
+    Connection: keep-alive
+    Content-Length: 255
+    Server: AliyunOSS
+    
+    <?xml version="1.0" encoding="UTF-8"?>
+    <LifecycleConfiguration>
+      <Rule>
+        <ID>delete after one day</ID>
+        <Prefix>logs/</Prefix>
+        <Status>Enabled</Status>
+        <Expiration>
+          <Days>1</Days>
+        </Expiration>
+      </Rule>
+    </LifecycleConfiguration>                            
+    ```
 
-```
+-   未设置生命周期规则的返回示例
 
-**返回示例（未设置生命周期规则）**
+    ``` {#codeblock_fyt_32u_kmv}
+    HTTP/1.1 404
+    x-oss-request-id: 534B371674E88A4D8906****
+    Date: Mon, 14 Apr 2014 01:17:29 GMT
+    Connection: keep-alive
+    Content-Length: 278
+    Server: AliyunOSS
+    
+    <?xml version="1.0" encoding="UTF-8"?>
+    <Error>
+      <BucketName>oss-example</BucketName>
+      <Code>NoSuchLifecycle</Code>
+      <Message>No Row found in Lifecycle Table.</Message>
+      <RequestId>534B372974E88A4D8906****</RequestId>
+      <HostId> BucketName.oss.example.com</HostId>
+    </Error>
+    ```
 
-```
-HTTP/1.1 404
-x-oss-request-id: 534B371674E88A4D8906008B
-Date: Mon, 14 Apr 2014 01:17:29 GMT
-Connection: keep-alive
-Content-Length: 278
-Server: AliyunOSS
-
-<?xml version="1.0" encoding="UTF-8"?>
-<Error>
-  <BucketName>oss-example</BucketName>
-  <Code>NoSuchLifecycle</Code>
-  <Message>No Row found in Lifecycle Table.</Message>
-  <RequestId>534B372974E88A4D89060099</RequestId>
-  <HostId> BucketName.oss.example.com</HostId>
-</Error>
-```
 
 ## SDK {#section_egl_m2c_5gb .section}
 
 此接口所对应的各语言SDK如下：
 
--   [Java](../../../../../cn.zh-CN/SDK 参考/Java/生命周期.md)
--   [Python](../../../../../cn.zh-CN/SDK 参考/Python/生命周期.md)
--   [PHP](../../../../../cn.zh-CN/SDK 参考/PHP/生命周期.md)
--   [Go](../../../../../cn.zh-CN/SDK 参考/Go/生命周期.md)
--   [C](../../../../../cn.zh-CN/SDK 参考/C/生命周期.md)
--   [.NET](../../../../../cn.zh-CN/SDK 参考/.NET/生命周期.md)
--   [Node.js](../../../../../cn.zh-CN/SDK 参考/Node.js/生命周期.md)
--   [Ruby](../../../../../cn.zh-CN/SDK 参考/Ruby/生命周期.md)
+-   [Java](../../../../cn.zh-CN/SDK 示例/Java/生命周期.md)
+-   [Python](../../../../cn.zh-CN/SDK 示例/Python/生命周期.md)
+-   [PHP](../../../../cn.zh-CN/SDK 示例/PHP/生命周期.md)
+-   [Go](../../../../cn.zh-CN/SDK 示例/Go/生命周期.md)
+-   [C](../../../../cn.zh-CN/SDK 示例/C/生命周期.md)
+-   [.NET](../../../../cn.zh-CN/SDK 示例/.NET/生命周期.md)
+-   [Node.js](../../../../cn.zh-CN/SDK 示例/Node.js/生命周期.md)
+-   [Ruby](../../../../cn.zh-CN/SDK 示例/Ruby/生命周期.md)
 
 ## 错误码 {#section_dsv_grs_qgb .section}
 
