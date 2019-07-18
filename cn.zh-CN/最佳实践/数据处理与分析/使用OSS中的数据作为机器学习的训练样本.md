@@ -2,6 +2,8 @@
 
 本文介绍如何将对象存储OSS里面的数据作为机器学习PAI的训练样本。
 
+**说明：** 本文由 [龙临@阿里云](https://yq.aliyun.com/users/splsxxoprnflu) 提供，仅供参考。
+
 ## 背景信息 {#section_vjt_2vl_vdb .section}
 
 本文通过[OSS](../../../../cn.zh-CN/产品简介/什么是对象存储 OSS.md#)与[PAI](https://help.aliyun.com/document_detail/69223.html)的结合，为一家传统的文具零售店提供决策支持。本文涉及的具体业务场景（场景与数据均为虚拟）如下：
@@ -17,57 +19,57 @@
 
         **说明：** OSS中有三种存储类型，相关介绍请参见[存储类型介绍](../../../../cn.zh-CN/开发指南/存储类型/存储类型介绍.md#)。
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/4436/156160080750080_zh-CN.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/4436/156342944250080_zh-CN.png)
 
     4.  单击Bucket名称（oss-pai-sample），然后依次单击**文件管理** \> **上传文件**，将订单数据Sample\_superstore.csv上传至OSS。
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/4436/156160080750082_zh-CN.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/4436/156342944250082_zh-CN.png)
 
     5.  上传成功，界面如下图所示：
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/4436/15616008072200_zh-CN.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/4436/15634294432200_zh-CN.png)
 
 2.  创建机器学习项目
     1.  在控制台页面左侧选择**机器学习**，单击右上角的**创建项目**。
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/4436/15616008072202_zh-CN.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/4436/15634294432202_zh-CN.png)
 
     2.  在显示的DataWorks新用户引导界面中，勾选region（本文中选择与OSS相同的region：华东2），并勾选计算引擎服务机器学习PAI，然后单击**下一步**。
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/4436/15616008082203_zh-CN.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/4436/15634294432203_zh-CN.png)
 
     3.  项目创建成功后，开通服务列中会显示MaxCompute和机器学习PAI两个图标，如下图所示：
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/4436/15616008082230_zh-CN.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/4436/15634294432230_zh-CN.png)
 
     4.  回到机器学习页面，点击**进入机器学习**。
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/4436/15616008082209_zh-CN.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/4436/15634294442209_zh-CN.png)
 
 3.  连通OSS与PAI。
     1.  在机器学习界面左侧选择**组件**，并将**OSS数据同步**组件拖拽至画布。
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/4436/15616008082210_zh-CN.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/4436/15634294442210_zh-CN.png)
 
         界面右侧会提示填入组件需要的以下信息：
 
         -   OSS endpoint：根据步骤一中记录的信息，endpoint 为 oss-cn-shanghai.aliyuncs.com。
         -   OSSaccessId 和 OSSaccessKey 可以在对象存储OSS的界面中获取，如下图所示：
 
-            ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/4436/15616008092211_zh-CN.png)
+            ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/4436/15634294442211_zh-CN.png)
 
-            ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/4436/15616008092212_zh-CN.png)
+            ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/4436/15634294442212_zh-CN.png)
 
         -   OSSbucket 和 object 分别为 oss-pai-sample 和 Sample\_superstore.csv。
         -   OSScolumn 映射的作用是为OSS中的csv文件增加列名。例如，虚拟数据Sample\_superstore.csv共有如下6列：
 
-            ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/4436/15616008092213_zh-CN.png)
+            ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/4436/15634294442213_zh-CN.png)
 
             则OSScolumn映射应该填入：0:order\_id,1:order\_date,2:customer\_id,3:item,4:sales,5:quantity
 
     2.  单击**运行**，成功后右键查看组件，可观察前100条数据，如下图所示：
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/4436/15616008092217_zh-CN.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/4436/15634294452217_zh-CN.png)
 
         此时OSS中的csv文件已经在MaxCompute中生成一张临时表：pai\_temp\_116611\_1297076\_1
 
@@ -80,15 +82,15 @@
 
 本案例中的数据探索流程如下：
 
-![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/4436/15616008102236_zh-CN.png)
+![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/4436/15634294452236_zh-CN.png)
 
 本案例按8:2的比例将源数据拆分为训练集和测试集，其中一个订单中可能有多个item，故ID列选择order\_id，保证含有多个item的订单不会被拆分，如下图所示：
 
-![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/4436/15616008102241_zh-CN.png)
+![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/4436/15634294452241_zh-CN.png)
 
 本案例中共有17个产品item。通过协同过滤算法组件，取相似度最高的item，结果如下表：
 
-![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/4436/15616008102242_zh-CN.png)
+![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/4436/15634294452242_zh-CN.png)
 
 ## 结论 {#section_bpv_lrm_vdb .section}
 
