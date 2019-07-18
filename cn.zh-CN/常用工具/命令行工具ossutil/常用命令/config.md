@@ -58,10 +58,13 @@ config命令用于创建配置文件来存储OSS访问信息。您可以在使�
         bucket1 = cname1
         bucket2 = cname2
         ...
+[AkService]
+        ecsAk=http://100.100.100.200/latest/meta-data/Ram/security-credentials/EcsRamRoleTesting
 ```
 
 -   Bucket-Endpoint：对每个指定的Bucket单独配置Endpoint，当对某Bucket进行操作时，ossutil会在该选项中寻找该Bucket对应的Endpoint，如果找到，该Endpoint会覆盖Credentials选项中的endpoint。
--   Bucket-Cname：Bucket-Cname为每个指定的Bucket单独配置CNAME域名（CDN加速域名），此配置会优先于配置文件中Bucket-Endpoint及Credentials选项中endpoint的配置。关于CNAME域名的更多信息请参见[配置CNAME](../../../../cn.zh-CN/快速入门/快速入门.md#substeps_9my_37d_bc3)。
+-   Bucket-Cname：Bucket-Cname为每个指定的Bucket单独配置CNAME域名（CDN加速域名），此配置会优先于配置文件中Bucket-Endpoint及Credentials选项中endpoint的配置。关于CNAME域名的更多信息请参见[配置CNAME](../../../../cn.zh-CN/快速入门/入门概述.md#substeps_9my_37d_bc3)。
+-   AkService：此项默认不增加，如果您希望使用ECS实例绑定的RAM角色操作OSS的话，需配置此项。配置时仅需将EcsRamRoleTesting改为ECS实例绑定的角色名称即可。配置此项后，accessKeyID和accessKeySecret不可配置；若配置了accessKeyID和accessKeySecret，将使用accessKeyID和accessKeySecret进行身份鉴权。ECS实例绑定RAM角色请参见[通过控制台使用实例RAM角色](../../../../cn.zh-CN/安全/实例RAM角色/通过控制台使用实例RAM角色.md#)。
 
 **说明：** 
 
