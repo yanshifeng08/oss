@@ -4,7 +4,7 @@
 
 **说明：** 
 
-本文示例由阿里云用户 [bin](https://yq.aliyun.com/u/apple1024) 提供。
+本文示例由阿里云用户 [bin](https://yq.aliyun.com/u/apple1024) 提供，仅供参考。
 
 以下代码用于查询 CSV 文件和 Json 文件：
 
