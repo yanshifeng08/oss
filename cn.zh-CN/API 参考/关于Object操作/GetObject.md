@@ -244,31 +244,6 @@ Range: bytes=ByteRange(可选)
     [354606 bytes of object data]
     ```
 
--   指定versionId访问指定版本Object的请求示例
-
-    ``` {#codeblock_xuy_69o_b05}
-    GET /example?versionId=CAEQNhiBgMDJgZCA0BYiIDc4MGZjZGI2OTBjOTRmNTE5NmU5NmFhZjhjYmY0MWM2 HTTP/1.1
-    Host: versioning-get.oss-cn-hangzhou.aliyuncs.com
-    Date: Tue, 09 Apr 2019 02:58:06 GMT
-    Authorization: OSS lkojgxic6e:8wcOrEDt4iSxpBPfQW9OJNw*****
-    ```
-
-    返回示例
-
-    ``` {#codeblock_x3j_pup_nra}
-    HTTP/1.1 200 OK
-    x-oss-request-id: 5CAC0A3EDE0170*****
-    x-oss-version-id: CAEQNhiBgM0BYiIDc4MGZjZGI2OTBjOTRmNTE5NmU5NmFhZjhjYmY*****
-    x-oss-object-type: Normal
-    Date: Tue, 09 Apr 2019 02:58:06 GMT
-    Last-Modified: Fri, 22 Mar 2018 08:07:50 GMT
-    ETag: "5B3C1A2E053D7002CC607C5A*****"
-    Content-Type: text/html
-    Content-Length: 362149
-    Server: AliyunOSS
-    [362149 bytes of object data]
-    ```
-
 -   未指定versionId，且访问Object的当前版本为删除标记的请求示例
 
     ``` {#codeblock_9s7_4m3_75u}
@@ -296,39 +271,6 @@ Range: bytes=ByteRange(可选)
       <RequestId>5CAC0FEADE0170*****</RequestId>
       <HostId>versioning-get.oss-cn-hangzhou.aliyun*****</HostId>
       <Key>example</Key>
-    </Error>
-    ```
-
--   指定versionId访问删除标记的请求示例
-
-    ``` {#codeblock_913_kdb_ah2}
-    GET /example?versionId=CAEQMxiBgMCfqaWA0BYiIDliMWI4MGQ0MTVmMjQ3MmE5MDNlMmY4YmFkYTk3ZmE4 HTTP/1.1
-    Host: versioning-get.oss-cn-hangzhou.aliyuncs.com
-    Date: Tue, 09 Apr 2019 03:09:44 GMT
-    Authorization: OSS tvqm50uz4y:51UaP+wQt5k1RQang/U6Eeq*****
-    ```
-
-    返回示例
-
-    ``` {#codeblock_klw_sz0_8jq}
-    HTTP/1.1 405 Method Not Allowed
-    x-oss-request-id: 5CAC0CF8DE01700*****
-    x-oss-delete-marker: true
-    x-oss-version-id: CAEQMxiBgMCfqaWADliMWI4MGQ0MTVmMjQ3MmE5MDNlMmY4YmFkYTk*****
-    Allow: DELETE
-    Date: Tue, 09 Apr 2019 03:09:44 GMT
-    Content-Type: application/xml
-    Content-Length: 318
-    Connection: keep-alive
-    Server: AliyunOSS
-    <?xml version="1.0" encoding="UTF-8"?>
-    <Error>
-      <Code>MethodNotAllowed</Code>
-      <Message>The specified method is not allowed against this resource.</Message>
-      <RequestId>5CAC0CF8DE0170*****</RequestId>
-      <HostId>versioning-get.oss-cn-hangzhou.aliyunc*****</HostId>
-      <Method>GET</Method>
-      <ResourceType>DeleteMarker</ResourceType>
     </Error>
     ```
 
