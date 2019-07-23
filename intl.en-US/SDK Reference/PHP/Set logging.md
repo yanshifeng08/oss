@@ -6,13 +6,13 @@ The log file format is as follows:
 
 `<TargetPrefix><SourceBucket>-YYYY-mm-DD-HH-MM-SS-UniqueString`
 
-For more information about access log files, see [Set access logging](../../../../reseller.en-US/Developer Guide/Security management/Set access logging.md#). For the complete code of access logging, see [GitHub](https://github.com/aliyun/aliyun-oss-php-sdk/blob/master/samples/BucketLogging.php).
+For more information about access log files, see [Set access logging](../../../../intl.en-US/Developer Guide/Manage logs/访问日志存储.md#). For the complete code of access logging, see [GitHub](https://github.com/aliyun/aliyun-oss-php-sdk/blob/master/samples/BucketLogging.php).
 
 ## Enable access logging {#section_xyv_yyr_kfb .section}
 
 Run the following code to enable bucket access logging:
 
-```language-php
+``` {#codeblock_62j_vne_i04 .language-php}
 <? php
 if (is_file(__DIR__ . '/../autoload.php')) {
     require_once __DIR__ . '/../autoload.php';
@@ -34,6 +34,7 @@ $option = array();
 // Configure the bucket that stores log files.
 $targetBucket = "<yourBucketName>";
 $targetPrefix = "access.log";
+$bucket= "<yourBucketName>";
 
 try {
     $ossClient = new OssClient($accessKeyId, $accessKeySecret, $endpoint);
@@ -46,14 +47,14 @@ try {
     return;
 }
 print(__FUNCTION__ . ": OK" . "\n");
-
+			
 ```
 
-## View access logging configurations { .section}
+## View access logging configurations {#section_iob_1ug_3j4 .section}
 
 Run the following code to view the access logging configurations for a bucket:
 
-```language-php
+``` {#codeblock_vxd_oi8_hfj .language-php}
 <? php
 if (is_file(__DIR__ . '/../autoload.php')) {
     require_once __DIR__ . '/../autoload.php';
@@ -86,14 +87,14 @@ try {
 }
 print(__FUNCTION__ . ": OK" . "\n");
 print($loggingConfig->serializeToXml() . "\n");
-
+			
 ```
 
-## Disable access logging { .section}
+## Disable access logging {#section_y7w_nmg_ykb .section}
 
 Run the following code to disable access logging for a bucket:
 
-```language-php
+``` {#codeblock_mjv_rnj_csc .language-php}
 <? php
 if (is_file(__DIR__ . '/../autoload.php')) {
     require_once __DIR__ . '/../autoload.php';
@@ -123,6 +124,6 @@ try {
     return;
 }
 print(__FUNCTION__ . ": OK" . "\n");
-
+			
 ```
 
