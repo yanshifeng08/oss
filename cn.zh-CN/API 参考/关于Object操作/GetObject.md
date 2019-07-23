@@ -244,51 +244,20 @@ Range: bytes=ByteRange(可选)
     [354606 bytes of object data]
     ```
 
--   未指定versionId，且访问Object的当前版本为删除标记的请求示例
-
-    ``` {#codeblock_9s7_4m3_75u}
-    GET /example HTTP/1.1
-    Host: versioning-get.oss-cn-hangzhou.aliyuncs.com
-    Date: Tue, 09 Apr 2019 03:22:33 GMT
-    Authorization: OSS duagpvtn35:taVlDvAJMhEumrR+oLMWtQp*****
-    ```
-
-    返回示例
-
-    ``` {#codeblock_mn9_fhh_uw7}
-    HTTP/1.1 404 Not Found
-    x-oss-request-id: 5CAC0FEADE0170*****
-    x-oss-delete-marker: true
-    x-oss-version-id: CAEQNxiBgyA0BYiIDc4ZDdmNTA2MGViZTRiNjE5NzZlZWM4OWM5OT*****
-    Date: Tue, 09 Apr 2019 03:22:33 GMT
-    Content-Type: application/xml
-    Connection: keep-alive
-    Server: AliyunOSS
-    <?xml version="1.0" encoding="UTF-8"?>
-    <Error>
-      <Code>NoSuchKey</Code>
-      <Message>The specified key does not exist.</Message>
-      <RequestId>5CAC0FEADE0170*****</RequestId>
-      <HostId>versioning-get.oss-cn-hangzhou.aliyun*****</HostId>
-      <Key>example</Key>
-    </Error>
-    ```
-
 
 ## SDK {#section_egl_m2c_5gb .section}
 
 GetObject接口所对应的各语言SDK如下：
 
--   [Java](../../../../cn.zh-CN/SDK 示例/Java/上传文件/概述.md)
--   [Python](../../../../cn.zh-CN/SDK 示例/Python/上传文件/概述.md)
--   [PHP](../../../../cn.zh-CN/SDK 示例/PHP/上传文件/概述 .md)
--   [Go](../../../../cn.zh-CN/SDK 示例/Go/上传文件/概述.md)
--   [C](../../../../cn.zh-CN/SDK 示例/C/上传文件/概述.md)
--   [.NET](../../../../cn.zh-CN/SDK 示例/.NET/上传文件/概述.md)
--   [Android](../../../../cn.zh-CN/SDK 示例/Android/上传文件/概述.md)
--   [Node.js](../../../../cn.zh-CN/SDK 示例/Node.js/上传文件/概述.md)
--   [Browser.js](../../../../cn.zh-CN/SDK 示例/Browser.js/上传文件.md)
--   [Ruby](../../../../cn.zh-CN/SDK 示例/Ruby/上传文件.md)
+-   [Java](../../../../intl.zh-CN/SDK 示例/Java/上传文件/概述.md)
+-   [Python](../../../../intl.zh-CN/SDK 示例/Python/上传文件/概述.md)
+-   [PHP](../../../../intl.zh-CN/SDK 示例/PHP/上传文件/概述 .md)
+-   [Go](../../../../intl.zh-CN/SDK 示例/Go/上传文件/概述.md)
+-   [C](../../../../intl.zh-CN/SDK 示例/C/上传文件/概述.md)
+-   [.NET](../../../../intl.zh-CN/SDK 示例/.NET/上传文件/概述.md)
+-   [Node.js](../../../../intl.zh-CN/SDK 示例/Node.js/上传文件/概述.md)
+-   [Browser.js](../../../../intl.zh-CN/SDK 示例/Browser.js/上传文件.md)
+-   [Ruby](../../../../intl.zh-CN/SDK 示例/Ruby/上传文件.md)
 
 ## 错误码 {#section_hnc_tz5_jgb .section}
 

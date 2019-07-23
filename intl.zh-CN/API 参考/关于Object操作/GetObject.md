@@ -6,7 +6,7 @@ GetObject接口用于获取某个文件（Object） 。此操作需要对该Obje
 
 ## 请求语法 {#section_pjt_dmw_bz .section}
 
-```
+``` {#codeblock_rw5_n49_v9h}
 GET /ObjectName HTTP/1.1
 Host: BucketName.oss-cn-hangzhou.aliyuncs.com
 Date: GMT Date
@@ -112,151 +112,152 @@ Range: bytes=ByteRange(可选)
 
 ## 示例 {#section_vrp_zmw_bz .section}
 
-**简单的GET请求示例**
+-   简单的GET请求示例
 
-```
-GET /oss.jpg HTTP/1.1
-Host: oss-example.oss-cn-hangzhou.aliyuncs.com
-Date: Fri, 24 Feb 2012 06:38:30 GMT
-Authorization: OSS qn6qrrqxo2oawuk53otfjbyc:UNQDb7GapEgJkcde6OhZ9J*****
-```
+    ``` {#codeblock_twj_erz_qci}
+    GET /oss.jpg HTTP/1.1
+    Host: oss-example.oss-cn-hangzhou.aliyuncs.com
+    Date: Fri, 24 Feb 2012 06:38:30 GMT
+    Authorization: OSS qn6qrrqxo2oawuk53otfjbyc:UNQDb7GapEgJkcde6OhZ9J*****
+    ```
 
-**返回示例**
+    返回示例
 
-```
-HTTP/1.1 200 OK
-x-oss-request-id: 3a8f-2e2d-7965-3ff9-51c875b*****
-x-oss-object-type: Normal
-Date: Fri, 24 Feb 2012 06:38:30 GMT
-Last-Modified: Fri, 24 Feb 2012 06:07:48 GMT
-ETag: "5B3C1A2E0563E1B002CC607C*****"
-Content-Type: image/jpg
-Content-Length: 344606
-Server: AliyunOSS
-[344606 bytes of object data]
-```
+    ``` {#codeblock_vk2_cqu_hu8}
+    HTTP/1.1 200 OK
+    x-oss-request-id: 3a8f-2e2d-7965-3ff9-51c875b*****
+    x-oss-object-type: Normal
+    Date: Fri, 24 Feb 2012 06:38:30 GMT
+    Last-Modified: Fri, 24 Feb 2012 06:07:48 GMT
+    ETag: "5B3C1A2E0563E1B002CC607C*****"
+    Content-Type: image/jpg
+    Content-Length: 344606
+    Server: AliyunOSS
+    [344606 bytes of object data]
+    ```
 
-**带有Range参数的请求示例**
+-   带有Range参数的请求示例
 
-```
-GET //oss.jpg HTTP/1.1
-Host:oss-example. oss-cn-hangzhou.aliyuncs.com
-Date: Fri, 28 Feb 2012 05:38:42 GMT
-Range: bytes=100-900
-Authorization: OSS qn6qrrqxo2oawuk5jbyc:qZzjF3DUtd+yK16BdhGtFcC*****
-```
+    ``` {#codeblock_q9o_nfa_bl7}
+    GET //oss.jpg HTTP/1.1
+    Host:oss-example. oss-cn-hangzhou.aliyuncs.com
+    Date: Fri, 28 Feb 2012 05:38:42 GMT
+    Range: bytes=100-900
+    Authorization: OSS qn6qrrqxo2oawuk5jbyc:qZzjF3DUtd+yK16BdhGtFcC*****
+    ```
 
-**返回示例**
+    返回示例
 
-```
-HTTP/1.1 206 Partial Content
-x-oss-request-id: 28f6-15ea-8224-234e-c0ce407*****
-x-oss-object-type: Normal
-Date: Fri, 28 Feb 2012 05:38:42 GMT
-Last-Modified: Fri, 24 Feb 2012 06:07:48 GMT
-ETag: "5B3C1A2E05E1B002CC607C*****"
-Accept-Ranges: bytes
-Content-Range: bytes 100-900/344606
-Content-Type: image/jpg
-Content-Length: 801
-Server: AliyunOSS
-[801 bytes of object data]
-```
+    ``` {#codeblock_g4k_sum_qxw}
+    HTTP/1.1 206 Partial Content
+    x-oss-request-id: 28f6-15ea-8224-234e-c0ce407*****
+    x-oss-object-type: Normal
+    Date: Fri, 28 Feb 2012 05:38:42 GMT
+    Last-Modified: Fri, 24 Feb 2012 06:07:48 GMT
+    ETag: "5B3C1A2E05E1B002CC607C*****"
+    Accept-Ranges: bytes
+    Content-Range: bytes 100-900/344606
+    Content-Type: image/jpg
+    Content-Length: 801
+    Server: AliyunOSS
+    [801 bytes of object data]
+    ```
 
-**带自定义返回消息头的请求示例**
+-   带自定义返回消息头的请求示例
 
-```
-GET /oss.jpg?response-expires=Thu%2C%2001%20Feb%202012%2017%3A00%3A00%20GMT& response-content-type=text&response-cache-control=No-cache&response-content-disposition=attachment%253B%2520filename%253Dtesting.txt&response-content-encoding=utf-8&response-content-language=%E4%B8%AD%E6%96%87 HTTP/1.1
-Host: oss-example.oss-cn-hangzhou.aliyuncs.com:
-Date: Fri, 24 Feb 2012 06:09:48 GMT
-```
+    ``` {#codeblock_qvd_mjs_gxd}
+    GET /oss.jpg?response-expires=Thu%2C%2001%20Feb%202012%2017%3A00%3A00%20GMT& response-content-type=text&response-cache-control=No-cache&response-content-disposition=attachment%253B%2520filename%253Dtesting.txt&response-content-encoding=utf-8&response-content-language=%E4%B8%AD%E6%96%87 HTTP/1.1
+    Host: oss-example.oss-cn-hangzhou.aliyuncs.com:
+    Date: Fri, 24 Feb 2012 06:09:48 GMT
+    ```
 
-**返回示例**
+    返回示例
 
-```
-HTTP/1.1 200 OK
-x-oss-request-id: 559CC9BDC75A644*****
-x-oss-object-type: Normal
-Date: Fri, 24 Feb 2012 06:09:48 GMT 
-Last-Modified: Fri, 24 Feb 2012 06:07:48 GMT
-ETag: "5B3C1A2E053D1B002CC607*****"
-Content-Length: 344606
-Connection: keep-alive
-Content-disposition: attachment; filename:testing.txt
-Content-language: 中文
-Content-encoding: utf-8
-Content-type: text
-Cache-control: no-cache
-Expires: Fri, 24 Feb 2012 17:00:00 GMT
-Server: AliyunOSS
-[344606 bytes of object data]
-```
+    ``` {#codeblock_kin_nl2_86o}
+    HTTP/1.1 200 OK
+    x-oss-request-id: 559CC9BDC75A644*****
+    x-oss-object-type: Normal
+    Date: Fri, 24 Feb 2012 06:09:48 GMT 
+    Last-Modified: Fri, 24 Feb 2012 06:07:48 GMT
+    ETag: "5B3C1A2E053D1B002CC607*****"
+    Content-Length: 344606
+    Connection: keep-alive
+    Content-disposition: attachment; filename:testing.txt
+    Content-language: 中文
+    Content-encoding: utf-8
+    Content-type: text
+    Cache-control: no-cache
+    Expires: Fri, 24 Feb 2012 17:00:00 GMT
+    Server: AliyunOSS
+    [344606 bytes of object data]
+    ```
 
-**Object类型为符号链接的请求示例**
+-   Object类型为符号链接的请求示例
 
-```
-GET /link-to-oss.jpg HTTP/1.1
-Accept-Encoding: identity
-Date: Tue, 08 Nov 2016 03:17:58 GMT
-Host: oss-example.oss-cn-hangzhou.aliyuncs.com
-Authorization: OSS qn6qrrqxok53otfjbyc:qZzjF3DUtd+yK16BdhGtFc*****
-```
+    ``` {#codeblock_e50_fhh_s30}
+    GET /link-to-oss.jpg HTTP/1.1
+    Accept-Encoding: identity
+    Date: Tue, 08 Nov 2016 03:17:58 GMT
+    Host: oss-example.oss-cn-hangzhou.aliyuncs.com
+    Authorization: OSS qn6qrrqxok53otfjbyc:qZzjF3DUtd+yK16BdhGtFc*****
+    ```
 
-**返回示例**
+    返回示例
 
-```
-HTTP/1.1 200 OK
-Server: AliyunOSS
-Date: Tue, 08 Nov 2016 03:17:58 GMT
-Content-Type: application/octet-stream
-Content-Length: 20
-Connection: keep-alive
-x-oss-request-id: 582143E6A212AD*****
-Accept-Ranges: bytes
-ETag: "8086265EFC021F9A2F09BF4****"
-Last-Modified: Tue, 08 Nov 2016 03:17:58 GMT
-x-oss-object-type: Symlink
-Content-MD5: gIYmXvwCEe0fmi8Jv0Y****
-```
+    ``` {#codeblock_w3l_3nh_brm}
+    HTTP/1.1 200 OK
+    Server: AliyunOSS
+    Date: Tue, 08 Nov 2016 03:17:58 GMT
+    Content-Type: application/octet-stream
+    Content-Length: 20
+    Connection: keep-alive
+    x-oss-request-id: 582143E6A212AD*****
+    Accept-Ranges: bytes
+    ETag: "8086265EFC021F9A2F09BF4****"
+    Last-Modified: Tue, 08 Nov 2016 03:17:58 GMT
+    x-oss-object-type: Symlink
+    Content-MD5: gIYmXvwCEe0fmi8Jv0Y****
+    ```
 
-**Restore操作已经完成的请求示例**
+-   Restore操作已经完成的请求示例
 
-```
-GET /oss.jpg HTTP/1.1
-Host: oss-archive-example.oss-cn-hangzhou.aliyuncs.com
-Date: Sat, 15 Apr 2017 09:38:30 GMT
-Authorization: OSS qn6qrrqxo2o***k53otfjbyc:zUglwRPGkbByZxm1+y4eyu+*****
-```
+    ``` {#codeblock_7ar_5d7_tvk}
+    GET /oss.jpg HTTP/1.1
+    Host: oss-archive-example.oss-cn-hangzhou.aliyuncs.com
+    Date: Sat, 15 Apr 2017 09:38:30 GMT
+    Authorization: OSS qn6qrrqxo2o***k53otfjbyc:zUglwRPGkbByZxm1+y4eyu+*****
+    ```
 
-**返回示例**
+    返回示例
 
-```
-HTTP/1.1 200 OK
-x-oss-request-id: 58F723829F29F18D7F00*****
-x-oss-object-type: Normal
-x-oss-restore: ongoing-request="false", expiry-date="Sun, 16 Apr 2017 08:12:33 GMT"
-Date: Sat, 15 Apr 2017 09:38:30 GMT
-Last-Modified: Sat, 15 Apr 2017 06:07:48 GMT
-ETag: "5B3C1A2E0763E1B002CC607C*****"
-Content-Type: image/jpg
-Content-Length: 344606
-Server: AliyunOSS
-[354606 bytes of object data]
-```
+    ``` {#codeblock_l7h_ni4_b7j}
+    HTTP/1.1 200 OK
+    x-oss-request-id: 58F723829F29F18D7F00*****
+    x-oss-object-type: Normal
+    x-oss-restore: ongoing-request="false", expiry-date="Sun, 16 Apr 2017 08:12:33 GMT"
+    Date: Sat, 15 Apr 2017 09:38:30 GMT
+    Last-Modified: Sat, 15 Apr 2017 06:07:48 GMT
+    ETag: "5B3C1A2E0763E1B002CC607C*****"
+    Content-Type: image/jpg
+    Content-Length: 344606
+    Server: AliyunOSS
+    [354606 bytes of object data]
+    ```
+
 
 ## SDK {#section_egl_m2c_5gb .section}
 
 GetObject接口所对应的各语言SDK如下：
 
--   [Java](../../../../intl.zh-CN/SDK 参考/Java/上传文件/概述.md)
--   [Python](../../../../intl.zh-CN/SDK 参考/Python/上传文件/概述.md)
--   [PHP](../../../../intl.zh-CN/SDK 参考/PHP/上传文件/概述 .md)
--   [Go](../../../../intl.zh-CN/SDK 参考/Go/上传文件/概述.md)
--   [C](../../../../intl.zh-CN/SDK 参考/C/上传文件/概述.md)
--   [.NET](../../../../intl.zh-CN/SDK 参考/.NET/上传文件/概述.md)
--   [Node.js](../../../../intl.zh-CN/SDK 参考/Node.js/上传文件/概述.md)
--   [Browser.js](../../../../intl.zh-CN/SDK 参考/Browser.js/上传文件.md)
--   [Ruby](../../../../intl.zh-CN/SDK 参考/Ruby/上传文件.md)
+-   [Java](../../../../intl.zh-CN/SDK 示例/Java/上传文件/概述.md)
+-   [Python](../../../../intl.zh-CN/SDK 示例/Python/上传文件/概述.md)
+-   [PHP](../../../../intl.zh-CN/SDK 示例/PHP/上传文件/概述 .md)
+-   [Go](../../../../intl.zh-CN/SDK 示例/Go/上传文件/概述.md)
+-   [C](../../../../intl.zh-CN/SDK 示例/C/上传文件/概述.md)
+-   [.NET](../../../../intl.zh-CN/SDK 示例/.NET/上传文件/概述.md)
+-   [Node.js](../../../../intl.zh-CN/SDK 示例/Node.js/上传文件/概述.md)
+-   [Browser.js](../../../../intl.zh-CN/SDK 示例/Browser.js/上传文件.md)
+-   [Ruby](../../../../intl.zh-CN/SDK 示例/Ruby/上传文件.md)
 
 ## 错误码 {#section_hnc_tz5_jgb .section}
 
