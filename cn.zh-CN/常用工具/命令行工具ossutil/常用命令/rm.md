@@ -46,7 +46,7 @@
 
 -   批量删除符合条件的文件
 
-    您可以使用`--include/--exclude`参数，批量删除符合条件的Object。`--include/--exclude`参数详情请参见[过滤选项](#li_1ff_wwf_29y)。
+    您可以使用`--include/--exclude`参数，批量删除符合条件的Object。`--include/--exclude`参数详情请参见[过滤选项](cn.zh-CN/常用工具/命令行工具ossutil/常用命令/cp.md#li_m1z_9gy_lbp)。
 
     -   删除所有文件格式不为jpg的Object
 
