@@ -5,11 +5,12 @@ PutBucketLifecycle接口用于设置存储空间（Bucket）的生命周期规�
 **说明：** 
 
 -   如果Bucket此前没有设置过生命周期规则，此操作会创建一个新的生命周期规则；如果Bucket此前设置过生命周期规则，此操作会覆写先前的配置。
--   此操作可以对Object以及Part（以分片方式上传，但最后未提交的分片）设置过期时间。
+-   PutBucketLifecycle是覆盖语义。如需追加Lifecycle rule，请先调用GetBucketLifecycle获取当前Lifecycle配置，然后追加新的Lifecycle配置，并调用PutBucketLifecycle接口更新Bucket Lifecycle配置。
+-   PutBucketLifecycle操作可以对Object以及Part（以分片方式上传，但最后未提交的分片）设置过期时间。
 
 ## 请求语法 {#section_bfn_rcw_bz .section}
 
-```
+``` {#codeblock_rag_kyo_4ay}
 PUT /?lifecycle HTTP/1.1
 Date: GMT Date
 Content-Length：ContentLength
@@ -115,7 +116,7 @@ Host: BucketName.oss.aliyuncs.com
  |
 |Transition|容器|否| 指定Object在有效生命周期中，OSS何时将Object转储为IA或者Archive存储类型 。
 
- **说明：** Standard Bucket中的Standard Object可以转储为IA、Archive存储类型，但转储Archive存储类型的时间必须比转储IA存储类型的时间长。例如Transition IA设置Days为30，Transition Archive设置Days必须大于IA。
+ **说明：** Standard Bucket中的Standard Object可以转储为IA、Archive存储类型，但转储Archive存储类型的时间必须比转储IA存储类型的时间长。例如Transition IA设置Days为30，Transition Archive设置Days必须大于30。
 
  |
 |Tag|容器|否|指定规则所适用的对象标签，可设置多个。 父节点：Rule
@@ -132,110 +133,110 @@ Host: BucketName.oss.aliyuncs.com
 
 ## 示例 {#section_ox3_zcw_bz .section}
 
- **请求示例** 
+-   不受版本控制的生命周期配置请求示例
 
-```
-PUT /?lifecycle HTTP/1.1
-Host: oss-example.oss.aliyuncs.com
-Content-Length: 443
-Date: Thu , 8 Jun 2017 13:08:38 GMT
-Authorization: OSS qn6qrrqxo2oawuk53otfjbyc:PYbzsdWAIWAlMW8luk*****
-<?xml version="1.0" encoding="UTF-8"?>
-<LifecycleConfiguration>
-  <Rule>
-    <ID>delete objects and parts after one day</ID>
-    <Prefix>logs/</Prefix>
-    <Status>Enabled</Status>
-    <Expiration>
-      <Days>1</Days>
-    </Expiration>
-    <AbortMultipartUpload>
-      <Days>1</Days>
-    </AbortMultipartUpload>
-  </Rule>
-  <Rule>
-    <ID>transit objects to IA after 30, to Archive 60, expire after 10 years</ID>
-    <Prefix>data/</Prefix>
-    <Status>Enabled</Status>
-    <Transition>
-      <Days>30</Days>
-      <StorageClass>IA</StorageClass>
-    </Transition>
-    <Transition>
-      <Days>60</Days>
-      <StorageClass>Archive</StorageClass>
-    </Transition>
-    <Expiration>
-      <Days>3600</Days>
-    </Expiration>
-  </Rule>
-  <Rule>
-    <ID>transit objects to Archive after 60 days</ID>
-    <Prefix>important/</Prefix>
-    <Status>Enabled</Status>
-    <Transition>
-      <Days>6</Days>
-      <StorageClass>Archive</StorageClass>
-    </Transition>
-  </Rule>
-  <Rule>
-    <ID>delete created before date</ID>
-    <Prefix>backup/</Prefix>
-    <Status>Enabled</Status>
-    <Expiration>
-      <CreatedBeforeDate>2017-01-01T00:00:00.000Z</CreatedBeforeDate>
-    </Expiration>
-    <AbortMultipartUpload>
-      <CreatedBeforeDate>2017-01-01T00:00:00.000Z</CreatedBeforeDate>
-    </AbortMultipartUpload>
-  </Rule>
-  <Rule>
-    <ID>r1</ID>
-    <Prefix>rule1</Prefix>
-    <Tag><Key>xx</Key><Value>1</Value></Tag>
-    <Tag><Key>yy</Key><Value>2</Value></Tag>
-    <Status>Enabled</Status>
-    <Expiration>
-      <Days>30</Days>
-    </Expiration>
-  </Rule>
-  <Rule>
-    <ID>r2</ID>
-    <Prefix>rule2</Prefix>
-    <Tag><Key>xx</Key><Value>1</Value></Tag>
-    <Status>Enabled</Status>
-    <Transition>
-      <Days>60</Days>
-    <StorageClass>Archive</StorageClass>
-    </Transition>
-  </Rule>
-</LifecycleConfiguration>
-			
-```
+    ``` {#codeblock_s8c_ong_dgn}
+    PUT /?lifecycle HTTP/1.1
+    Host: oss-example.oss.aliyuncs.com
+    Content-Length: 443
+    Date: Thu , 8 Jun 2017 13:08:38 GMT
+    Authorization: OSS qn6qrrqxo2oawuk53otfjbyc:PYbzsdWAIWAlMW8luk*****
+    <?xml version="1.0" encoding="UTF-8"?>
+    <LifecycleConfiguration>
+      <Rule>
+        <ID>delete objects and parts after one day</ID>
+        <Prefix>logs/</Prefix>
+        <Status>Enabled</Status>
+        <Expiration>
+          <Days>1</Days>
+        </Expiration>
+        <AbortMultipartUpload>
+          <Days>1</Days>
+        </AbortMultipartUpload>
+      </Rule>
+      <Rule>
+        <ID>transit objects to IA after 30, to Archive 60, expire after 10 years</ID>
+        <Prefix>data/</Prefix>
+        <Status>Enabled</Status>
+        <Transition>
+          <Days>30</Days>
+          <StorageClass>IA</StorageClass>
+        </Transition>
+        <Transition>
+          <Days>60</Days>
+          <StorageClass>Archive</StorageClass>
+        </Transition>
+        <Expiration>
+          <Days>3600</Days>
+        </Expiration>
+      </Rule>
+      <Rule>
+        <ID>transit objects to Archive after 60 days</ID>
+        <Prefix>important/</Prefix>
+        <Status>Enabled</Status>
+        <Transition>
+          <Days>6</Days>
+          <StorageClass>Archive</StorageClass>
+        </Transition>
+      </Rule>
+      <Rule>
+        <ID>delete created before date</ID>
+        <Prefix>backup/</Prefix>
+        <Status>Enabled</Status>
+        <Expiration>
+          <CreatedBeforeDate>2017-01-01T00:00:00.000Z</CreatedBeforeDate>
+        </Expiration>
+        <AbortMultipartUpload>
+          <CreatedBeforeDate>2017-01-01T00:00:00.000Z</CreatedBeforeDate>
+        </AbortMultipartUpload>
+      </Rule>
+      <Rule>
+        <ID>r1</ID>
+        <Prefix>rule1</Prefix>
+        <Tag><Key>xx</Key><Value>1</Value></Tag>
+        <Tag><Key>yy</Key><Value>2</Value></Tag>
+        <Status>Enabled</Status>
+        <Expiration>
+          <Days>30</Days>
+        </Expiration>
+      </Rule>
+      <Rule>
+        <ID>r2</ID>
+        <Prefix>rule2</Prefix>
+        <Tag><Key>xx</Key><Value>1</Value></Tag>
+        <Status>Enabled</Status>
+        <Transition>
+          <Days>60</Days>
+        <StorageClass>Archive</StorageClass>
+        </Transition>
+      </Rule>
+    </LifecycleConfiguration>            
+    ```
 
- **返回示例** 
+    返回示例
 
-```
-HTTP/1.1 200 OK
-x-oss-request-id: 534B371674A4D890*****
-Date: Thu , 8 Jun 2017 13:08:38 GMT
-Content-Length: 0
-Connection: keep-alive
-Server: AliyunOSS
-```
+    ``` {#codeblock_ivr_tcb_ifn}
+    HTTP/1.1 200 OK
+    x-oss-request-id: 534B371674A4D890*****
+    Date: Thu , 8 Jun 2017 13:08:38 GMT
+    Content-Length: 0
+    Connection: keep-alive
+    Server: AliyunOSS
+    ```
+
 
 ## SDK {#section_egl_m2c_5gb .section}
 
 此接口所对应的各语言SDK如下：
 
--   [Java](../../../../intl.zh-CN/SDK 参考/Java/生命周期.md)
--   [Python](../../../../intl.zh-CN/SDK 参考/Python/生命周期.md)
--   [PHP](../../../../intl.zh-CN/SDK 参考/PHP/生命周期.md)
--   [Go](../../../../intl.zh-CN/SDK 参考/Go/生命周期.md)
--   [C](../../../../intl.zh-CN/SDK 参考/C/生命周期.md)
--   [.NET](../../../../intl.zh-CN/SDK 参考/.NET/生命周期.md)
--   [Node.js](../../../../intl.zh-CN/SDK 参考/Node.js/生命周期.md)
--   [Ruby](../../../../intl.zh-CN/SDK 参考/Ruby/生命周期.md)
+-   [Java](../../../../cn.zh-CN/SDK 示例/Java/生命周期.md)
+-   [Python](../../../../cn.zh-CN/SDK 示例/Python/生命周期.md)
+-   [PHP](../../../../cn.zh-CN/SDK 示例/PHP/生命周期.md)
+-   [Go](../../../../cn.zh-CN/SDK 示例/Go/生命周期.md)
+-   [C](../../../../cn.zh-CN/SDK 示例/C/生命周期.md)
+-   [.NET](../../../../cn.zh-CN/SDK 示例/.NET/生命周期.md)
+-   [Node.js](../../../../cn.zh-CN/SDK 示例/Node.js/生命周期.md)
+-   [Ruby](../../../../cn.zh-CN/SDK 示例/Ruby/生命周期.md)
 
 ## 错误码 {#section_dsv_grs_qgb .section}
 
