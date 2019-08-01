@@ -1,5 +1,7 @@
 # 基于OSS的移动开发 {#concept_e4j_x51_5db .concept}
 
+本文介绍基于对象存储OSS的移动开发业务流程。
+
 ## 开发架构图 {#section_azy_z51_5db .section}
 
 典型的基于OSS的移动开发有四个组件：
@@ -13,7 +15,7 @@
 
 -   临时凭证授权的上传
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/4352/15528929331027_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/4352/15646507131027_zh-CN.png)
 
     具体步骤如下：
 
@@ -26,11 +28,11 @@
 
     -   客户端不需要每次都向应用服务器请求授权，在第一次授权完成之后可以缓存STS返回的临时凭证直到超过失效时间。
     -   STS提供了强大的权限控制功能，可以将客户端的访问权限限制到Object级别，从而实现不同客户端在OSS端上传的Object的完全隔离，极大提高了安全性。
-    更多信息请参见[授权给第三方上传](intl.zh-CN/开发指南/上传文件（Object）/授权给第三方上传.md#)。
+    更多信息请参见[授权给第三方上传](cn.zh-CN/开发指南/上传文件（Object）/授权给第三方上传.md#)。
 
 -   签名URL授权的上传和表单上传
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/4352/15528929331030_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/4352/15646507131030_zh-CN.png)
 
     具体步骤如下：
 
@@ -38,7 +40,7 @@
     2.  应用服务器回复客户端，将上传凭证（签名URL或者表单）返回给客户端。
     3.  客户端获取上传到OSS的授权（签名URL或者表单），调用OSS提供的移动端SDK上传或者直接表单上传。
     4.  客户端成功上传数据到OSS。如果没有设置回调，则流程结束。如果设置了回调功能，OSS会调用相关的接口。
-    更多信息请参见[授权给第三方上传](intl.zh-CN/开发指南/上传文件（Object）/授权给第三方上传.md#)。
+    更多信息请参见[授权给第三方上传](cn.zh-CN/开发指南/上传文件（Object）/授权给第三方上传.md#)。
 
 -   临时凭证授权的下载
 
@@ -66,13 +68,13 @@
 
 ## 最佳实践 {#section_ahj_bv1_5db .section}
 
--   [快速搭建移动应用直传服务](../../../../../intl.zh-CN/最佳实践/移动应用端直传实践/快速搭建移动应用直传服务.md#)
--   [快速搭建移动应用上传回调服务](../../../../../intl.zh-CN/最佳实践/移动应用端直传实践/快速搭建移动应用上传回调服务.md#)
--   [权限控制](../../../../../intl.zh-CN/最佳实践/移动应用端直传实践/权限控制.md#)
--   [RAM和STS使用指南](../../../../../intl.zh-CN/开发指南/隐藏/权限管理/权限管理概述.md#)
+-   [快速搭建移动应用直传服务](../../../../cn.zh-CN/最佳实践/移动应用端直传实践/快速搭建移动应用直传服务.md#)
+-   [快速搭建移动应用上传回调服务](../../../../cn.zh-CN/最佳实践/移动应用端直传实践/快速搭建移动应用上传回调服务.md#)
+-   [权限控制](../../../../cn.zh-CN/最佳实践/移动应用端直传实践/权限控制.md#)
+-   [RAM和STS使用指南](../../../../cn.zh-CN/开发指南/隐藏/权限管理/权限管理概述.md#)
 
 ## 功能使用参考 {#section_ip1_zw1_5db .section}
 
--   [Android SDK上传文件](https://www.alibabacloud.com/help/doc-detail/32047.htm)
--   [iOS SDK上传文件](https://www.alibabacloud.com/help/doc-detail/32060.htm)
+-   [Android SDK上传文件](https://help.aliyun.com/document_detail/32047.html)
+-   [iOS SDK上传文件](https://help.aliyun.com/document_detail/32060.html)
 
