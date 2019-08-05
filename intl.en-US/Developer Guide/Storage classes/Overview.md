@@ -34,7 +34,7 @@ OSS Archive storage has the lowest price among the three storage classes. It is 
 The Archive storage class has the following features:
 
 -   Designed for 99.999999999% data reliability.
--   Designed for 99.995% service availability.
+-   Designed for 99.99% service availability.
 -   Takes about 1 minute to restore the stored data from the frozen status to the readable status.
 -   Supports HTTPS-based transmission.
 -   Supports Image Processing, but data needs to be restored first.
@@ -45,7 +45,7 @@ The Archive storage class has the following features:
 |Item|Standard|IA|Archive|
 |:---|:-------|:-|:------|
 |Data reliability|99.999999999%|99.999999999%|99.999999999%|
-|Service availability|99.995%|99.995%|99.995% \(restored data\)|
+|Service availability|99.995%|99.995%|99.99% \(restored data\)|
 |Minimum billable size of objects|Actual size of objects|64 KB|64 KB|
 |Minimum storage duration|N/A|30 days|60 days|
 |Data retrieval fee|No data retrieval fee|Charged by the size of retrieved data. Unit: GB|Charged by the size of restored data. Unit: GB|
