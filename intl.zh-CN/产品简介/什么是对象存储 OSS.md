@@ -1,8 +1,10 @@
 # 什么是对象存储 OSS {#concept_ybr_fg1_tdb .concept}
 
-阿里云对象存储服务（Object Storage Service，简称 OSS），是阿里云提供的海量、安全、低成本、高可靠的云存储服务。其数据设计持久性不低于 99.9999999999%（12个9），服务设计可用性不低于 99.99%。OSS 具有与平台无关的 RESTful API 接口，您可以在任何应用、任何时间、任何地点存储和访问任意类型的数据。
+阿里云对象存储服务（Object Storage Service，简称 OSS），是阿里云提供的海量、安全、低成本、高可靠的云存储服务。其数据设计持久性不低于 99.9999999999%（12 个 9），服务设计可用性不低于 99.995%。
 
-您可以使用阿里云提供的 API、SDK 接口或者 OSS 迁移工具轻松地将海量数据移入或移出阿里云 OSS。数据存储到阿里云 OSS 以后，您可以选择标准类型（Standard）的阿里云 OSS 服务作为移动应用、大型网站、图片分享或热点音视频的主要存储方式，也可以选择成本更低、存储期限更长的低频访问类型（Infrequent Access）和归档类型（Archive）的阿里云 OSS 服务作为不经常访问数据的备份和归档。
+OSS 具有与平台无关的 RESTful API 接口，您可以在任何应用、任何时间、任何地点存储和访问任意类型的数据。
+
+您可以使用阿里云提供的 API、SDK 接口或者 OSS 迁移工具轻松地将海量数据移入或移出阿里云 OSS。数据存储到阿里云 OSS 以后，您可以选择标准存储（Standard）作为移动应用、大型网站、图片分享或热点音视频的主要存储方式，也可以选择成本更低、存储期限更长的低频访问存储（Infrequent Access）和归档存储（Archive）作为不经常访问数据的存储方式。
 
 ## 相关概念 {#section_h4j_rlb_n2b .section}
 
@@ -12,7 +14,7 @@
 
 -   存储空间（Bucket）
 
-    存储空间是您用于存储对象（Object）的容器，所有的对象都必须隶属于某个存储空间。您可以设置和修改存储空间属性用来控制地域、访问权限、生命周期等，这些属性设置直接作用于该存储空间内所有对象，因此您可以通过灵活创建不同的存储空间来完成不同的管理功能。
+    存储空间是您用于存储对象（Object）的容器，所有的对象都必须隶属于某个存储空间。存储空间具有各种配置属性，包括地域、访问权限、存储类型等。您可以根据实际需求，创建不同类型的存储空间来存储不同的数据。创建存储空间请参见[创建存储空间](../../../../intl.zh-CN/开发指南/存储空间（Bucket）/创建存储空间.md#)。
 
 -   对象/文件（Object）
 
@@ -20,7 +22,7 @@
 
 -   地域（Region）
 
-    地域表示 OSS 的数据中心所在物理位置。您可以根据费用、请求来源等综合选择数据存储的地域。详情请参见 [OSS 已开通的Region](../../../../intl.zh-CN/开发指南/访问域名（Endpoint）/访问域名和数据中心.md#)。
+    地域表示 OSS 的数据中心所在物理位置。您可以根据费用、请求来源等选择合适的地域创建 Bucket。详情请参见 [OSS 已开通的Region](../../../../intl.zh-CN/开发指南/访问域名（Endpoint）/访问域名和数据中心.md#)。
 
 -   访问域名（Endpoint）
 
@@ -28,7 +30,7 @@
 
 -   访问密钥（AccessKey）
 
-    AccessKey，简称 AK，指的是访问身份验证中用到的 AccessKeyId 和 AccessKeySecret。OSS 通过使用 AccessKeyId 和 AccessKeySecret 对称加密的方法来验证某个请求的发送者身份。AccessKeyId 用于标识用户，AccessKeySecret 是用户用于加密签名字符串和 OSS 用来验证签名字符串的密钥，其中 AccessKeySecret 必须保密。
+    AccessKey（简称 AK）指的是访问身份验证中用到的 AccessKeyId 和 AccessKeySecret。OSS 通过使用 AccessKeyId 和 AccessKeySecret 对称加密的方法来验证某个请求的发送者身份。AccessKeyId 用于标识用户；AccessKeySecret 是用户用于加密签名字符串和 OSS 用来验证签名字符串的密钥，必须保密。获取 AccessKey 的方法请参见[创建 AccessKey](../../../../intl.zh-CN/通用参考/创建AccessKey.md#)。
 
 
 ## 相关服务 {#section_jcv_xlb_n2b .section}
@@ -42,11 +44,20 @@
 -   E-MapReduce：构建于 ECS 上的大数据处理的系统解决方案，基于开源的 Apache Hadoop 和Apache Spark，方便您分析和处理自己的数据。请参见 [E-MapReduce 产品详情页面](https://www.alibabacloud.com/product/e-mapreduce)。
 -   媒体处理：将存储于 OSS 的音视频转码成适合在 PC、TV 以及移动终端上播放的格式。并基于海量数据深度学习，对音视频的内容、文字、语音、场景多模态分析，实现智能审核、内容理解、智能编辑。请参见[媒体处理产品详情页面](https://www.alibabacloud.com/product/mts)。
 
-## 使用 OSS {#section_o5k_1mb_n2b .section}
+## 管理 OSS {#section_o5k_1mb_n2b .section}
 
-阿里云提供了 Web 服务页面，方便您管理 OSS。您可以登录 OSS 管理控制台，操作存储空间和对象。关于管理控制台的操作，请参见[控制台用户指南](../../../../intl.zh-CN/控制台用户指南/登录OSS管理控制台/使用阿里云账号登录OSS管理控制台.md#)。
+-   通过 OSS 控制台管理 OSS
 
-阿里云也提供了丰富的 API 接口和各种语言的 SDK 包，方便您灵活地管理 OSS。请参见 [OSS API 参考](../../../../intl.zh-CN/API 参考/API概览.md#)和[OSS SDK 参考](https://www.alibabacloud.com/help/doc-detail/52834.htm)。
+    OSS 提供了 Web 服务页面，您可以登录 [OSS 管理控制台](https://oss.console.aliyun.com/overview)，管理您的 OSS。详情请参见[控制台用户指南](../../../../intl.zh-CN/控制台用户指南/登录OSS管理控制台/使用阿里云账号登录OSS管理控制台.md#)。
+
+-   通过 API 或 SDK 管理 OSS
+
+    OSS 提供 RESTful API 和各种语言的 SDK 开发包，方便您快速进行二次开发。详情请参见 [OSS API 参考](../../../../intl.zh-CN/API 参考/API概览.md#)和 [OSS SDK 参考](OSS SDK 参考../DNOSS11814329/ZH-CN_TP_22258_V3.dita#concept_dcn_tp1_kfb)。
+
+-   通过工具管理 OSS
+
+    OSS 提供各类型的管理工具，您可以通过工具管理您的 OSS。详情请参见 [OSS 常用工具](../../../../intl.zh-CN/常用工具/OSS常用工具汇总.md#)。
+
 
 ## OSS 定价 {#section_sv5_nmb_n2b .section}
 
@@ -54,7 +65,7 @@
 
 OSS 仅按照您的实际使用容量收费，您无需预先购买存储和流量容量，随着您业务的发展，您将享受到更多的基础设施成本优势。
 
-关于 OSS 的价格，请参见 [OSS 详细价格信息](https://www.alibabacloud.com/product/oss#pricing)。
+关于 OSS 的价格，请参见 [OSS 产品定价](https://www.alibabacloud.com/product/oss#pricing)。关于 OSS 的计量计费方式，请参见 [计量项和计费项](../../../../intl.zh-CN/计量计费/计量项和计费项.md#)。
 
 ## 学习路径图 {#section_bxq_qdc_n2b .section}
 
