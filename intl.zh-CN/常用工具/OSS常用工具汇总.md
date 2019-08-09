@@ -18,13 +18,13 @@
 -   只支持5GB以下的文件上传或复制。
 
  |
-|[ossutil](intl.zh-CN/常用工具/命令行工具ossutil/快速开始.md#)|Object和Bucket的命令行管理工具。 -   提供方便、简洁、丰富的Object和Bucket管理命令，操作性能好。
+|[ossutil](intl.zh-CN/常用工具/命令行工具ossutil/概述.md#)|Object和Bucket的命令行管理工具。 -   提供方便、简洁、丰富的Object和Bucket管理命令，操作性能好。
 -   支持文件并发上传、断点续传。
 -   支持文件目录（文件夹）的上传下载。
 -   支持Bucket常见管理命令。
 
  |
-|[osscmd](intl.zh-CN/常用工具/osscmd/快速安装.md#)|Object和Bucket的命令行管理工具。 -   提供完备的Bucket、Object管理命令。
+|[osscmd（已下线）](intl.zh-CN/常用工具/osscmd（已下线）/快速安装.md#)|Object和Bucket的命令行管理工具。 -   提供完备的Bucket、Object管理命令。
 -   支持Windows、Linux平台。
 
  使用限制：
@@ -32,7 +32,7 @@
 -   仅适用于Python2.5 - 2.7版本，不支持Python 3.x版本。
 -   不再支持OSS新增功能，如低频存储/归档存储、跨区域复制、镜像回源等。
 
- **说明：** ossutil将逐步取代osscmd。除ossutil不具备的某些Bucket管理功能的特殊情况外，建议使用[ossutil](intl.zh-CN/常用工具/命令行工具ossutil/快速开始.md#)。
+ **说明：** osscmd操作命令已整合到[ossutil](intl.zh-CN/常用工具/命令行工具ossutil/概述.md#)中，工具已于2019年7月31日下线，给您带来不便敬请谅解。
 
  |
 |[ossfs](intl.zh-CN/常用工具/ossfs/快速安装.md#)|Bucket挂载工具。 用于将OSS的Bucket挂载到Linux系统的本地文件系统中，挂载后可通过本地文件系统操作OSS上的Object，实现数据的访问和共享。
@@ -50,7 +50,7 @@
 -   不支持hard link。
 
  |
-|[ossftp](intl.zh-CN/常用工具/ossftp/如何快速安装OSS FTP.md#)|管理Object的FTP工具。 -   使用FileZilla、WinSCP、FlashFXP等FTP客户端操作OSS。
+|[ossftp](intl.zh-CN/常用工具/ossftp/如何快速安装ossftp.md#)|管理Object的FTP工具。 -   使用FileZilla、WinSCP、FlashFXP等FTP客户端操作OSS。
 -   本质是FTP Server，用于接收FTP请求，将对文件、文件夹的操作映射为对OSS的操作。
 -   基于Python2.7及以上版本。
 -   支持Windows、Linux、Mac平台。
