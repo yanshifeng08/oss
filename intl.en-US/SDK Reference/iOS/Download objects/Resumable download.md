@@ -6,11 +6,7 @@ Scenario: When you use a video application to download a video on a mobile phone
 
 The following figure shows the effect of resumable download.
 
-![](images/35699_en-US.gif)
-
-The following figure shows the process of resumable download.
-
-![](images/35698_en-US.png)
+![](images/55366_en-US.gif)
 
 ## Detail analysis {#section_v1x_lmc_3gb .section}
 
@@ -29,7 +25,7 @@ Example:
 
 **Note:** The following code is for reference only. We recommend that you do not use it in production projects. To download the code, you can download it by yourself or use third-party open-source download software.
 
-```
+``` {#codeblock_1ye_63n_ds9}
 #import "DownloadService.h"
 #import "OSSTestMacros.h"
 
@@ -41,10 +37,10 @@ Example:
 
 - (instancetype)copyWithZone:(NSZone *)zone {
     Checkpoint *other = [[[self class] allocWithZone:zone] init];
-    
+
     other.etag = self.etag;
     other.totalExpectedLength = self.totalExpectedLength;
-    
+
     return other;
 }
 
@@ -75,7 +71,7 @@ Example:
     if (self) {
         NSURLSessionConfiguration *conf = [NSURLSessionConfiguration defaultSessionConfiguration];
         conf.timeoutIntervalForRequest = 15;
-        
+
         NSOperationQueue *processQueue = [NSOperationQueue new];
         _session = [NSURLSession sessionWithConfiguration:conf delegate:self delegateQueue:processQueue];
         _semaphore = dispatch_semaphore_create(0);
@@ -108,7 +104,7 @@ Example:
     NSURL *url = [NSURL URLWithString:self.headURLString];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:url];
     [request setHTTPMethod:@"HEAD"];
-    
+
     NSURLSessionDataTask *task = [[NSURLSession sharedSession] dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         if (error) {
             cNSLog(@"Failed to obtain Object Meta. error: %@", error);
@@ -124,7 +120,7 @@ Example:
         dispatch_semaphore_signal(self.semaphore);
     }];
     [task resume];
-    
+
     dispatch_semaphore_wait(self.semaphore, DISPATCH_TIME_FOREVER);
     return resumable;
 }
@@ -152,7 +148,7 @@ Example:
     NSURL *url = [NSURL URLWithString:self.requestURLString];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:url];
     [request setHTTPMethod:@"GET"];
-    
+
     BOOL resumable = [self getFileInfo];    // If the resumable field value is NO, resumable upload is unfeasible. Otherwise, continue the resumable upload logic.
     if (resumable) {
         self.totalReceivedContentLength = [self fileSizeAtPath:self.targetPath];
@@ -161,11 +157,11 @@ Example:
     } else {
         self.totalReceivedContentLength = 0;
     }
-    
+
     if (self.totalReceivedContentLength == 0) {
         [[NSFileManager defaultManager] createFileAtPath:self.targetPath contents:nil attributes:nil];
     }
-    
+
     self.dataTask = [self.session dataTaskWithRequest:request];
     [self.dataTask resume];
 }
@@ -203,12 +199,12 @@ didCompleteWithError:(nullable NSError *)error {
             self.checkpoint.totalExpectedLength = self.totalReceivedContentLength + httpResponse.expectedContentLength;
         }
     }
-    
+
     if (error) {
         if (self.failure) {
             NSMutableDictionary *userInfo = [NSMutableDictionary dictionaryWithDictionary:error.userInfo];
             [userInfo oss_setObject:self.checkpoint forKey:@"checkpoint"];
-            
+
             NSError *tError = [NSError errorWithDomain:error.domain code:error.code userInfo:userInfo];
             self.failure(tError);
         }
@@ -227,17 +223,17 @@ didCompleteWithError:(nullable NSError *)error {
             self.checkpoint.totalExpectedLength = self.totalReceivedContentLength +  httpResponse.expectedContentLength;
         }
     }
-    
+
     completionHandler(NSURLSessionResponseAllow);
 }
 
 - (void)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask didReceiveData:(NSData *)data {
-    
+
     NSFileHandle *fileHandle = [NSFileHandle fileHandleForWritingAtPath:self.targetPath];
     [fileHandle seekToEndOfFile];
     [fileHandle writeData:data];
     [fileHandle closeFile];
-    
+
     self.totalReceivedContentLength += data.length;
     if (self.progress) {
         self.progress(data.length, self.totalReceivedContentLength, self.checkpoint.totalExpectedLength);
@@ -256,7 +252,7 @@ The preceding sample code shows the process logic when data is received over the
 
 DownloadRequest is defined as follows:
 
-```
+``` {#codeblock_qh3_iee_nd4}
 #import <Foundation/Foundation.h>
 
 typedef void(^DownloadProgressBlock)(int64_t bytesReceived, int64_t totalBytesReceived, int64_t totalBytesExpectToReceived);
@@ -313,20 +309,20 @@ typedef void(^DownloadSuccessBlock)(NSDictionary *result);
 
 The invocation code for the upper-layer business is as follows:
 
-```
+``` {#codeblock_50z_gvj_44x}
 - (void)initDownloadURLs {
     OSSPlainTextAKSKPairCredentialProvider *pCredential = [[OSSPlainTextAKSKPairCredentialProvider alloc] initWithPlainTextAccessKey:OSS_ACCESSKEY_ID secretKey:OSS_SECRETKEY_ID];
     _mClient = [[OSSClient alloc] initWithEndpoint:OSS_ENDPOINT credentialProvider:pCredential];
-    
+
     // Generate the signed URL for the GET request.
     OSSTask *downloadURLTask = [_mClient presignConstrainURLWithBucketName:@"aliyun-dhc-shanghai" withObjectKey:OSS_DOWNLOAD_FILE_NAME withExpirationInterval:1800];
     [downloadURLTask waitUntilFinished];
     _downloadURLString = downloadURLTask.result;
-    
+
     // Generate the signed URL for the HEAD request.
     OSSTask *headURLTask = [_mClient presignConstrainURLWithBucketName:@"aliyun-dhc-shanghai" withObjectKey:OSS_DOWNLOAD_FILE_NAME httpMethod:@"HEAD" withExpirationInterval:1800 withParameters:nil];
     [headURLTask waitUntilFinished];
-    
+
     _headURLString = headURLTask.result;
 }
 
@@ -336,7 +332,7 @@ The invocation code for the upper-layer business is as follows:
     _downloadRequest.headURLString = _headURLString;
     NSString *documentPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject;
     _downloadRequest.downloadFilePath = [documentPath stringByAppendingPathComponent:OSS_DOWNLOAD_FILE_NAME];   //Set the local path to the object you want to download.
-    
+
     __weak typeof(self) wSelf = self;
     _downloadRequest.downloadProgress = ^(int64_t bytesReceived, int64_t totalBytesReceived, int64_t totalBytesExpectToReceived) {
         // totalBytesReceived is the number of Bytes already cached by the client. totalBytesExpectToReceived is the total number of Bytes that need to be downloaded.
@@ -355,7 +351,7 @@ The invocation code for the upper-layer business is as follows:
         NSLog(@"The download succeeds.");
     };
     _downloadRequest.checkpoint = self.checkpoint;
-    
+
     NSString *titleText = [[_downloadButton titleLabel] text];
     if ([titleText isEqualToString:@"download"]) {
         [_downloadButton setTitle:@"pause" forState: UIControlStateNormal];
