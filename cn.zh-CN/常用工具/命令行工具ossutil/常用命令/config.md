@@ -1,6 +1,6 @@
 # config {#concept_303826 .concept}
 
-config命令用于创建配置文件来存储OSS访问信息。您可以在使用其他命令时添加`-c`选项，在访问OSS时提供访问信息。
+config命令用于创建配置文件来存储OSS访问信息。您可以在使用其他命令时添加-c选项，在访问OSS时提供访问信息。
 
 ## 命令格式 {#section_tuj_b37_78e .section}
 
@@ -25,17 +25,17 @@ config命令用于创建配置文件来存储OSS访问信息。您可以在使�
     请输入stsToken： 
     ```
 
-    -   **endpoint**：填写Bucket所在地域的域名信息，可参考[访问域名和数据中心](../../../../cn.zh-CN/开发指南/访问域名（Endpoint）/访问域名和数据中心.md#)。
-    -   **accessKeyID**：查看方式请参考[创建AccessKey](../../../../cn.zh-CN/通用参考/创建AccessKey.md#)。
-    -   **accessKeySecret**：查看方式请参考[创建AccessKey](../../../../cn.zh-CN/通用参考/创建AccessKey.md#)。
-    -   **stsToken**：非必配项，若采用STS临时授权方式访问OSS需要配置该项，否则置空即可。stsToken生成方式参考[临时访问凭证](../../../../cn.zh-CN/开发指南/上传文件（Object）/授权给第三方上传.md#section_dvv_hkb_5db)。
+    -   endpoint：填写Bucket所在地域的域名信息，可参考[访问域名和数据中心](../../../../cn.zh-CN/开发指南/访问域名（Endpoint）/访问域名和数据中心.md#)。
+    -   accessKeyID：查看方式请参考[创建AccessKey](../../../../cn.zh-CN/通用参考/创建AccessKey.md#)。
+    -   accessKeySecret：查看方式请参考[创建AccessKey](../../../../cn.zh-CN/通用参考/创建AccessKey.md#)。
+    -   stsToken：非必配项，若采用STS临时授权方式访问OSS需要配置该项，否则置空即可。stsToken生成方式参考[临时访问凭证](../../../../cn.zh-CN/开发指南/上传文件（Object）/授权给第三方上传.md#section_dvv_hkb_5db)。
 -   非交互式配置
 
     ``` {#codeblock_shk_b57_kv7}
     ./ossutil config -e oss-cn-beijing.aliyuncs.com -i LTAIbZcdVCmQ**** -k D26oqKBudxDRBg8Wuh2EWDBrM0****  -L CH -c /myconfig
     ```
 
-    如果您使用命令时输入了除`--language`和`--config-file`之外的任意选项，则进入非交互式模式，所有的配置项需使用选项指定。
+    如果您使用命令时输入了除--language和--config-file之外的任意选项，则进入非交互式模式，所有的配置项需使用选项指定。
 
 
 ## 配置文件格式 {#section_ow0_k3g_v3j .section}
@@ -69,7 +69,7 @@ config命令用于创建配置文件来存储OSS访问信息。您可以在使�
 **说明：** 
 
 -   在新版本中，ossutil取消了交互式配置中关于Bucket-Endpoint和Bucket-Cname项的配置，但配置文件中该项配置仍然起效，您可以在配置文件中对每个Bucket单独指定Endpoint或CNAME。
--   ossutil工具可以在多个地方指定Endpoint，生效优先级为：`--endpoint`\(命令选项\) \> Bucket-Cname \> Bucket-Endpoint \> endpoint\(Credentials项\) 。您在输入操作命令时，如果指定了`--endpoint`（可简写为`-e`）选项，以`--endpoint`的值为准。若未指定，则会在配置文件中依次查找Bucket-Cname、Bucket-Endpoint 、Credentials内的配置，以高优先级的Endpoint配置为准。
+-   ossutil工具可以在多个地方指定Endpoint，生效优先级为：`--endpoint`（命令选项） \> Bucket-Cname \> Bucket-Endpoint \> endpoint（Credentials项） 。您在输入操作命令时，如果指定了`--endpoint`（可简写为`-e`）选项，以`--endpoint`的值为准。若未指定，则会在配置文件中依次查找Bucket-Cname、Bucket-Endpoint 、Credentials内的配置，以高优先级的Endpoint配置为准。
 
 ## 常用选项 {#section_8ea_9nz_khm .section}
 
@@ -77,13 +77,13 @@ config命令用于创建配置文件来存储OSS访问信息。您可以在使�
 
 |选项名称|描述|
 |----|--|
-|`-e，--endpoint`|设置配置文件中Credentials选项的endpoint项。|
-|`-i，--access-key-id`|设置配置文件中Credentials选项的accessKeyID项。|
-|`-k，--access-key-secret`|设置配置文件中Credentials选项的accessKeySecret项。|
-|`-t，--sts-token`|设置配置文件中Credentials选项的stsToken项，非必填项。|
-|`--output-dir`|指定输出文件所在的目录。输出文件目前包含：cp命令批量拷贝文件出错时所产生的report文件。默认值为：当前目录下的ossutil\_output目录。|
-|`-L，--language`|设置ossutil工具的语言。默认值：CH，取值范围：CH、EN。若设置成CH，请确保您的系统编码为UTF-8。|
-|`--loglevel`|设置日志级别，默认为空，表示不输出日志文件。可选值为： -   info：输出提示信息日志。
+|-e，--endpoint|设置配置文件中Credentials选项的endpoint项。|
+|-i，--access-key-id|设置配置文件中Credentials选项的accessKeyID项。|
+|-k，--access-key-secret|设置配置文件中Credentials选项的accessKeySecret项。|
+|-t，--sts-token|设置配置文件中Credentials选项的stsToken项，非必填项。|
+|--output-dir|指定输出文件所在的目录。输出文件目前包含：cp命令批量拷贝文件出错时所产生的report文件。默认值为：当前目录下的ossutil\_output目录。|
+|-L，--language|设置ossutil工具的语言。默认值：CH，取值范围：CH、EN。若设置成CH，请确保您的系统编码为UTF-8。|
+|--loglevel|设置日志级别，默认为空，表示不输出日志文件。可选值为： -   info：输出提示信息日志。
 -   debug：输出详细信息日志（包括http请求和响应信息）。
 
  |
