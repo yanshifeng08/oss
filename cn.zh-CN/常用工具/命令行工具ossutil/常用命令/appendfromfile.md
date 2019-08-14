@@ -7,10 +7,10 @@ appendfromfile命令用于将本地文件内容以追加上传的方式上传到
 ## 命令格式 {#section_0jn_cya_wr4 .section}
 
 ``` {#codeblock_vld_o31_nhy}
- ./ossutil appendfromfile local_file_name oss://bucket/object [--meta=meta-value]
+ ./ossutil appendfromfile local_file_name oss://bucket/object [--meta=meta-value] [--payer requester] 
 ```
 
-如果Object不存在，可通过附加`--meta`选项设置Object的meta信息，例如`--meta "X-Oss-Meta-Author:test"`。如果Object已经存在，不可以在追加上传时附加`--meta`选项。
+如果Object不存在，可通过附加--meta选项设置Object的meta信息，例如`--meta "X-Oss-Meta-Author:test"`。如果Object已经存在，不可以在追加上传时附加--meta选项。
 
 **说明：** 
 
@@ -34,13 +34,17 @@ local file size is 64,the object new size is 64,average speed is 0.34(KB/s)
 
 |选项名称|描述|
 |----|--|
-|`--meta`|设置Object的meta信息。如果Object已经存在，不可附加此项。|
-|`--maxupspeed`|设置最大上传速度，单位：KB/s，缺省值为0（不限速）。|
-|`--encoding-type`|输入或者输出的Object名的编码方式，目前只支持url编码，即指定该选项时，取值为url。如果不指定该选项，则表示Object名未经过编码。Bucket名不支持url编码。|
-|`--loglevel`|设置日志级别，默认为空，表示不输出日志文件。可选值为： -   info：输出提示信息日志。
+|--meta|设置Object的meta信息。如果Object已经存在，不可附加此项。|
+|--maxupspeed|设置最大上传速度，单位：KB/s，缺省值为0（不限速）。|
+|--encoding-type|输入或者输出的Object名的编码方式，目前只支持url编码，即指定该选项时，取值为url。如果不指定该选项，则表示Object名未经过编码。Bucket名不支持url编码。|
+|--loglevel|设置日志级别，默认为空，表示不输出日志文件。可选值为： -   info：输出提示信息日志。
 -   debug：输出详细信息日志（包括http请求和响应信息）。
 
  |
+|--payer|请求的支付方式，如果为请求者付费模式，需将该值设置为requester。|
+|--proxy-host|网络代理服务器的url地址，支持http、https、socks5。例如https://120.79.128.211:3128、 socks5://120.79.128.211:1080。|
+|--proxy-user|网络代理服务器的用户名，默认为空。|
+|--proxy-pwd|网络代理服务器的密码，默认为空。|
 
 **说明：** 更多通用选项请参见[查看选项](cn.zh-CN/常用工具/命令行工具ossutil/查看选项.md#)。
 
