@@ -294,6 +294,7 @@ You must encode the name of an object if the name contains any of the following 
 -   Double quotations marks \("\)
 -   Ampersands \(&\)
 -   Angle brackets \(<\>\)
+-   Chinese characters
 
 Use the following code to encode the names of specified objects:
 
