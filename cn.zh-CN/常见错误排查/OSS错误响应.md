@@ -37,7 +37,7 @@
 
 ## 错误码汇总 {#section_zzm_z5v_zi9 .section}
 
-OSS的错误码列表如下：
+OSS常见错误码列表如下。
 
 |HTTP状态码|错误码|描述|原因及解决方案|
 |-------|---|--|-------|
@@ -161,7 +161,7 @@ OSS的错误码列表如下：
 
  |
 
-更多OSS错误码信息，请参考[OSS错误中心](https://error-center.aliyun.com/status/product/Oss)。
+**说明：** 更多OSS错误码信息，请参考[OSS错误中心](https://error-center.aliyun.com/status/product/Oss)。
 
 ## 常见错误及排查 {#section_g4x_wq3_wdb .section}
 
