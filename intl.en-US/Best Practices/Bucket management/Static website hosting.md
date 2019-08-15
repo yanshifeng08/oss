@@ -17,10 +17,10 @@ You can build a simple static website page based on OSS. Once you activate this 
 2.  Activate OSS and create a bucket
     1.  Log on to the OSS console and create a bucket named “imgleo23” in Shanghai with the endpoint `oss-cn-shanghai.aliyuncs.com`. For detailed operation, see [Create a bucket](../../../../reseller.en-US/Console User Guide/Manage buckets/Create a bucket.md#).
     2.  Set the bucket permission to public-read. For detailed operation, see [Set bucket ACL](../../../../reseller.en-US/Console User Guide/Manage buckets/Change bucket ACL.md#).
-    3.  Upload the content of index.htm and error.htm. For detailed operation, see [Upload objects](../../../../reseller.en-US/Console User Guide/Manage objects/Upload objects.md#).
-        -   Body of  index.html:
+    3.  Upload the content of index.htm and error.htm. For detailed operation, see [Upload objects](../../../../reseller.en-US/Console User Guide/Upload、download and manage objects/Upload objects.md#).
+        -   Body of index.html:
 
-            ```
+            ``` {#codeblock_koy_12x_fso}
             <html>
               <head>
                   <title>Hello OSS! </title>
@@ -35,7 +35,7 @@ You can build a simple static website page based on OSS. Once you activate this 
 
         -   Body of error.html:
 
-            ```
+            ``` {#codeblock_l27_aoa_2fi}
             <html>
               <head>
                   <title>Hello OSS! </title>
@@ -52,39 +52,39 @@ You can build a simple static website page based on OSS. Once you activate this 
 
     As shown in the following figure, once you log on to the OSS console, set Default Homepage to index.html and Default 404 Page to error.html. For more information, see [Set static website hosting](../../../../reseller.en-US/Console User Guide/Manage buckets/Host a static website.md#).
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/4412/15402794281739_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/4412/15658379701739_en-US.png)
 
     To test the Static Website Hosting function, enter the URL as shown in the following figure:
 
-    -   Display the default homepage: 
+    -   Display the default homepage:
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/4412/15402794281742_en-US.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/4412/15658379701742_en-US.png)
 
         When a similar URL is entered, the body of index.html specified upon activating the function is displayed.
 
-    -   Display normal files 
+    -   Display normal files
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/4412/15402794281743_en-US.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/4412/15658379701743_en-US.png)
 
         When a matched file for the entered URL is found, data is read successfully.
 
 4.  Access OSS with custom domain names
 
-    For more information about how to access OSS with custom domain names, see [Access OSS with custom domain names](../../../../reseller.en-US/Developer Guide/Access and control/Bind a custom domain name.md#).
+    For more information about how to access OSS with custom domain names, see [Access OSS with custom domain names](../../../../reseller.en-US/Developer Guide/Buckets/Bind a custom domain.md#).
 
-    -   Display the default homepage 
+    -   Display the default homepage
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/4412/15402794281746_en-US.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/4412/15658379701746_en-US.png)
 
     -   Display the default 404 page
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/4412/15402794281748_en-US.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/4412/15658379701748_en-US.png)
 
-    -   Display normal files 
+    -   Display normal files
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/4412/15402794281749_en-US.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/4412/15658379711749_en-US.png)
 
-    **Note:** When you use an OSS endpoint in Mainland China regions or the Hongkong region to access a web file through the Internet , the Content-Disposition: 'attachment=filename;' is automatically added to the Response Header, and the web file is downloaded as an attachment. If you access OSS with a user domain, the Content-Disposition: 'attachment=filename;' will not be added to the Response Header. For more information about using the user domain to access OSS, see [Bind a custom domain name](../../../../reseller.en-US/Developer Guide/Access and control/Bind a custom domain name.md#).
+    **Note:** When you use an OSS endpoint in Mainland China regions or the China\(Hong Kong\) region to access a web file through the Internet , the Content-Disposition: 'attachment=filename;' is automatically added to the Response Header, and the web file is downloaded as an attachment. If you access OSS with a user domain, the Content-Disposition: 'attachment=filename;' will not be added to the Response Header. For more information about using the user domain to access OSS, see [Bind a custom domain name](../../../../reseller.en-US/Developer Guide/Buckets/Bind a custom domain.md#).
 
 
 ## FAQ {#section_iqr_5df_vdb .section}
@@ -95,7 +95,7 @@ You can build a simple static website page based on OSS. Once you activate this 
 
 -   How is OSS priced? How does OSS work with CDN?
 
-    For pricing, see the OSS and CDN prices on Alibaba Cloud website. For cases on combination of OSS and CDN, see[CDN-based OSS acceleration practices](reseller.en-US/Best Practices/Bucket management/CDN-based OSS acceleration.md#).
+    For pricing, see the OSS and CDN prices on Alibaba Cloud website. For cases on combination of OSS and CDN, see[CDN-based OSS acceleration practices](reseller.en-US/Developer Guide/Hide/CDN-based OSS acceleration.md#).
 
 -   Do the default homepage and default 404 page both need to be set?
 
