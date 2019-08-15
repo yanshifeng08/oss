@@ -2,7 +2,7 @@
 
 You can use the PutBucketWebsite API of OSS to set your bucket to the static website hosting mode and access the static website from the bucket endpoint.
 
-**Note:** For more information about the PutBucketWebsite API, see [PutBucketWebsite](../../../../reseller.en-US/API Reference/Bucket operations/PutBucketWebsite.md#).
+**Note:** For more information about the PutBucketWebsite API, see [PutBucketWebsite](../../../../intl.en-US/API Reference/Bucket operations/PutBucketWebsite.md#).
 
 If your selected bucket is located in China \(Hangzhou\), after the configuration takes effect, the domain of the static website is as follows:
 
@@ -10,7 +10,7 @@ If your selected bucket is located in China \(Hangzhou\), after the configuratio
 http://<Bucket>.oss-cn-hangzhou.aliyuncs.com/
 ```
 
-**Note:** When you use the default endpoint to access a Webpage object in OSS in Mainland China or China \(Hong Kong\) through the Internet, `Content-Disposition:'attachment=filename;'` is automatically added to the response header. That is, when you use a browser to access a Webpage object, the object is downloaded as an attachment. If you use a custom domain to access OSS, the information is not added to the response header. For more information about how to use a custom domain to access OSS, see [Bind a custom domain](reseller.en-US/Developer Guide/Buckets/Bind a custom domain.md#).
+**Note:** When you use the default endpoint to access a Webpage object in OSS in Mainland China or China \(Hong Kong\) through the Internet, `Content-Disposition:'attachment=filename;'` is automatically added to the response header. That is, when you use a browser to access a Webpage object, the object is downloaded as an attachment. If you use a custom domain to access OSS, the information is not added to the response header. For more information about how to use a custom domain to access OSS, see [Bind a custom domain](intl.en-US/Developer Guide/Buckets/Bind a custom domain.md#).
 
 OSS provides the following features to help you manage static websites hosted in OSS more easily:
 
@@ -34,20 +34,20 @@ For example, you set the index document to index.html, the error document to err
 
 |Operating method|Description|
 |----------------|-----------|
-|[Console](../../../../reseller.en-US/Console User Guide/Manage buckets/Host a static website.md#)|Web application, which is intuitive and easy to use|
-|[Java SDK](../../../../reseller.en-US/SDK Reference/Java/Static website hosting.md#)|SDK demos in various languages|
-|[Python SDK](../../../../reseller.en-US/SDK Reference/Python/Static website hosting.md#)|
-|[PHP SDK](../../../../reseller.en-US/SDK Reference/PHP/Static website hosting.md#)|
-|[Go SDK](../../../../reseller.en-US/SDK Reference/Go/Static website hosting.md#)|
-|[C SDK](../../../../reseller.en-US/SDK Reference/C/Static website hosting.md#)|
-|[.NET SDK](../../../../reseller.en-US/SDK Reference/. NET/Static website hosting.md#)|
-|[Node.js SDK](../../../../reseller.en-US/SDK Reference/Node. js/Static website hosting.md#)|
-|[Ruby SDK](../../../../reseller.en-US/SDK Reference/Ruby/Static website hosting.md#)|
+|[Console](../../../../intl.en-US/Console User Guide/Manage buckets/Host a static website.md#)|Web application, which is intuitive and easy to use|
+|[Java SDK](../../../../intl.en-US/SDK Reference/Java/Static website hosting.md#)|SDK demos in various languages|
+|[Python SDK](../../../../intl.en-US/SDK Reference/Python/Static website hosting.md#)|
+|[PHP SDK](../../../../intl.en-US/SDK Reference/PHP/Static website hosting.md#)|
+|[Go SDK](../../../../intl.en-US/SDK Reference/Go/Static website hosting.md#)|
+|[C SDK](../../../../intl.en-US/SDK Reference/C/Static website hosting.md#)|
+|[.NET SDK](../../../../intl.en-US/SDK Reference/. NET/Static website hosting.md#)|
+|[Node.js SDK](../../../../intl.en-US/SDK Reference/Node. js/Static website hosting.md#)|
+|[Ruby SDK](../../../../intl.en-US/SDK Reference/Ruby/Static website hosting.md#)|
 
 ## Detail analysis {#section_ond_vhc_5db .section}
 
 -   On a static website, all Webpages are composed of static content, including scripts such as JavaScript that are run on the client. OSS does not support content that needs to be processed by the server, such as PHP, JSP, and ASP.NET content.
--   To access a bucket-based static website by using a custom domain, you can [bind a custom domain](reseller.en-US/Developer Guide/Buckets/Bind a custom domain.md#).
+-   To access a bucket-based static website by using a custom domain, you can [bind a custom domain](intl.en-US/Developer Guide/Buckets/Bind a custom domain.md#).
 -   When you set a bucket to the static website hosting mode:
 
     -   The index document is required and the error document is optional.
@@ -60,6 +60,6 @@ For example, you set the index document to index.html, the error document to err
 
 ## Reference {#section_z21_d2j_wgb .section}
 
--   [Tutorial: Host a static website using a custom domain name](reseller.en-US/Developer Guide/Static website hosting/Tutorial: Host a static website using a custom domain name.md#)
--   [Tutorial: Configure static website hosting](../../../../reseller.en-US/Best Practices/Bucket management/Static website hosting.md#)
+-   [Tutorial: Host a static website using a custom domain name](intl.en-US/Developer Guide/Static website hosting/Tutorial: Host a static website using a custom domain name.md#)
+-   [Tutorial: Configure static website hosting](../../../../intl.en-US/Best Practices/Bucket management/Static website hosting.md#)
 
