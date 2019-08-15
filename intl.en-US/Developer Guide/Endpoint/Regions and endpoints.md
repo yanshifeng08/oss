@@ -16,7 +16,7 @@ The following table describes the OSS Internet and intranet endpoints of each re
 |China North 5 \(Hohhot\)|oss-cn-huhehaote|oss-cn-huhehaote.aliyuncs.com|HTTP and HTTPS|oss-cn-huhehaote-internal.aliyuncs.com|HTTP and HTTPS|
 |China South 1 \(Shenzhen\)|oss-cn-shenzhen|oss-cn-shenzhen.aliyuncs.com|HTTP and HTTPS|oss-cn-shenzhen-internal.aliyuncs.com|HTTP and HTTPS|
 |China SW 1 \(Chengdu\)|oss-cn-chengdu|oss-cn-chengdu.aliyuncs.com|HTTP and HTTPS|oss-cn-chengdu-internal.aliyuncs.com|HTTP and HTTPS|
-|Hong Kong|oss-cn-hongkong|oss-cn-hongkong.aliyuncs.com|HTTP and HTTPS|oss-cn-hongkong-internal.aliyuncs.com|HTTP and HTTPS|
+|China \(Hong Kong\)|oss-cn-hongkong|oss-cn-hongkong.aliyuncs.com|HTTP and HTTPS|oss-cn-hongkong-internal.aliyuncs.com|HTTP and HTTPS|
 |US West 1 \(Silicon Valley\)|oss-us-west-1|oss-us-west-1.aliyuncs.com|HTTP and HTTPS|oss-us-west-1-internal.aliyuncs.com|HTTP and HTTPS|
 |US East 1 \(Virginia\)|oss-us-east-1|oss-us-east-1.aliyuncs.com|HTTP and HTTPS|oss-us-east-1-internal.aliyuncs.com|HTTP and HTTPS|
 |Asia Pacific SE 1 \(Singapore\)|oss-ap-southeast-1|oss-ap-southeast-1.aliyuncs.com|HTTP and HTTPS|oss-ap-southeast-1-internal.aliyuncs.com|HTTP and HTTPS|
@@ -49,7 +49,7 @@ ECS instances in VPC networks can use the following endpoints to access OSS.
 |China North 5 \(Hohhot\)|oss-cn-huhehaote|oss-cn-huhehaote-internal.aliyuncs.com|HTTP and HTTPS|
 |China South 1 \(Shenzhen\)|oss-cn-shenzhen|oss-cn-shenzhen-internal.aliyuncs.com|HTTP and HTTPS|
 |China SW 1 \(Chengdu\)|oss-cn-chengdu|oss-cn-chengdu-internal.aliyuncs.com|HTTP and HTTPS|
-|Hong Kong|oss-cn-hongkong|oss-cn-hongkong-internal.aliyuncs.com|HTTP and HTTPS|
+|China \(Hong Kong\)|oss-cn-hongkong|oss-cn-hongkong-internal.aliyuncs.com|HTTP and HTTPS|
 |US West 1 \(Silicon Valley\)|oss-us-west-1|oss-us-west-1-internal.aliyuncs.com|HTTP and HTTPS|
 |US East 1 \(Virginia\)|oss-us-east-1|oss-us-east-1-internal.aliyuncs.com|HTTP and HTTPS|
 |Asia Pacific SE 1 \(Singapore\)|oss-ap-southeast-1|oss-ap-southeast-1-internal.aliyuncs.com|HTTP and HTTPS|
@@ -64,6 +64,6 @@ ECS instances in VPC networks can use the following endpoints to access OSS.
 
 ## Usage of endpoints {#section_fxj_wv4_yfb .section}
 
--   For the composition rules of OSS endpoints and the methods of accessing OSS through the Internet and intranet, see [Endpoints](reseller.en-US/Developer Guide/Endpoint/Endpoints.md#).
--   If you are an ECS user and need to use an OSS intranet endpoint, see [How do ECS users use OSS intranet addresses?](https://partners-intl.aliyun.com/help/faq-detail/39584.htm) 
+-   For the composition rules of OSS endpoints and the methods of accessing OSS through the Internet and intranet, see [Endpoints](intl.en-US/Developer Guide/Endpoint/Endpoints.md#).
+-   If you are an ECS user and need to use an OSS intranet endpoint, see [How do ECS users use OSS intranet addresses?](https://www.alibabacloud.com/help/faq-detail/39584.htm)
 
