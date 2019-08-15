@@ -15,11 +15,11 @@ When sending a POST callback request to the application server, OSS includes par
 
 You can properly use upload callback to simplify the client logic and save network resources. The following figure shows the process.
 
-![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/4366/15573939831064_en-US.jpg)
+![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/4366/15658360101064_en-US.jpg)
 
 **Note:** 
 
--   The following regions support upload callback: regions in Mainland China, Hong Kong, Singapore, Australia \(Sydney\), US \(Virginia\), US \(Silicon Valley\), Japan \(Tokyo\), Germany \(Frankfurt\), and UAE \(Dubai\).
+-   The following regions support upload callback: regions in Mainland China, China\(Hong Kong\), Singapore, Australia \(Sydney\), US \(Virginia\), US \(Silicon Valley\), Japan \(Tokyo\), Germany \(Frankfurt\), and UAE \(Dubai\).
 -   Currently, only simple upload \(through the PutObject API\), form upload \(through the PostObject API\), and multipart upload \(through the CompleteMultipartUpload API\) support upload callback.
 
 ## Operating methods {#section_bdy_cv3_kgb .section}
@@ -35,6 +35,6 @@ You can properly use upload callback to simplify the client logic and save netwo
 ## Reference {#section_mb4_llb_5db .section}
 
 -   [Upload callback errors and troubleshooting](../../../../reseller.en-US/Errors and Troubleshooting/Upload callback.md#)
--   [Direct data transfer on Web clients and upload callback](../../../../reseller.en-US//Overview of direct transfer on Web client.md#)
+-   [Direct data transfer on Web clients and upload callback](../../../../reseller.en-US/Best Practices/Upload data to OSS through Web applications/Use PostObject to upload data to OSS through Web applications/Overview of direct transfer on Web client.md#)
 -   [Set up upload callback for mobile applications](../../../../reseller.en-US/Best Practices/Application server/Set up data callback for mobile apps.md#)
 
