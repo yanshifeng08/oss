@@ -130,7 +130,6 @@ The following table lists the OSS error codes:
 |SignatureDoesNotMatch|The signature is incorrect.| The signature of the request is incorrect.
 
  |
-|SignatureDoesNotMatch|The signature is incorrect.|The signature of the request is incorrect.|
 |404|SymlinkTargetNotExist|The target object that the symbol link directs to does not exist.|The object is a symbol link, and the target object that the symbol link directs to does not exist.|
 |NoSuchBucket|The bucket does not exist.|The requested bucket does not exist.|
 |NoSuchKey|The object does not exist.|The requested object does not exist.|
