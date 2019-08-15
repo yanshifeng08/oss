@@ -42,7 +42,7 @@ local file size is 64,the object new size is 64,average speed is 0.34(KB/s)
 
  |
 |--payer|请求的支付方式，如果为请求者付费模式，需将该值设置为requester。|
-|--proxy-host|网络代理服务器的url地址，支持http、https、socks5。例如https://120.79.128.211:3128、 socks5://120.79.128.211:1080。|
+|--proxy-host|网络代理服务器的url地址，支持http、https、socks5。例如http://120.79.\*\*.\*\*:3128、 socks5://120.79.\*\*.\*\*:1080。|
 |--proxy-user|网络代理服务器的用户名，默认为空。|
 |--proxy-pwd|网络代理服务器的密码，默认为空。|
 
