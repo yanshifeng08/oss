@@ -2,11 +2,7 @@
 
 用户只需要在发送给 OSS 的请求中携带相应的 Callback 参数，即能实现回调。本文详细介绍Callback的实现原理。
 
-## 背景信息 {#section_g4g_ydd_3gb .section}
-
--   目前支持 Callback 的 API 接口有：[PutObject](intl.zh-CN/API 参考/关于Object操作/PutObject.md#)、[PostObject](intl.zh-CN/API 参考/关于Object操作/PostObject.md#)、[CompleteMultipartUpload](intl.zh-CN/API 参考/关于MultipartUpload的操作/CompleteMultipartUpload.md#)。
--   目前支持Callback的地域有：华北 2（北京）、华东 1（杭州）、华北 1（青岛）、华东 2（上海）、上海金融云、华南 1 金融云 、华南 1（深圳）、香港、华北 5（呼和浩特）、华北 3（张家口）、中东东部 1（迪拜）、亚太东北 1（日本）、欧洲中部 1（法兰克福）、亚太东南 1（新加坡）、美国东部 1（弗吉尼亚）、美国西部 1（硅谷）、亚太东南 2 （悉尼）以及亚太东南 3（吉隆坡）。
--   更多 Callback 详情请参见[原理介绍](../../../../../intl.zh-CN/最佳实践/Web端直传实践/服务端签名直传并设置上传回调/原理介绍.md#)。
+**说明：** 目前支持 Callback 的 API 接口有：[PutObject](cn.zh-CN/API 参考/关于Object操作/PutObject.md#)、[PostObject](cn.zh-CN/API 参考/关于Object操作/PostObject.md#)、[CompleteMultipartUpload](cn.zh-CN/API 参考/关于MultipartUpload的操作/CompleteMultipartUpload.md#)。更多 Callback 详情请参见[原理介绍](../../../../cn.zh-CN/最佳实践/Web端上传数据至OSS/Web端PostObject直传实践/服务端签名直传并设置上传回调.md#)。
 
 ## 步骤1：构造参数 {#section_mnr_xbs_ggb .section}
 
@@ -36,7 +32,7 @@
 
     Json 字段示例如下：
 
-    ```
+    ``` {#codeblock_lsl_bzl_jdn}
     {
     "callbackUrl":"121.101.166.30/test.php",
     "callbackHost":"oss-cn-hangzhou.aliyuncs.com",
@@ -45,7 +41,7 @@
     }
     ```
 
-    ```
+    ``` {#codeblock_4v9_4vu_o43}
     {
     "callbackUrl":"121.43.113.8:23456/index.html",
     "callbackBody":"bucket=${bucket}&object=${object}&etag=${etag}&size=${size}&mimeType=${mimeType}&imageInfo.height=${imageInfo.height}&imageInfo.width=${imageInfo.width}&imageInfo.format=${imageInfo.format}&my_var=${x:my_var}"
@@ -77,7 +73,7 @@
 
     假定用户需要设定两个自定义的参数分别为 x:var1 和 x:var2，对应的值分别为 value1 和 value2，那么构造出来的 Json 格式如下：
 
-    ```
+    ``` {#codeblock_49c_4c3_n2q}
     {
     "x:var1":"value1",
     "x:var2":"value2"
@@ -92,7 +88,7 @@
 -   callback 或者 callback-var 参数没有经过 base64 编码或经过 base64 解码后不是合法的 Json 格式。
 -   callback 参数解析后 callbackUrl 字段包含的 url 超过限制（5 个），或者 url 中传入的 port 不合法，比如
 
-    ```
+    ``` {#codeblock_ucx_w0u_heb}
     {"callbackUrl":"10.101.166.30:test",
         "callbackBody":"test"}
     ```
@@ -122,7 +118,7 @@
 -   如果在 URL 中携带参数。把`callback=[CallBack]`或者`callback-var=[CallBackVar]`作为一个 url 参数带入请求发送。计算签名 CanonicalizedResource 时 ，将 callback 或者 callback-var 当做一个 sub-resource 计算在内。
 -   如果在 Header 中携带参数。把`x-oss-callback=[CallBack]`或者`x-oss-callback-var=[CallBackVar]`作为一个 Header 带入请求发送。在计算签名CanonicalizedOSSHeaders 时，将 x-oss-callback-var 和 x-oss-callback 计算在内。示例如下：
 
-    ```
+    ``` {#codeblock_2ys_lt1_ce2}
     PUT /test.txt HTTP/1.1
     Host: callback-test.oss-test.aliyun-inc.com
     Accept-ncoding: identity
@@ -134,14 +130,14 @@
     Expect: 100-Continue
     Date: Mon, 14 Sep 2015 12:37:27 GMT
     Content-Type: text/plain
-    Authorization: OSS mlepou3zr4u7b14:5a74vhd4UXpmyuudV14Kaen5cY4=
+    Authorization: OSS mlepou3zr4u7b14:5a74vhd4UXpmyuudV14Kaen5****
     Test
     ```
 
 -   在 POST 请求的 body 中使用表单域来携带参数。
     -   如果需要在 POST 上传 Object 时附带回调参数会稍微复杂一点，callback 参数要使用独立的表单域来附加，示例如下：
 
-        ```
+        ``` {#codeblock_98r_1pc_dzm}
         --9431149156168
         Content-Disposition: form-data; name="callback"
         eyJjYWxsYmFja1VybCI6IjEwLjEwMS4xNjYuMzA6ODA4My9jYWxsYmFjay5waHAiLCJjYWxsYmFja0hvc3QiOiIxMC4xMDEuMTY2LjMwIiwiY2FsbGJhY2tCb2R5IjoiZmlsZW5hbWU9JChmaWxlbmFtZSkmdGFibGU9JHt4OnRhYmxlfSIsImNhbGxiYWNrQm9keVR5cGUiOiJhcHBsaWNhdGlvbi94LXd3dy1mb3JtLXVybGVuY29kZWQifQ==
@@ -149,7 +145,7 @@
 
     -   如果拥有自定义参数的话，不能直接将 callback-var 参数直接附加到表单域中，每个自定义的参数都需要使用独立的表单域来附加。示例如下，如果用户的自定义参数 Json 字段为
 
-        ```
+        ``` {#codeblock_ex1_eii_co4}
         {
         "x:var1":"value1",
         "x:var2":"value2"
@@ -158,7 +154,7 @@
 
         那么 POST 请求的表单域为：
 
-        ```
+        ``` {#codeblock_yyb_afv_s9m}
         --9431149156168
         Content-Disposition: form-data; name="callback"
         eyJjYWxsYmFja1VybCI6IjEwLjEwMS4xNjYuMzA6ODA4My9jYWxsYmFjay5waHAiLCJjYWxsYmFja0hvc3QiOiIxMC4xMDEuMTY2LjMwIiwiY2FsbGJhY2tCb2R5IjoiZmlsZW5hbWU9JChmaWxlbmFtZSkmdGFibGU9JHt4OnRhYmxlfSIsImNhbGxiYWNrQm9keVR5cGUiOiJhcHBsaWNhdGlvbi94LXd3dy1mb3JtLXVybGVuY29kZWQifQ==
@@ -172,7 +168,7 @@
 
         同时可以在 policy 中添加 callback 条件（如果不添加 callback，则不对该参数做上传验证）如：
 
-        ```
+        ``` {#codeblock_cso_i0b_ojq}
         { "expiration": "2014-12-01T12:00:00.000Z",
           "conditions": [
             {"bucket": "johnsmith" },
@@ -187,7 +183,7 @@
 
 如果文件上传成功，OSS 会根据用户请求中的 callback 参数和 callback-var 自定义参数，将特定内容以 POST 方式发送给应用服务器。
 
-```
+``` {#codeblock_1jn_k9j_d8h}
 POST /index.html HTTP/1.0
 Host: 121.43.113.8
 Connection: close
@@ -207,7 +203,7 @@ bucket=callback-test&object=test.txt&etag=D8E8FCA2DC0F896FD7CB4CB0031BA249&size=
 
     私钥加密生成签名的过程为：
 
-    ```
+    ``` {#codeblock_thp_fcl_nlr}
     authorization = base64_encode(rsa_sign(private_key, url_decode(path) + query_string + ‘\n’ + body, md5))
     ```
 
@@ -220,12 +216,12 @@ bucket=callback-test&object=test.txt&etag=D8E8FCA2DC0F896FD7CB4CB0031BA249&size=
     3.  将签名后的结果做 base64 编码，得到最终的签名，签名放在回调请求的 authorization 头中
     示例如下：
 
-    ```
+    ``` {#codeblock_bwy_ka2_z1a}
     POST /index.php?id=1&index=2 HTTP/1.0
     Host: 121.43.113.8
     Connection: close
     Content-Length: 18
-    authorization: kKQeGTRccDKyHB3H9vF+xYMSrmhMZjzzl2/kdD1ktNVgbWEfYTQG0G2SU/RaHBovRCE8OkQDjC3uG33esH2txA==
+    authorization: kKQeGTRccDKyHB3H9vF+xYMSrmhMZjzzl2/kdD1ktNVgbWEfYTQG0G2SU/RaHBovRCE8OkQDjC3uG33esH2t****
     Content-Type: application/x-www-form-urlencoded
     User-Agent: ehttp-client/0.0.1
     x-oss-pub-key-url: aHR0cDovL2dvc3NwdWJsaWMuYWxpY2RuLmNvbS9jYWxsYmFja19wdWJfa2V5X3YxLnBlbQ==
@@ -238,7 +234,7 @@ bucket=callback-test&object=test.txt&etag=D8E8FCA2DC0F896FD7CB4CB0031BA249&size=
 
     验证签名的过程即为签名的逆过程，由应用服务器验证，过程如下：
 
-    ```
+    ``` {#codeblock_2ke_ijv_oze}
     Result = rsa_verify(public_key, md5(url_decode(path) + query_string + ‘\n’ + body), base64_decode(authorization))
     ```
 
@@ -246,7 +242,7 @@ bucket=callback-test&object=test.txt&etag=D8E8FCA2DC0F896FD7CB4CB0031BA249&size=
 
     1.  回调请求的 x-oss-pub-key-url 头保存的是公钥 url 地址的 base64 编码，因此需要对其做 base64 解码后获取到公钥，即
 
-        ```
+        ``` {#codeblock_6qk_idx_fm8}
         public_key = urlopen(base64_decode(x-oss-pub-key-url头的值))
         ```
 
@@ -254,19 +250,19 @@ bucket=callback-test&object=test.txt&etag=D8E8FCA2DC0F896FD7CB4CB0031BA249&size=
 
     2.  获取 base64 解码后的签名
 
-        ```
+        ``` {#codeblock_slr_28s_4tv}
         signature = base64_decode(authorization头的值)
         ```
 
     3.  获取待签名字符串，方法与签名一致
 
-        ```
+        ``` {#codeblock_joq_dyz_wgl}
         sign_str = url_decode(path) + query_string + ‘\n’ + body
         ```
 
     4.  验证签名
 
-        ```
+        ``` {#codeblock_76l_ryq_tw1}
         result = rsa_verify(public_key, md5(sign_str), signature)
         ```
 
@@ -280,7 +276,7 @@ bucket=callback-test&object=test.txt&etag=D8E8FCA2DC0F896FD7CB4CB0031BA249&size=
 
     以下为一段 Python 示例，演示了一个简单的应用服务器，主要是说明验证签名的方法，此示例需要安装 M2Crypto库。
 
-    ```
+    ``` {#codeblock_7ym_8o4_5hy}
     import httplib
     import base64
     import md5
@@ -401,7 +397,7 @@ bucket=callback-test&object=test.txt&etag=D8E8FCA2DC0F896FD7CB4CB0031BA249&size=
 
 返回的回调请求为：
 
-```
+``` {#codeblock_6ri_nna_mlb}
 HTTP/1.0 200 OK
 Server: BaseHTTP/0.3 Python/2.7.6
 Date: Mon, 14 Sep 2015 12:37:27 GMT
@@ -418,7 +414,7 @@ OSS将应用服务器返回的内容返回给用户。
 
 返回的内容响应为：
 
-```
+``` {#codeblock_fad_1ws_o41}
 HTTP/1.1 200 OK
 Date: Mon, 14 Sep 2015 12:37:27 GMT
 Content-Type: application/json
