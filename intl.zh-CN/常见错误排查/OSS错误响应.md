@@ -119,7 +119,7 @@ OSS的错误码列表如下：
 |RequestTimeTooSkewed|发送请求的时间与OSS收到请求的时间间隔超出了15分钟|请检查发送请求设备的系统时间，并根据时区调整到正确时间。 请参考[OSS 403错误及排查](intl.zh-CN/常见错误排查/OSS 403错误及排查.md#)。
 
  |
-|SignatureDoesNotMatch|签名错误|请参见[签名常见问题](../../../../intl.zh-CN/开发指南/签名/签名常见问题.md#)进行排查。 请参见签名常见问题进行排查。
+|SignatureDoesNotMatch|签名错误| 请参见签名常见问题进行排查。
 
  |
 |404|SymlinkTargetNotExist|软链接指向的目标Object不存在|Object类型为软链接，且软链接指向的目标Object不存在。|
