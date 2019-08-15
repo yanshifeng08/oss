@@ -119,7 +119,9 @@ OSS的错误码列表如下：
 |RequestTimeTooSkewed|发送请求的时间与OSS收到请求的时间间隔超出了15分钟|请检查发送请求设备的系统时间，并根据时区调整到正确时间。 请参考[OSS 403错误及排查](cn.zh-CN/常见错误排查/OSS 403错误及排查.md#)。
 
  |
-|SignatureDoesNotMatch|签名错误|请参见[签名常见问题](../../../../cn.zh-CN/开发指南/签名/签名常见问题.md#)进行排查。|
+|SignatureDoesNotMatch|签名错误| 请参见[签名常见问题](../../../../cn.zh-CN/开发指南/签名/签名常见问题.md#)进行排查。
+
+ |
 |404|SymlinkTargetNotExist|软链接指向的目标Object不存在|Object类型为软链接，且软链接指向的目标Object不存在。|
 |NoSuchBucket|Bucket不存在|当请求一个不存在的bucket时，会报此类错误。|
 |NoSuchKey|Object不存在|当请求一个不存在的object时，会报此类错误。|
@@ -158,6 +160,8 @@ OSS的错误码列表如下：
  超出阈值，则返回503。建议您延迟几秒后进行重试。
 
  |
+
+更多OSS错误码信息，请参考[OSS错误中心](https://error-center.aliyun.com/status/product/Oss)。
 
 ## 常见错误及排查 {#section_g4x_wq3_wdb .section}
 
