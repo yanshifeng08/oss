@@ -1,120 +1,208 @@
 # OSS error response {#concept_dt2_hq3_wdb .concept}
 
-If an error occurs when a user accesses the OSS, the OSS returns the error code and error message, so that the user can locate the problem and handle it properly.
+If an error occurs when you access OSS, OSS returns the error code and error message so that you can locate the problem and handle it properly.
 
-## OSS error response format {#section_zgc_wq3_wdb .section}
+## Response message body {#section_zgc_wq3_wdb .section}
 
-If an error occurs when the user accesses the OSS, the OSS returns an HTTP status code 3xx, 4xx, or 5xx and a message body in application/XML format.
+If an error occurs when you access OSS, OSS returns an HTTP status code \(3xx, 4xx, or 5xx\) and a message body in application or XML format.
 
-Example of the message body for an error returned:
+An example of the message body of a error response is as follows:
 
-```
+``` {#codeblock_29z_w98_evy}
 <? xml version="1.0" ? >
-                <Error xmlns=”http://doc.oss-cn-hangzhou.aliyuncs.com”>
-                <Code>
+<Error xmlns=”http://doc.oss-cn-hangzhou.aliyuncs.com”>
+    <Code>
         AccessDenied
-        </Code>
-        <Message>
+    </Code>
+    <Message>
         Query-string authentication requires the Signature, Expires and OSSAccessKeyId parameters
-        </Message>
+    </Message>
     <RequestId>
         1D842BC5425544BB
     </RequestId>
     <HostId>
         oss-cn-hangzhou.aliyuncs.com
-        </HostId>
-        </Error>
+    </HostId>
+</Error>
 ```
 
-All error message bodies include the following elements:
+The message body of an error response includes the following elements:
 
--   Code: the error code that OSS returns to the user.
--   Message: the detailed error message provided by OSS.
--   RequestId: the UUID that uniquely identifies a request. When you cannot solve the problem, you can seek help from OSS development engineers by providing the RequestId.
--   HostId: used to identify the accessed OSS cluster, which is consistent with the Host ID carried in the user request.
+-   Code: The error code that OSS returns to the user
+-   Message: The detailed error message returned by OSS
+-   RequestId: The UUID that uniquely identifies a request. When you cannot solve the error, you can provide this RequestId to Alibaba Cloud OSS technical support to get help.
+-   HostId: Used to identify the accessed OSS cluster, which is the same as the Host ID carried in the user request.
 
 For special error information elements, see specific request descriptions.
 
-## OSS error codes {#section_g4x_wq3_wdb .section}
+## OSS error codes {#section_zzm_z5v_zi9 .section}
 
 The following table lists the OSS error codes:
 
-|Error Code|Description|HTTP Status Code|Description|
-|:---------|:----------|:---------------|:----------|
-|AccessDenied| Access is denied.|403|To learn the cause and for troubleshooting, see [Permission and Troubleshooting](reseller.en-US/Errors and Troubleshooting/OSS permission.md#).|
-|BucketAlreadyExists| The bucket already exists.|409|The bucket name specified by the [CreateBucket](../../../../../reseller.en-US/API Reference/Bucket operations/PutBucket.md#) operation has been used. Select a new [BucketName](../../../../../reseller.en-US/Developer Guide/Basic concepts.md#)|
-|BucketNotEmpty|The bucket is not empty.|409|Before you perform a [DeleteBucket](../../../../../reseller.en-US/API Reference/Bucket operations/Delete Bucket.md#) operation, delete the files and unfinished multipart upload tasks in the bucket.|
-|CallbackFailed|Upload callback fails.|203|To learn the cause and troubleshooting, see [Upload Callback Error and Troubleshooting](reseller.en-US/Errors and Troubleshooting/Upload callback.md#).|
-|EntityTooLarge|The entity is too large.|400|The message length of the Post request exceeds 5 GB. To learn the cause and for troubleshooting, see [PostObject Error and Troubleshooting](reseller.en-US/Errors and Troubleshooting/PostObject.md#).|
-|EntityTooSmall|The entity is too small.|400|The message length of the Post request is too short. For troubleshooting, see [PostObject Error and Troubleshooting](reseller.en-US/Errors and Troubleshooting/PostObject.md#).|
-|FieldItemTooLong|The form field in the Post request is too large|400|Only the field `file`can exceed 4 KB. For troubleshooting, see [PostObject Error and Troubleshooting](reseller.en-US/Errors and Troubleshooting/PostObject.md#).|
-|FilePartInterity|The file part has changed.|400|The data and the checksum are not consistent during partition data reading.|
-|FilePartNotExist| The file part does not exist.|400|The partitions submitted by the [CompleteMultipartUpload](../../../../../reseller.en-US/API Reference/Multipart upload operations/CompleteMultipartUpload.md#) operation are not uploaded.|
-|FilePartStale| The file part times out.|400|The data and the length are not consistent during partition data reading.|
-|IncorrectNumberOfFilesInPOSTRequest|The number of files in the Post request is invalid.|400|Only one`file`field is allowed in the form fields of the Post request. For troubleshooting, see Post Object Error and Troubleshooting.|
-|InvalidArgument|The parameter format is incorrect.|400|The parameter format does not comply with the requirements. Follow the instructions of corresponding [API](../../../../../reseller.en-US/API Reference/API overview.md#).|
-|InvalidAccessKeyId|The AccessKeyId does not exist.|403|The AccessKeyId is invalid or has timed out. For troubleshooting, see [403 Error and Troubleshooting](reseller.en-US/Errors and Troubleshooting/OSS 403.md#).|
-|InvalidBucketName|Invalid bucket name.|400|For the bucket naming rules, see [Developer Guide](../../../../../reseller.en-US/Developer Guide/Basic concepts.md#).|
-|InvalidDigest|Invalid digest.|400|The specified MD5 checksum is inconsistent with the file. For MD5 calculations, see[PutObject](../../../../../reseller.en-US/API Reference/Object operations/PutObject.md#).|
-|InvalidEncryptionAlgorithmError| The specified entropy encryption algorithm is incorrect.|400|Currently only the `AES256`encryption algorithm is supported. For more information, see [PutObject](../../../../../reseller.en-US/API Reference/Object operations/PutObject.md#).|
-|InvalidObjectName| Invalid object name.|400|For the object naming rules, see [Developer Guide](../../../../../reseller.en-US/Developer Guide/Basic concepts.md#).|
-|InvalidPart|Invalid part.|400|The part submitted by the [CompleteMultipartUpload](../../../../../reseller.en-US/API Reference/Multipart upload operations/CompleteMultipartUpload.md#) operation is invalid. The`PartNumber` or the `ETag` is incorrect.|
-|InvalidPartOrder|Invalid part sequence.|400|The parts submitted by the [CompleteMultipartUpload](../../../../../reseller.en-US/API Reference/Multipart upload operations/CompleteMultipartUpload.md#) operation is in an ascending sort order of the`PartNumber`.|
-|InvalidPolicyDocument| Invalid policy document.|400|The `Policy`in the Post request is invalid. For troubleshooting, see [Post Object Error and Troubleshooting.](reseller.en-US/Errors and Troubleshooting/PostObject.md#)|
-|InvalidTargetBucketForLogging|An invalid target bucket exists in the logging operation.|400|The target bucket for storing the [Logging](../../../../../reseller.en-US/API Reference/Bucket operations/PutBucketLogging.md#)does not exist. Change it.|
-|InternalError|An error occurs in OSS.|500|Try again.|
-|MalformedXML|XML format is invalid.|400|The `XML` in the request is invalid, excluding [DeleteObjects](../../../../../reseller.en-US/API Reference/Object operations/DeleteMultipleObjects.md#), [CompleteMultipartUpload](../../../../../reseller.en-US/API Reference/Multipart upload operations/CompleteMultipartUpload.md#), [PutBucketLogging](../../../../../reseller.en-US/API Reference/Bucket operations/PutBucketLogging.md#), [PutBucketWebsite](../../../../../reseller.en-US/API Reference/Bucket operations/PutBucketWebsite.md#), [PutBucketLifecycle](../../../../../reseller.en-US/API Reference/Bucket operations/PutBucketLifecycle.md#), [PutBucketReferer](../../../../../reseller.en-US/API Reference/Bucket operations/Put Bucket Referer.md#), and [PutBucketCORS](../../../../../reseller.en-US/API Reference/Cross-Origin Resource Sharing/PutBucketcors.md#) according to specific requests.|
-|MalformedPOSTRequest|The body format of the Post request is invalid.|400|The form field format is invalid. For troubleshooting, see [Post Object Error and Troubleshooting](reseller.en-US/Errors and Troubleshooting/PostObject.md#).|
-|MaxPOSTPreDataLengthExceededError|The size of the body outside the uploaded file content of the Post request is too large.|400|Only the field`file`can exceed 4 KB. For troubleshooting, see [Post Object Error and Troubleshooting](reseller.en-US/Errors and Troubleshooting/PostObject.md#).|
-|MethodNotAllowed|Unsupported method.|405|Access the resource with a method not supported by OSS.|
-|MissingArgument|Missing argument.|411|See the specific[API](../../../../../reseller.en-US/API Reference/API overview.md#)for resolution.|
-|MissingContentLength| Missing content length.|411|The message is not of the [chunked encoding](https://tools.ietf.org/html/rfc2616#section-3.6.1) and does not carry the `Content-Length`.|
-|NoSuchBucket|The bucket does not exist.|404| |
-|NoSuchKey|The object does not exist.|404| |
-|NoSuchUpload|The multipart upload ID does not exist.|404|No Initialize Multipart Upload or the initialized Multipart Upload Expires.|
-|NotImplemented|The method cannot be implemented.|400| Operation not supported by OSS.|
-|ObjectNotAppendable| Not an appendable file.|409|OSS has three files types: [normal](../../../../../reseller.en-US/API Reference/Object operations/PutObject.md#), [appendable](../../../../../reseller.en-US/API Reference/Object operations/AppendObject.md#), and [multipart](../../../../../reseller.en-US/API Reference/Multipart upload operations/InitiateMultipartUpload.md#). Only the `appendable` type of file can run the`AppendObject`operation.|
-|PositionNotEqualToLength|The appending position does not match the file length.|409|For more information, see [AppendObject](../../../../../reseller.en-US/API Reference/Object operations/AppendObject.md#).|
-|PreconditionFailed|Pre-processing error.|412|The downloading conditions are not met. For more information, see [GetObject](../../../../../reseller.en-US/API Reference/Object operations/GetObject.md#).|
-|RequestTimeTooSkewed|The request initiation time exceeds the server time by 15 minutes.|403|For troubleshooting, see [403 Error and Troubleshooting](reseller.en-US/Errors and Troubleshooting/OSS 403.md#).|
-|RequestTimeout|The request times out.|400|Try again.|
-|RequestIsNotMultiPartContent| The content-type of the Post request is invalid.|400|For troubleshooting, see [Post Object Error and Troubleshooting](reseller.en-US/Errors and Troubleshooting/PostObject.md#).|
-|Downloadtrafficratelimitexceeded| The downloading traffic exceeds the limit.|503| |
-|UploadTrafficRateLimitExceeded|The uploading traffic exceeds the limit.|503| |
-|SignatureDoesNotMatch|Signature error.|403|For troubleshooting, see [Signature in Header](../../../../../reseller.en-US/API Reference/Access control/Add a signature to the header.md#) and [Signature in URL](../../../../../reseller.en-US/API Reference/Access control/Add a signature to a URL.md#).|
-|TooManyBuckets| The number of buckets exceeds the limit.|400| |
+|HTTP status code|Error code|Description|Cause and solution|
+|----------------|----------|-----------|------------------|
+|203|CallbackFailed|Upload callback fails.|The setting or format of the callback parameters is incorrect. For example, upload callback fails because the callback parameters within the ArgumentValue is not in the valid JSON format. To learn the cause and troubleshooting, see [Upload callback](intl.en-US/Errors and Troubleshooting/Upload callback.md#).
 
-OSS common errors and troubleshooting
+ |
+|400|InvalidBucketName|The bucket name is invalid.|The bucket name does not conform to the naming conventions. For more information about the bucket naming conventions, see [Bucket](../../../../intl.en-US/Developer Guide/Basic concepts.md#section_yxy_jmt_tdb).
 
--   [Upload Callback Error and Troubleshooting](reseller.en-US/Errors and Troubleshooting/Upload callback.md#)
--   [403 Error and Troubleshooting](reseller.en-US/Errors and Troubleshooting/OSS 403.md#)
--   [Post Object Error and Troubleshooting](reseller.en-US/Errors and Troubleshooting/PostObject.md#)
--   [Permission Error and Troubleshooting](reseller.en-US/Errors and Troubleshooting/OSS permission.md#)
--   [CORS Error and Troubleshooting](reseller.en-US/Errors and Troubleshooting/OSS CORS.md#)
--   [Anti-Leech Referer Configuration and Error Elimination](reseller.en-US/Errors and Troubleshooting/Referer.md#)
--   [STS Common Issues and Troubleshooting](reseller.en-US/Errors and Troubleshooting/STS common errors and troubleshooting.md#)
+ |
+|InvalidObjectName|The object name is invalid.|The object name does not conform to the naming conventions. For more information about the object naming conventions, see [Object](../../../../intl.en-US/Developer Guide/Basic concepts.md#section_ihw_kmt_tdb).
 
-SDK/Tool common errors and troubleshooting
+ |
+|TooManyBuckets|The number of buckets exceeds the limit.|An Alibaba CLoud account can create a maximum of 30 buckets in a region. To adjust the limit, [open a bucket](https://workorder.console.aliyun.com/#/ticket/createIndex).
 
--   [ossfs](../../../../../reseller.en-US/Tools/ossfs/FAQ.md#)
--   [ossftp](../../../../../reseller.en-US/Tools/ossftp/Quick installation for OSS FTP.md#)
+ |
+|RequestIsNotMultiPartContent|The content-type of the Post request is invalid.|The content-type header in the Post request is not `multipart/form-data`. The content-type header in a Post request must be `multipart/form-data` and in the Content-Type为multipart/form-data;boundary=xxxxxx format, in which boundary is the boundary string. For more information about troubleshooting, see [PostObject](../../../../intl.en-US/API Reference/Object operations/PostObject.md#).
 
-## Operations not supported by OSS {#section_ecd_wr3_wdb .section}
+ |
+|RequestTimeout|Request timeout occurs.|The request timeout occurs because of network environment or configurations. For more information about troubleshooting, see [Network connection timeout handling](intl.en-US/Errors and Troubleshooting/Network connection timeout handling.md#).
 
-If an operation not supported by the OSS is used to access a resource, the OSS returns error 405 Method Not Allowed.
+ |
+|NotImplemented|The method cannot be implemented.|This error occurs because parameters are incorrectly passed when the API is encapsulated. For more information about troubleshooting, see the parameters described in [API overview](../../../../intl.en-US/API Reference/API overview.md#).
 
-Example of an invalid request:
+ |
+|MaxPOSTPreDataLengthExceededError|The size of the body except for the uploaded file content of the Post request is too large.|The file uploaded by the Post request is larger than 5 GB. Only the `file` field can exceed 4 KB. For more information, see [PostObject](intl.en-US/Errors and Troubleshooting/PostObject.md#).
 
-```
+ |
+|MalformedPOSTRequest|The format of the Post request body is invalid.|The format of the form field is invalid. For more information about troubleshooting, see [PostObject](intl.en-US/Errors and Troubleshooting/PostObject.md#).
+
+ |
+|MalformedXML|The XML format is invalid.|The XML format in the Post request is invalid. For more information about troubleshooting, see the following topics:
+
+-   [DeleteObjects](../../../../intl.en-US/API Reference/Object operations/DeleteMultipleObjects.md#)
+-   [CompleteMultipartUpload](../../../../intl.en-US/API Reference/Multipart upload operations/CompleteMultipartUpload.md#)
+-   [PutBucketLogging](../../../../intl.en-US/API Reference/Bucket operations/PutBucketLogging.md#)
+-   [PutBucketWebsite](../../../../intl.en-US/API Reference/Bucket operations/PutBucketWebsite.md#)
+-   [PutBucketLifecycle](../../../../intl.en-US/API Reference/Bucket operations/PutBucketLifecycle.md#)
+-   [PutBucketReferer](../../../../intl.en-US/API Reference/Bucket operations/PutBucketReferer.md#)
+-   [PutBucketCORS](../../../../intl.en-US/API Reference/Cross-Origin Resource Sharing/PutBucketcors.md#)
+
+ |
+|InvalidTargetBucketForLogging|The target bucket specified in the logging operation is invalid.|The target bucket to store logs is invalid. Specify a valid target bucket.|
+|InvalidPolicyDocument|The policy document is invalid.|The policy format in the Post request is incorrect. For more information about troubleshooting, see [PostObject](intl.en-US/Errors and Troubleshooting/PostObject.md#section_uxq_lfj_wdb).
+
+ |
+|InvalidPart|Invalid parts exist.|A part uploaded by CompleteMultipartUpload is invalid because its PartNumber or ETag is incorrect. For more information about troubleshooting, see [CompleteMultipartUpload](../../../../intl.en-US/API Reference/Multipart upload operations/CompleteMultipartUpload.md#).
+
+ |
+|InvalidPartOrder|The part order is invalid.|The parts submitted by CompleteMultipartUpload is invalid. Parts must be submitted in an ascending sort order of PartNumber. For more information about troubleshooting, see [CompleteMultipartUpload](../../../../intl.en-US/API Reference/Multipart upload operations/CompleteMultipartUpload.md#).
+
+ |
+|InvalidEncryptionAlgorithmError|The specified entropy encryption algorithm is incorrect.|The specified value of x-oss-server-side-encryption is invalid. Only AES256 and KMS are supported. For more information about troubleshooting, see [PutObject](../../../../intl.en-US/API Reference/Object operations/PutObject.md#).
+
+ |
+|InvalidDigest|The digest is invalid.|If the Content-MD5 header is included in the request, OSS calculates the Content-MD5 value of the request body. If the Content-MD5 values are inconsistent, this error code is returned. For more information about troubleshooting, see [PutObject](../../../../intl.en-US/API Reference/Object operations/PutObject.md#).
+
+ |
+|InvalidTargetType|The type of the object that the symbol link directs to is invalid.|The object is a symbol link and the object that the link directs to is also a symbol link.|
+|InvalidArgument|The parameter format is incorrect.|The parameter format is incorrect. For more information about the parameter format, see [API overview](../../../../intl.en-US/API Reference/API overview.md#).
+
+ |
+|IncorrectNumberOfFilesInPOSTRequest|The number of files in the Post request is invalid.|Only one file field is allowed in the form fields of a Post request. For more information, see [PostObject](intl.en-US/Errors and Troubleshooting/PostObject.md#).
+
+ |
+|FilePartNotExist|The file part does not exist.|The part submitted by CompleteMultipartUpload is not uploaded. For more information about troubleshooting, see [CompleteMultipartUpload](../../../../intl.en-US/API Reference/Multipart upload operations/CompleteMultipartUpload.md#).
+
+ |
+|FieldItemTooLong|The form field in the Post request is too large.|Only the file field can exceed 4 KB. For more information, see [PostObject](intl.en-US/Errors and Troubleshooting/PostObject.md#).
+
+ |
+|EntityTooSmall|The entity is too small.|Set the Post policy to specify the valid values of form fields when using PostObject to upload files. For example, content-length-range can be used to set the maximum and minimum size of an uploaded object. The condition supports the matching method of contion-length-range, that is, the error is reported when the value is extremely large or small, For more information about troubleshooting, see [PostObject](../../../../intl.en-US/API Reference/Object operations/PostObject.md#).
+
+ |
+|EntityTooLarge|The entity is too large.|
+|403|AccessDenied|The access is denied.|You do not have the permission to perform the operation. For more information, see [OSS permission](intl.en-US/Errors and Troubleshooting/OSS permission.md#).
+
+ |
+|InvalidAccessKeyId|The AccessKeyId is invalid.|The AccessKeyId is invalid or expired. For more information, see [OSS 403](intl.en-US/Errors and Troubleshooting/OSS 403.md#).
+
+ |
+|InvalidObjectState|The object state is invalid.|When you download an object of the Archive class, the state of the object is invalid in the following two conditions: -   The RestoreObject request is not submitted or the last RestoreObject request is timeout.
+-   The RestoreObject request is submitted but the RestoreObject operation is not complete.
+
+ For more information about troubleshooting, see [RestoreObject](../../../../intl.en-US/API Reference/Object operations/RestoreObject.md#).
+
+ |
+|RequestTimeTooSkewed|The time when OSS receives the request is more than 15 minutes later than the time when the request is sent.|Check the system time of the device from where the request is sent, and then adjust the time according to your time zone. For more information, see [OSS 403](intl.en-US/Errors and Troubleshooting/OSS 403.md#).
+
+ |
+|404|SymlinkTargetNotExist|The target object that the symbol link directs to does not exist.|The object is a symbol link, and the target object that the symbol link directs to does not exist.|
+|NoSuchBucket|The bucket does not exist.|The requested bucket does not exist.|
+|NoSuchKey|The object does not exist.|The requested object does not exist.|
+|NoSuchUpload|The ID of the MultipartUpload task does not exist.|The MultipartUpload task is not initialized or the initialized MultipartUpload task is expired. For more information about troubleshooting, see [InitiateMultipartUpload](../../../../intl.en-US/API Reference/Multipart upload operations/InitiateMultipartUpload.md#).
+
+ |
+|405|MethodNotAllowed|The method is not supported.|The operation is not supported.|
+|409|BucketAlreadyExists|The bucket already exists.|The specified bucket name already exists. Specify another name for the new bucket. For more information about bucket naming conventions, see [Bucket](../../../../intl.en-US/Developer Guide/Basic concepts.md#section_yxy_jmt_tdb).
+
+ |
+|BucketNotEmpty|The bucket is not empty.|The bucket to be deleted includes objects that are not deleted or multipart upload tasks that are not complete. For more information about troubleshooting, see [DeleteBucket](../../../../intl.en-US/API Reference/Bucket operations/DeleteBucket.md#).
+
+ |
+|ObjectNotAppendable|The object is not appendable.|OSS objects can be classified into three types: normal, appendable, and multipart. The AppendObject operation can be performed only on objects of the appendable type.|
+|PositionNotEqualToLength|The position where the object is appended does not equal to the object size.| -   The value of position is inconsistent with the size of the current object.
+
+**Note:** You can obtain the position for the next operation from the response header x-oss-next-append-position, and then send the next request. However, the same error may occur even if the value of position is set to x-oss-next-append-position because of the concurrency of the requests.
+
+-   When the value of position is 0, if appendable objects with the same name specified in the request does not exist or the size of an appendable object with the same name is 0, the request is successful. Otherwise, the value of position and the size of the object does not match and this error code is returned.
+
+ |
+|411|MissingContentLength|The content length is not included in the request.|The request header is not encoded by using [chunked encoding](https://tools.ietf.org/html/rfc2616#section-3.6.1), and does not include the Content-Length parameter.|
+|412|PreconditionFailed|The pre-processing fails.| -   The value of If-Unmodified-Since is specified, but the specified time is before the modification time of the object.
+-   The value of If-Match is specified, but the ETag of the original object is different from the ETag value in the request.
+
+ For more information about troubleshooting, see [GetObject](../../../../intl.en-US/API Reference/Object operations/GetObject.md#).
+
+ |
+|503|Downloadtrafficratelimitexceeded|The downloading traffic exceeds the limit.|The default limit of the downloading traffic through the Internet and intranet is 5 Gbit/s. To adjust the limit, [open a ticket](https://workorder.console.aliyun.com/#/ticket/createIndex).|
+|UploadTrafficRateLimitExceeded|The uploading traffic exceeds the limit.|The default limit of the uploading traffic through the Internet and intranet is 5 Gbit/s. To adjust the limit, [open a ticket](https://workorder.console.aliyun.com/#/ticket/createIndex).|
+|MetaOperationQpsLimitExceeded|The QPS exceeds the default limit.|OSS limits the QPS for the following APIs: -   Service-related operations, such as GetService \(ListBuckets\)
+-   Bucket-related operations, such as PutBucket and GetBucketLifecycle
+-   CORS-related operations, such as PutBucketCORS and GetBucketCORS
+-   LiveChannel-related operations, such as PutLiveChannel and DeleteLiveChannel.
+
+ If the QPS exceeds the limit, this error code is returned. We recommend that you perform the operation again after a few seconds.
+
+ |
+
+**Note:** For more information about OSS error code, see [OSS API error center](https://error-center.alibabacloud.com/status/product/Oss).
+
+## Common errors and troubleshooting {#section_g4x_wq3_wdb .section}
+
+For more information about OSS common errors and troubleshooting, see:
+
+-   [Upload callback](intl.en-US/Errors and Troubleshooting/Upload callback.md#)
+-   [OSS 403](intl.en-US/Errors and Troubleshooting/OSS 403.md#)
+-   [PostObject](intl.en-US/Errors and Troubleshooting/PostObject.md#)
+-   [OSS permission](intl.en-US/Errors and Troubleshooting/OSS permission.md#)
+-   [OSS CORS](intl.en-US/Errors and Troubleshooting/OSS CORS.md#)
+-   [Referer](intl.en-US/Errors and Troubleshooting/Referer.md#)
+-   [STS](intl.en-US/Errors and Troubleshooting/STS common errors and troubleshooting.md#)
+
+For more information about common errors and troubleshooting for SDK or tools, see:
+
+-   Java SDK:[FAQ](../../../../intl.en-US/SDK Reference/Java/FAQ.md#)
+-   Node.js SDK:[FAQ](../../../../intl.en-US/SDK Reference/Node. js/FAQ.md#)
+-   [ossfs](../../../../intl.en-US/Tools/ossfs/FAQ.md#)
+-   [ossftp](../../../../intl.en-US/Tools/ossftp/FAQ.md#)
+
+## Unsupported operations {#section_ecd_wr3_wdb .section}
+
+If you access OSS resources by performing an operation that is not supported by OSS, the 405 Method Not Allowed error is returned.
+
+Example of an incorrect request:
+
+``` {#codeblock_f2f_20k_qpg}
 ABC /1.txt HTTP/1.1
 Host: bucketname.oss-cn-shanghai.aliyuncs.com
 Date: Thu, 11 Aug 2016 03:53:40 GMT
 Authorization: signatureValue
 ```
 
-Returns an example:
+Response example:
 
-```
+``` {#codeblock_gcr_ldn_qkb}
 HTTP/1.1 405 Method Not Allowed
 Server: AliyunOSS
 Date: Thu, 11 Aug 2016 03:53:44 GMT
@@ -125,24 +213,24 @@ x-oss-request-id: 57ABF6C8BC4D25D86CBA5ADE
 Allow: GET DELETE HEAD PUT POST OPTIONS
 <? xml version="1.0" encoding="UTF-8"? >
 <Error>
-<Code>MethodNotAllowed</Code>
-<Message>The specified method is not allowed against this resource.</Message>
+  <Code>MethodNotAllowed</Code>
+  <Message>The specified method is not allowed against this resource. </Message>
   <RequestId>57ABF6C8BC4D25D86CBA5ADE</RequestId>
   <HostId>bucketname.oss-cn-shanghai.aliyuncs.com</HostId>
   <Method>abc</Method>
   <ResourceType>Bucket</ResourceType>
-  </Error>
+</Error>
 ```
 
-**Note:** If the accessed resource is /bucket/, ResourceType must be set to `bucket`.If the accessed resource is /bucket/object, ResourceType must be set to `object`.
+**Note:** If the resource to be accessed is /bucket/, the ResourceType is bucket. If the resource to be accessed is /bucket/object, the ResourceType is object.
 
-## Operations supported by the OSS but not supported by parameters {#section_hrc_fs3_wdb .section}
+## Unsupported parameters in supported operations {#section_hrc_fs3_wdb .section}
 
-If parameters not supported by the OSS are added to an operation supported by the OSS \(for example, an If-Modified-Since parameter is added to the PUT operation\), the OSS returns error 400  Bad Request.
+If unsupported parameters \(such as If-Modified-Since in PutObject operations\) is specified in supported OSS operations, the 400 Bad Request error is returned.
 
-Example of an invalid request:
+Example of an incorrect request:
 
-```
+``` {#codeblock_sx0_e8f_qh8}
 PUT /abc.zip HTTP/1.1
 Host: bucketname.oss-cn-shanghai.aliyuncs.com
 Accept: */*
@@ -153,7 +241,7 @@ Content-Length: 363
 
 Response example:
 
-```
+``` {#codeblock_j4t_8kv_8yx}
 HTTP/1.1 400 Bad Request
 Server: AliyunOSS
 Date: Thu, 11 Aug 2016 01:44:54 GMT
@@ -164,11 +252,11 @@ x-oss-request-id: 57ABD896CCB80C366955187E
 x-oss-server-time: 0
 <? xml version="1.0" encoding="UTF-8"? >
 <Error>
-<Code>NotImplemented</Code>
-<Message>A header you provided implies functionality that is not implemented.</Message>
-<RequestId>57ABD896CCB80C366955187E</RequestId>
-<HostId>bucketname.oss-cn-shanghai.aliyuncs.com</HostId>
-<Header>If-Modified-Since</Header>
+  <Code>NotImplemented</Code>
+  <Message>A header you provided implies functionality that is not implemented. </Message>
+  <RequestId>57ABD896CCB80C366955187E</RequestId>
+  <HostId>bucketname.oss-cn-shanghai.aliyuncs.com</HostId>
+  <Header>If-Modified-Since</Header>
 </Error>
 ```
 
