@@ -40,7 +40,7 @@ OSS supports the following three server-side encryption methods:
     # It is highly risky to log on with AccessKey of an Alibaba Cloud account because the account has permissions on all the APIs in OSS. We recommend that you log on as a RAM user to access APIs or perform routine operations and maintenance. To create a RAM account, log on to the [RAM console](https://ram.console.aliyun.com).
     auth = oss2.Auth('<yourAccessKeyId>', '<yourAccessKeySecret>
     ')
-    # This example uses the endpoint oss-cn-hongkong (Hong Kong). Specify the actual endpoint based on your requirements.
+    # This example uses the endpoint oss-cn-hongkong. Specify the actual endpoint based on your requirements.
     
     bucket = oss2.Bucket(auth, 'http://oss-cn-hongkong.aliyuncs.com', 'test-hongkong-2025')
     
@@ -103,7 +103,7 @@ OSS supports the following three server-side encryption methods:
     # It is highly risky to log on with AccessKey of an Alibaba Cloud account because the account has permissions on all the APIs in OSS. We recommend that you log on as a RAM user to access APIs or perform routine operations and maintenance. To create a RAM account, log on to the [RAM console](https://ram.console.aliyun.com).
     auth = oss2.Auth('<yourAccessKeyId>', '<yourAccessKeySecret>
     ')
-    This example uses the endpoint oss-cn-hongkong (Hong Kong). Specify the actual endpoint based on your requirements.
+    This example uses the endpoint oss-cn-hongkong. Specify the actual endpoint based on your requirements.
     bucket = oss2.Bucket(auth, 'http://oss-cn-hongkong.aliyuncs.com', 'test-hongkong-2025')
     
     bucket.update_object_meta('01.txt',{'x-oss-server-side-encryption':'KMS'})
@@ -130,7 +130,7 @@ OSS supports the following three server-side encryption methods:
     # It is highly risky to log on with AccessKey of an Alibaba Cloud account because the account has permissions on all the APIs in OSS. We recommend that you log on as a RAM user to access APIs or perform routine operations and maintenance. To create a RAM account, log on to the [RAM console](https://ram.console.aliyun.com).
     auth = oss2.Auth('<yourAccessKeyId>', '<yourAccessKeySecret>
     ')
-    # This example uses the endpoint oss-cn-hongkong (Hong Kong). Specify the actual endpoint based on your requirements.
+    # This example uses the endpoint oss-cn-hongkong. Specify the actual endpoint based on your requirements.
     bucket = oss2.Bucket(auth, 'http://oss-cn-hongkong.aliyuncs.com', 'test-hongkong-2025')
     
     bucket.update_object_meta('01.txt',{'x-oss-server-side-encryption':'KMS','x-oss-server-side-encryption-key-id': '33701a45-6723-4a04-a367-68c060382652'})
