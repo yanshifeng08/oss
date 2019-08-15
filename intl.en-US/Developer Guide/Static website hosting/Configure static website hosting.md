@@ -6,11 +6,11 @@ You can use the PutBucketWebsite API of OSS to set your bucket to the static web
 
 If your selected bucket is located in China \(Hangzhou\), after the configuration takes effect, the domain of the static website is as follows:
 
-```
+``` {#codeblock_4np_jyf_0t4}
 http://<Bucket>.oss-cn-hangzhou.aliyuncs.com/
 ```
 
-**Note:** When you use the default endpoint to access a Webpage object in OSS in Mainland China or Hong Kong through the Internet, `Content-Disposition:'attachment=filename;'` is automatically added to the response header. That is, when you use a browser to access a Webpage object, the object is downloaded as an attachment. If you use a custom domain to access OSS, the information is not added to the response header. For more information about how to use a custom domain to access OSS, see [Bind a custom domain](reseller.en-US/Developer Guide/Buckets/Bind a custom domain.md#).
+**Note:** When you use the default endpoint to access a Webpage object in OSS in Mainland China or China \(Hong Kong\) through the Internet, `Content-Disposition:'attachment=filename;'` is automatically added to the response header. That is, when you use a browser to access a Webpage object, the object is downloaded as an attachment. If you use a custom domain to access OSS, the information is not added to the response header. For more information about how to use a custom domain to access OSS, see [Bind a custom domain](reseller.en-US/Developer Guide/Buckets/Bind a custom domain.md#).
 
 OSS provides the following features to help you manage static websites hosted in OSS more easily:
 
