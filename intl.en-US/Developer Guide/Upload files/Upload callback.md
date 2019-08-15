@@ -15,7 +15,7 @@ When sending a POST callback request to the application server, OSS includes par
 
 You can properly use upload callback to simplify the client logic and save network resources. The following figure shows the process.
 
-![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/4366/15658391481064_en-US.jpg)
+![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/4366/15658392641064_en-US.jpg)
 
 **Note:** Currently, only simple upload \(through the PutObject API\), form upload \(through the PostObject API\), and multipart upload \(through the CompleteMultipartUpload API\) support upload callback.
 
