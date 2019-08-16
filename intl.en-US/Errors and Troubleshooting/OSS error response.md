@@ -53,7 +53,7 @@ The following table lists the OSS error codes:
 |TooManyBuckets|The number of buckets exceeds the limit.|An Alibaba CLoud account can create a maximum of 30 buckets in a region. To adjust the limit, [open a bucket](https://workorder.console.aliyun.com/#/ticket/createIndex).
 
  |
-|RequestIsNotMultiPartContent|The content-type of the Post request is invalid.|The content-type header in the Post request is not `multipart/form-data`. The content-type header in a Post request must be `multipart/form-data` and in the Content-Type为multipart/form-data;boundary=xxxxxx format, in which boundary is the boundary string. For more information about troubleshooting, see [PostObject](../../../../intl.en-US/API Reference/Object operations/PostObject.md#).
+|RequestIsNotMultiPartContent|The content-type of the Post request is invalid.|The content-type header in the Post request is not `multipart/form-data`. The content-type header in a Post request must be `multipart/form-data` and in the Content-Type multipart/form-data;boundary=xxxxxx format, in which boundary is the boundary string. For more information about troubleshooting, see [PostObject](../../../../intl.en-US/API Reference/Object operations/PostObject.md#).
 
  |
 |RequestTimeout|Request timeout occurs.|The request timeout occurs because of network environment or configurations. For more information about troubleshooting, see [Network connection timeout handling](intl.en-US/Errors and Troubleshooting/Network connection timeout handling.md#).
