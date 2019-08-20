@@ -113,7 +113,7 @@ The [Monitoring indicators reference](reseller.en-US/Developer Guide/Monitoring 
 |ResourceNotFoundErrorCount|Client-site error requests indicating resource not found|Times|Bucket level|
 |ResourceNotFoundErrorRate|Client-site error request rate indicating resource not found|%|Bucket level|
 |ClientTimeoutErrorCount|Client-site time-out error requests|Times|Bucket level|
-|ClientOtherErrorRate|Client-site time-out error request rate|%|Bucket level|
+|ClientTimeoutErrorRate|Client-site time-out error request rate|%|Bucket level|
 |ClientOtherErrorCount|Other client-site error requests|Times|Bucket level|
 |ClientOtherErrorRate|Other client-site error request rate|%|Bucket level|
 |SuccessCount|Successful requests|Times|Bucket level|
