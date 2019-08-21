@@ -26,8 +26,8 @@ config命令用于创建配置文件来存储OSS访问信息。您可以在使�
     ```
 
     -   endpoint：填写Bucket所在地域的域名信息，可参考[访问域名和数据中心](../../../../cn.zh-CN/开发指南/访问域名（Endpoint）/访问域名和数据中心.md#)。
-    -   accessKeyID：查看方式请参考[../../../../dita-oss-bucket/SP\_27/DNgameshield1843536/ZH-CN\_TP\_13782.md\#](../../../../cn.zh-CN/通用参考/创建AccessKey.md#)。
-    -   accessKeySecret：查看方式请参考[../../../../dita-oss-bucket/SP\_27/DNgameshield1843536/ZH-CN\_TP\_13782.md\#](../../../../cn.zh-CN/通用参考/创建AccessKey.md#)。
+    -   accessKeyID：查看方式请参考[创建AccessKey](../../../../cn.zh-CN/通用参考/创建AccessKey.md#)。
+    -   accessKeySecret：查看方式请参考[创建AccessKey](../../../../cn.zh-CN/通用参考/创建AccessKey.md#)。
     -   stsToken：非必配项，若采用STS临时授权方式访问OSS需要配置该项，否则置空即可。stsToken生成方式参考[临时访问凭证](../../../../cn.zh-CN/开发指南/上传文件（Object）/授权给第三方上传.md#section_dvv_hkb_5db)。
 -   非交互式配置
 
