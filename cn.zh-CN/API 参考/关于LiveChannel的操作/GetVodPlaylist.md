@@ -1,39 +1,40 @@
 # GetVodPlaylist {#concept_rqq_gw2_cgb .concept}
 
-GetVodPlaylist接口用来查询指定 LiveChannel 推流生成的，指定时间段内的播放列表。
+GetVodPlaylist接口用于查看指定LiveChannel在指定时间段内推流生成的播放列表。
 
 ## 请求语法 {#section_b12_mw2_cgb .section}
 
-```
-GET /ChannelName?endTime=EndTime&startTime=StartTime HTTP/1.1
+``` {#codeblock_idv_c1m_lec}
+GET /ChannelName?vod&endTime=EndTime&startTime=StartTime HTTP/1.1
 Date: GMT date
 Host: BucketName.oss-cn-hangzhou.aliyuncs.com
 Authorization: SignatureValue
 ```
 
-## 请求参数 {#section_e5x_4w2_cgb .section}
+## 请求头 {#section_e5x_4w2_cgb .section}
 
-|名称|描述|是否必需|
-|ChannelName|指定 LiveChannel 名称，该LiveChannel 必须存在。|是|
-|StartTime|指定查询 ts 文件的起始时间，格式为 Unix timestamp。|是|
-|EndTime|指定查询 ts 文件的终止时间，格式为 Unix timestamp。**说明：** EndTime 必须大于 StartTime，且时间跨度不能大于 1 天。
+|名称|类型|是否必选|描述|
+|--|--|----|--|
+|ChannelName|字符串|是|指定LiveChannel名称。该LiveChannel必须存在。|
+|StartTime|整数|是|指定查询ts文件的起始时间，格式为Unix timestamp。|
+|EndTime|整数|是|指定查询ts文件的终止时间，格式为Unix timestamp。 **说明：** EndTime必须大于 StartTime，且时间跨度不能大于1天。
 
-|是|
+ |
 
 ## 示例 {#section_ewp_bxf_cgb .section}
 
 请求示例
 
-```
-POST /test-channel?endTime=1472020226&startTime=1472020031 HTTP/1.1
+``` {#codeblock_hqp_5xy_k5v}
+GET /test-channel?vod&endTime=1472020226&startTime=1472020031 HTTP/1.1
 Date: Thu, 25 Aug 2016 07:13:26 GMT
 Host: test-bucket.oss-cn-hangzhou.aliyuncs.com
-Authorization: OSS YJjHKOKWDWINLKXv:ABIigvnLtCHK+7fMHLeRlOUnzv0=
+Authorization: OSS YJjHKOKWDWINLKXv:ABIigvnLtCHK+7fMHLeRlOUn****
 ```
 
 返回示例
 
-```
+``` {#codeblock_srp_d01_vv0}
 HTTP/1.1 200
 content-length: 312
 server: AliyunOSS
@@ -42,7 +43,6 @@ etag: "9C6104DD9CF1A0C4D0CFD21F43905D59"
 x-oss-request-id: 57BE9A96B92475920B002359
 date: Thu, 25 Aug 2016 07:13:26 GMT
 Content-Type: application/x-mpegURL
-
 #EXTM3U
 #EXT-X-VERSION:3
 #EXT-X-MEDIA-SEQUENCE:0
@@ -65,4 +65,8 @@ Content-Type: application/x-mpegURL
 1543895706561.ts
 #EXT-X-ENDLIST
 ```
+
+## SDK {#section_in6_5nh_o19 .section}
+
+[Java](../../../../cn.zh-CN/用户实践/Java SDK 的 LiveChannel 常见操作.md#)
 
