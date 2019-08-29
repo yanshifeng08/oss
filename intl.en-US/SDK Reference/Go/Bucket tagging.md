@@ -2,16 +2,16 @@
 
 By using the bucket tagging function, you can classify your buckets to manage them. For example, you can specify that only buckets with specified tags are returned in ListBucket operations.
 
--   Only the bucket owner and authorized RAM users can set tags for a bucket. Otherwise, the 403 Forbidden error is returned with the error code: AccessDenied.
--   You can add a maximum of 20 tags \(key-value pairs\) for a bucket.
+-   Only the bucket owner and authorized RAM users can add tags to a bucket. Otherwise, the 403 Forbidden error is returned with the error code: AccessDenied.
+-   You can add a maximum of 20 tags \(key-value pairs\) to a bucket.
 -   The maximum size of a key is 64 bytes. The key of a tag cannot be null and cannot be prefixed with `http://`, `https://`, or `Aliyun`.
 -   The maximum size of a tag value is 128 bytes. The value of a tag can be null.
 -   The key and value of a tag must be UTF-8 encoded.
--   If you use PutBucketTagging to add tags for a bucket, the original tags added for the bucket are completely overwritten.
+-   If you use PutBucketTagging to add tags to a bucket, the original tags added to the bucket are completely overwritten.
 
-## Add tags for a bucket {#section_asr_38j_dqu .section}
+## Add tags to a bucket {#section_asr_38j_dqu .section}
 
-You can run the following code to add tags for a bucket:
+You can run the following code to add tags to a bucket:
 
 ``` {#codeblock_bvo_avf_ojs}
 package main
@@ -43,7 +43,7 @@ func main() {
   tagging := oss.Tagging{
     Tags: []oss.Tag{tag1, tag2},
   }
-  // Add the tags for the bucket.
+  // Add the tags to the bucket.
   err = client.SetBucketTagging("yourBucketName", tagging)
   if err != nil {
     fmt.Println("Error:", err)
@@ -52,9 +52,9 @@ func main() {
 }
 ```
 
-## Obtain the tags added for a bucket {#section_5t2_so5_jl8 .section}
+## Obtain the tags added to a bucket {#section_5t2_so5_jl8 .section}
 
-You can run the following code to obtain the tags added for a bucket:
+You can run the following code to obtain the tags added to a bucket:
 
 ``` {#codeblock_pm3_rii_byw}
 package main
@@ -74,13 +74,13 @@ func main() {
     os.Exit(-1)
   }
 
-  // Obtains the tags added for the bucket.
+  // Obtains the tags added to the bucket.
   ret, err := client.GetBucketTagging("yourBucketName")
   if err != nil {
     fmt.Println("Error:", err)
     os.Exit(-1)
   }
-  // Prints the number of tags added for the bucket.
+  // Prints the number of tags added to the bucket.
   fmt.Println("Tag length: ", len(ret.Tags))
 }
 ```
@@ -131,9 +131,9 @@ func main() {
 }
 ```
 
-## Delete the tags added for a bucket {#section_pc6_9dz_682 .section}
+## Delete the tags added to a bucket {#section_pc6_9dz_682 .section}
 
-You can run the following code to delete the tags added for a bucket:
+You can run the following code to delete the tags added to a bucket:
 
 ``` {#codeblock_9v2_onq_jmd}
 package main
@@ -152,7 +152,7 @@ func main() {
     fmt.Println("Error:", err)
     os.Exit(-1)
   }
-  // Deletes the tags added for the bucket.
+  // Deletes the tags added to the bucket.
   err = client.DeleteBucketTagging("yourBucketName")
   if err != nil {
     fmt.Println("Error:", err)
