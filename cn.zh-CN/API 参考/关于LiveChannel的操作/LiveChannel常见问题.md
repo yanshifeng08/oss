@@ -6,12 +6,12 @@
 
 下图为 OSS livechannel 推流过程图解，了解这个过程，有助于排查 livechannel 推流过程中遇到的问题。
 
-![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/80008/155348429335194_zh-CN.png)
+![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/80008/156751192435194_zh-CN.png)
 
 更多详情请参考：
 
--   [生成推流 URL](intl.zh-CN/API 参考/关于LiveChannel的操作/PutLiveChannel.md#)
--   [设置推流状态](intl.zh-CN/API 参考/关于LiveChannel的操作/PutLiveChannelStatus.md#)
+-   [生成推流 URL](cn.zh-CN/API 参考/关于LiveChannel的操作/PutLiveChannel.md#)
+-   [设置推流状态](cn.zh-CN/API 参考/关于LiveChannel的操作/PutLiveChannelStatus.md#)
 
 ## 案例：录制 M3u8 缺失 {#section_rzt_vtr_2gb .section}
 
@@ -34,7 +34,7 @@
 
 使用 ffmpeg 推流不成功：
 
-```
+``` {#codeblock_itk_88e_wmc}
 ffmpeg -re -i 0_20180525105430445.aac -acodec aac -strict -2 -f flv rtmp://xxx.oss-cn-beijing.aliyuncs.com/live/test_1000?Expires=1540458859&OSSAccessKeyId=LTAlujianb6C9z&Signature=qwh31xQsanmao6ygCFJgovNIg%3D&playlistName=playlist.m3u8
 ```
 
@@ -62,5 +62,5 @@ ffmpeg -re -i 0_20180525105430445.aac -acodec aac -strict -2 -f flv rtmp://xxx.o
 -   直接查看 ffmpeg 记录的日志，确定客户端是否有发送 `aac_header`。
 -   在客户端抓个 RTMP 的包，查看是否发送了 `aac_header`。
 
-![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/80008/155348429335199_zh-CN.png)
+![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/80008/156751192535199_zh-CN.png)
 
