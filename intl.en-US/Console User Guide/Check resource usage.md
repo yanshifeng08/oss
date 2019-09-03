@@ -15,9 +15,9 @@ This document uses the basic data as an example to describe the resource checkin
 
 1.  Log on to the [OSS console](https://oss.console.aliyun.com/).
 2.  In the bucket list on the left, click the target bucket name to open its information page.
-3.  Click the Basic Data tab, and diagrams of the following three kinds of basic data are displayed, as shown in the following figure:
+3.  Click the **Basic Data** tab, and diagrams of the following three kinds of basic data are displayed, as shown in the following figure:
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/4766/2285_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/4766/15674938712285_en-US.png)
 
     -   Bucket
     -   Data Used
@@ -46,7 +46,7 @@ This document uses the basic data as an example to describe the resource checkin
 
 4.  Select the time granularity of the resource usage diagrams, as shown in the following figure:
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/4766/2297_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/4766/15674938722297_en-US.png)
 
     -   **Today**: Only the data of the current day is shown in diagrams.
     -   **Yesterday**: Only the data of yesterday is shown in diagrams.
@@ -57,7 +57,7 @@ This document uses the basic data as an example to describe the resource checkin
 
         For example, in the following figure, the **Standard** and **Archive** data items are not shown in the diagram, and the **Infrequent Access** and **Total** data items are shown in the diagram.
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/4766/2298_en-US.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/4766/15674938722298_en-US.png)
 
         **Note:** All data items are shown in diagrams by default.
 
