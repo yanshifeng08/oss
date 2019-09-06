@@ -31,7 +31,7 @@ You can use ossimport in distributed mode to migrate data from AWS S3 to OSS as 
 
 **Note:** After deploying ossimport in distributed mode in the ECS instances, use ossimport to download data from the AWS S3 bucket in the Tokyo region to the ECS instances in China East 1 \(Hangzhou\). We recommend you download the data through Internet. Use ossimport to upload the data from the ECS instances to the OSS bucket in China East 1 \(Hangzhou\). We recommend you upload the data through the intranet.
 
-![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/4431/15677623161976_en-US.png)
+![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/4431/15677700681976_en-US.png)
 
 1.  Fully migrate the historical data in AWS S3 before the time T1. For more information, see the Running section in [Distributed deployment](../../../../reseller.en-US/Tools/ossimport/Distributed deployment.md#section_m1y_1jh_wdb).
 

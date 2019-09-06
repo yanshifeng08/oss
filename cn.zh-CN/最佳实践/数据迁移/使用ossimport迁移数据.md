@@ -35,7 +35,7 @@ ossimport部署方式详细介绍请参考[说明及配置](../../../../intl.zh-
 
 **说明：** 在ECS上搭建ossimport分布式环境后，ossimport从腾讯云COS华南1（深圳）区域下载数据到ECS华东1（杭州），建议使用外网。使用ossimport从ECS华东1（杭州）将数据上传到OSS华东1（杭州），建议使用内网。
 
-![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/4431/15677623041976_zh-CN.png)
+![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/4431/15677700551976_zh-CN.png)
 
 1.  全量迁移第三方存储T1前的历史数据，详细步骤请参考分布式部署的[运行](../../../../intl.zh-CN/常用工具/数据迁移工具ossimport/分布式部署.md#section_m1y_1jh_wdb)。
 
