@@ -2,7 +2,7 @@
 
 This topic describes how to migrate data from a AWS S3 bucket to a Alibaba Cloud OSS bucket by using IPSec VPN tunnel and ExpressConnect.
 
-## Background information {#section_ngt_zmd_2gb .section}
+## Backgroud information {#section_ngt_zmd_2gb .section}
 
 When customers migrate data from AWS S3 to Alibaba Cloud OSS, especially cross countries, there are usually two network architectures for them to choose from:
 
@@ -13,7 +13,7 @@ This topic focuses on the second network architecture. The IPSEC VPN tunnel and 
 
 The following figure shows the overall network architecture.
 
-![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/80669/154891743438273_en-US.png)
+![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/80669/156776841838273_en-US.png)
 
 The advantage of this network architecture is that the data in the S3 bucket is first moved to the Alibaba Cloud Network VPC in the same region as the S3 bucket, and then the data is retransmitted to the OSS bucket of the destination region by means of the Alibaba Cloud ExpressConnnect cross-region high-speed network. This network architecture accelerates the transmission speed of cross-country data migration.
 
@@ -33,36 +33,33 @@ The following table describes the information about the network entities involve
 |Subnet in VPC in Tokyo Japan|172.24.0.0/20|
 |VPC in Shanghai China|172.19.0.0/16|
 |Subnet in VPC in Shanghai China|172.19.48.0/20|
-|OSS bucket endpoint|http://oss-cn-shanghai-internal.aliyuncs.com|
+|OSS bucket endpoint|[http://oss-cn-shanghai-internal.aliyuncs.com](http://oss-cn-shanghai-internal.aliyuncs.com/)|
 |OSS bucket name|eric-oss-datastore-shanghai|
 
-## Step 1: Install and configure Strongswan. {#section_ygt_zmd_2gb .section}
+## Step 1: Install and configure Strongswan {#section_ygt_zmd_2gb .section}
 
 Perform the following operations in AWS to install Strongswan.
 
 1.  Prepare a VPC and related resources.
-    1.  Create a VPC with the following settings.
+    1.  Create a VPC with following setting.
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/80669/154891743438330_en-US.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/80669/156776841838330_en-US.png)
 
-    2.  Create a subnet with the following settings.
+    2.  Create a subnet with following setting.![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/80669/156776841838331_en-US.png)
+    3.  Create an Internet gateway with following setting.
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/80669/154891743438331_en-US.png)
-
-    3.  Create an Internet gateway with the following settings.
-
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/80669/154891743438332_en-US.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/80669/156776841838332_en-US.png)
 
         **Note:** If you want to access EC2 via Internet, such as SSH client, then this gateway is necessary, attach this Internet gateway to the VPC that you just created.
 
     4.  Create a security group and allow the traffic.
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/80669/154891743438333_en-US.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/80669/156776841938333_en-US.png)
 
 2.  Create an EC2 instance for Strongswan and OssImport.
     1.  Launch an EC2 instance in the VPC, subnet and security group.
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/80669/154891743438334_en-US.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/80669/156776841938334_en-US.png)
 
         **Note:** If you want to access the EC2 instance with SSH client, you need to save the \*.pem file to local compute devices.
 
@@ -72,15 +69,15 @@ Perform the following operations in AWS to install Strongswan.
 
         `ssh -i 3k3j***M.pem ec2-user@ec2-3-112-29-59.ap-northeast-1.compute.amazonaws.com`
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/80669/154891743438335_en-US.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/80669/156776841938335_en-US.png)
 
         If you cannot access the EC2 instance via SSH client, it may because that you need to add a route entry.
 
 3.  Install Strongswan.
 
-    Run the following code to install Strongswan and verify the version of Strongswan:
+    Run the following code to install Strongswan and verfiy the version of Strongswan:
 
-    ```
+    ``` {#codeblock_kvx_kaf_8j6}
     $ wget http://dl.fedoraproject.org/pub/epel/7/x86_64/Packages/s/strongswan-5.7.1-1.el7.x86_64.rpm
     $ sudo yum install gcc
     $ sudo yum install trousers
@@ -95,7 +92,7 @@ Perform the following operations in AWS to install Strongswan.
 
     Run the following code to configure Strongswan:
 
-    ```
+    ``` {#codeblock_msg_54x_ttb}
     $ sudo vi /etc/strongswan/ipsec.conf
     Paste following setting into file:
     conn %default
@@ -114,90 +111,90 @@ Perform the following operations in AWS to install Strongswan.
     right=47.74.46.62 //// Public IP address of Alibaba Cloud VPN Gateway
     rightid=47.74.46.62 //// Public IP address as ID.
     rightsubnet=100.118.102.0/24 //// Note(1)
-    
+    						
     ```
 
     **Note:** When you ping the intranet endpoint of the OSS bucket in some ECS instances in the Alibaba Cloud Shanghai VPC, you can get the IP address which is belonged to this CIDR block. Therefore this CIDR block is used as the right subnet.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/80669/154891743538336_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/80669/156776841938336_en-US.png)
 
 5.  Start Strongswan.
-    1.  Run the following commands:
+    1.  Run the following command:
 
-        ```
+        ``` {#codeblock_uxz_hof_p53}
         $ sudo su – root
         # echo 1 > /proc/sys/net/ipv4/ip_forward
-        
+        							
         ```
 
         **Note:** Then you need to add `net.ipv4.ip_forward=1` into /etc/sysctl.conf.
 
     2.  Run the following commands to start Strongswan:
 
-        ```
+        ``` {#codeblock_bry_974_qjp}
         # systemctl enable strongswan
         # systemctl start strongswan
         # systemctl status strongswan
-        
+        							
         ```
 
 
-## Step 2: Create VPN gateways and IPSec connections. {#section_aft_dqq_pgb .section}
+## Step 2: Create VPN gateways and IPSec connections {#section_aft_dqq_pgb .section}
 
 Follow these steps to create VPN gateways and IPSec connections.
 
 1.  Create a VPN gateway and a customer gateway.
     1.  Create a VPN gateway.
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/80669/154891743538337_en-US.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/80669/156776841938337_en-US.png)
 
     2.  Create a customer gateway.
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/80669/154891743538338_en-US.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/80669/156776841938338_en-US.png)
 
         **Note:** In this practice, Strongswan@AWS EC2 is used as the customer gateway.
 
 2.  Create an IPSec connection.
     1.  Make basic settings.
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/80669/154891743538339_en-US.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/80669/156776842038339_en-US.png)
 
     2.  Make advanced settings.
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/80669/154891743538340_en-US.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/80669/156776842038340_en-US.png)
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/80669/154891743538341_en-US.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/80669/156776842038341_en-US.png)
 
 3.  Check the IPSec connection status.
     1.  Check the IPSec connection status on the Alibaba Cloud console.
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/80669/154891743538342_en-US.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/80669/156776842038342_en-US.png)
 
     2.  Check the IPSec connection status on Strongswan by running the following command:
 
-        ```
+        ``` {#codeblock_gyv_pct_mjo}
         # systemctl status strongswan
         ```
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/80669/154891743538343_en-US.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/80669/156776842038343_en-US.png)
 
 
-## Step 3: Create VPC Peering Connection. {#section_n3t_zmd_2gb .section}
+## Step 3: Create VPC Peering Connection {#section_n3t_zmd_2gb .section}
 
-1.  Follow the steps in [Interconnect two VPCs under the same account](../../../../../reseller.en-US/Getting Started (New Console)/Interconnect two VPCs under the same account.md#) to create a VPC peering connection on the Alibaba Cloud Express Connect console.
+1.  Follow the steps in [../../../../dita-oss-bucket/SP\_72/DNexpressconnect1847151/EN-US\_TP\_13830.md\#](../../../../reseller.en-US/Peering connections/Interconnect two VPCs under the same account.md#) to create a VPC peering connection on the Alibaba Cloud Express Connect console.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/80669/154891743538344_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/80669/156776842038344_en-US.png)
 
 2.  Add the following routing entries in the route settings both on the AWS VPC and Alibaba Cloud VPC.
     -   AWS VPC in Tokyo Japan
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/80669/154891743538345_en-US.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/80669/156776842038345_en-US.png)
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/80669/154891743638346_en-US.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/80669/156776842038346_en-US.png)
 
     -   Alibaba Cloud VPC in Tokyo Japan
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/80669/154891743638347_en-US.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/80669/156776842138347_en-US.png)
 
         The subnets in the preceding figure are described as follows:
 
@@ -209,7 +206,7 @@ Follow these steps to create VPN gateways and IPSec connections.
 
     -   Alibaba Cloud VPC in Shanghai China
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/80669/154891743638348_en-US.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/80669/156776842138348_en-US.png)
 
         The subnets in the preceding figure are described as follows:
 
@@ -219,35 +216,35 @@ Follow these steps to create VPN gateways and IPSec connections.
 
 3.  Test the connection between AWS VPC in Tokyo Japan and the Alibaba Cloud OSS bucket in Shanghai.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/80669/154891743638349_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/80669/156776842138349_en-US.png)
 
-    The test results in the preceding figure show that the connection between the AWS EC2 instance and the Alibaba Cloud OSS bucket is connected. You can deploy OssImport and migrate objects from the AWS S3 bucket to the Alibaba Cloud OSS bucket.
+    The test results in the preceding figure shows that the connection between the AWS EC2 instance and the Alibaba Cloud OSS bucket is connected. You can deploy OssImport and migrate objects from the AWS S3 bucket to the Alibaba Cloud OSS bucket.
 
 
-## Step 4: Create a VPC endpoint for AWS S3 bucket. {#section_y3t_zmd_2gb .section}
+## Step 4: Create a VPC endpoint for AWS S3 bucket {#section_y3t_zmd_2gb .section}
 
 In this practice, OssImport deployed on the EC2 instance in VPC is used to move data from the AWS S3 bucket to the OSS bucket. We recommend you create a VPC endpoint for the AWS S3 bucket and associate it with the route table so that OssImport can visit the AWS S3 bucket within the VPC instead of visiting the Internet IP address of the AWS S3 bucket.
 
 1.  Create a VPC endpoint for the AWS S3 bucket.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/80669/154891743638350_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/80669/156776842138350_en-US.png)
 
-2.  Check the VPC route table.
+2.  Check the VPC routing table.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/80669/154891743638351_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/80669/156776842138351_en-US.png)
 
 3.  Verify the connection between the AWS S3 VPC endpoint and the EC2 instance.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/80669/154891743638352_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/80669/156776842138352_en-US.png)
 
 
-## Step 5: Migrate Data from the AWS S3 bucket to the OSS bucket by using OssImport. {#section_cjt_zmd_2gb .section}
+## Step 5: Migrate Data from AWS S3 bucket to OSS bucket by using OssImport {#section_cjt_zmd_2gb .section}
 
-Follow the steps in [Use OssImport to migrate data](reseller.en-US/Best Practices/Migrate data to OSS/Use OssImport to migrate data.md#) to deploy and configure OssImport.
+Follow the steps in [Use ossimport to migrate data](reseller.en-US/Best Practices/Migrate data to OSS/Use ossimport to migrate data.md#) to deploy and configure OssImport.
 
-1.  Configure the local\_job.cfg file as follows:
+1.  Set the local\_job.cfg file as follows:
 
-    ```
+    ``` {#codeblock_gf2_6jr_mk7}
     srcType=s3
     srcAccessKey=AK************A
     srcSecretKey=+RW************iM3
@@ -259,12 +256,12 @@ Follow the steps in [Use OssImport to migrate data](reseller.en-US/Best Practice
     destDomain=http://oss-cn-shanghai-internal.aliyuncs.com
     destBucket=eric-oss-datastore-shanghai
     destPrefix=destination_folder/
-    
+    					
     ```
 
 2.  Execute the import.sh script and check the migration status as follows:
 
-    ```
+    ``` {#codeblock_7eh_3bt_voa}
     [root@ip-172-16-1-183 ~]# cd /home/ec2-user/ossimport
     [root@ip-172-16-1-183 ossimport]# ./import.sh
     Clean the previous job, Yes or No: yes
@@ -301,26 +298,22 @@ Follow the steps in [Use OssImport to migrate data](reseller.en-US/Best Practice
     RunningTasks Progress:
     8528637A126676A4FD0D2F981ED5E0EF_1544176618182:191048/191048 42/42
     [root@ip-172-16-1-183 ossimport]#
-    
+    					
     ```
 
     **Note:** You can find detail logs in the ossimport/logs folder.
 
 3.  Compare the files in the AWS S3 bucket and those in the OSS bucket.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/80669/154891743638353_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/80669/156776842138353_en-US.png)
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/80669/154891743638354_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/80669/156776842138354_en-US.png) 
 
+    From the case above, we use ossimport to sucessfully migrate S3 data to Alibaba Cloud OSS bucket via IPSec VPN tunnel and ExpressConnection cross country.
 
-As shown in the preceding figure, if the files in the AWS S3 bucket and those in the OSS bucket are the same, the migration is successful.
-
-If the migration fails at any preceding steps, please contact technical support by [opening a ticket](https://workorder-intl.console.aliyun.com/?spm=a2c63.p38356.a3.3.1dd38e03PjJB7u#/ticket/createIndex).
 
 ## References {#section_tlk_zyq_pgb .section}
 
--   [Data migration](../../../../../reseller.en-US/Tools/ossimport/Data migration.md#)
-
+-   [Architecture and configuration](../../../../reseller.en-US/Tools/ossimport/Architecture and configuration.md#)
 -   [Migration Technical Guide](https://www.alibabacloud.com/help/doc-detail/73912.htm?spm=a2c63.p38356.b99.9.4e023602Mor3NO)
-
 
