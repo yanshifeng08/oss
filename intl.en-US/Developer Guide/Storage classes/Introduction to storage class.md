@@ -13,7 +13,7 @@ OSS Standard storage provides highly reliable, highly available, and high-perfor
 
     -   Zone-redundant storage \(ZRS\): uses the multi-zone mechanism to distribute user data across three zones within the same region. Even if one zone becomes unavailable, the data will still be accessible.
 -   Key features
-    -   Provides 99.9999999999% data durability.
+    -   Provides 99.9999999999% \(twelve 9's\) data durability.
     -   Designed to provide 99.995% service availability.
     -   Delivers high-throughput and low-latency access performance.
     -   Supports HTTPS-based transmission.
@@ -30,7 +30,7 @@ OSS IA storage is suitable for storing long-lived, but less frequently accessed 
 
     -   Zone-redundant storage \(ZRS\): uses the multi-zone mechanism to distribute user data across three zones within the same region. Even if one zone becomes unavailable, the data will still be accessible.
 -   Key features
-    -   Provides 99.9999999999% data durability.
+    -   Provides 99.9999999999% \(twelve 9's\) data durability.
     -   Designed to provide 99.995% service availability.
     -   Supports real-time access.
     -   Supports HTTPS-based transmission.
@@ -43,7 +43,7 @@ OSS Archive storage has the lowest price among the three storage classes. It is 
 
 The Archive storage class has the following features:
 
--   Provides 99.999999999% data durability.
+-   Provides 99.999999999% \(eleven 9's\) data durability.
 -   Designed to provide 99.99% service availability.
 -   Takes about one minute to unfreeze the data from the frozen state to the readable state.
 -   Supports HTTPS-based transmission.
