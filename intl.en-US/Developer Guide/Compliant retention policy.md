@@ -10,11 +10,11 @@ OSS supports the Write Once Read Many \(WORM\) strategy that prevents an object 
 
 OSS provides strong compliant policies. You can configure time-based compliant retention policies for buckets. After a compliant retention policy is locked, you can read objects from or upload objects to buckets. However, no one can delete the pretected objects or compliant retention policies within the retention period. You can delete objects only after their retention period ends. The WORM strategy is suitable for industries such as the financing, insurance, health care, and security. OSS allows you to build a "compliant bucket in the cloud."
 
-**Note:** During the protection period of objects in buckets, you can [Set lifecycle rules](intl.en-US/Developer Guide/Object lifecycle/Manage lifecycle rules.md#) to convert the storage class to minimize costs while ensuring compliance.
+**Note:** During the protection period of objects in buckets, you can [Set lifecycle rules](reseller.en-US/Developer Guide/Object lifecycle/Manage lifecycle rules.md#) to convert the storage class to minimize costs while ensuring compliance.
 
 ## Implementation mode {#section_gq3_zz5_cfb .section}
 
-Console: [Set a compliant retention policy](../../../../intl.en-US/Console User Guide/Manage buckets/Configure a compliant retention policy.md#)
+Console: [Set a compliant retention policy](../../../../reseller.en-US/Console User Guide/Manage buckets/Configure a compliant retention policy.md#)
 
 ## Rules {#section_nk2_fz5_cfb .section}
 
