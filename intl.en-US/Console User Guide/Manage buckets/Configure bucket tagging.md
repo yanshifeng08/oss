@@ -10,7 +10,9 @@ Bucket tagging uses a key-value pair to identify buckets. You can manage multipl
 -   The tag value is optional. The tag value can be a maximum of 128 characters in length.
 -   The key and value of the tag must be encoded in UTF-8.
 
-1.  Log on to the [OSS console](https://oss.console.aliyun.com/).
+For more information about bucket tagging, see [Bucket tagging](../../../../reseller.en-US/Developer Guide/Buckets/Bucket tagging.md#).
+
+1.  Log on to the [OSS console](https://partners-intl.console.aliyun.com/#/oss).
 2.  On the left-side bucket list, click the target bucket to open the overview page of the bucket.
 3.  Click the **Basic Settings** tab, find the **Bucket Tag** section.
 4.  Click **Configure** and add tags.
