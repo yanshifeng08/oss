@@ -27,22 +27,22 @@ Object tags are not limited to folders. You can perform the following operations
 
 |Implementation mode|Description|
 |-------------------|-----------|
-|[Java SDK](../../../../intl.en-US/SDK Reference/Java/Object tagging/Configure object tagging.md#)|SDK demos in various languages|
-|[Python SDK](../../../../intl.en-US/SDK Reference/Python/Object tagging/Configure object tagging.md#)|
-|[Go SDK](../../../../intl.en-US/SDK Reference/Go/Object tagging/Configure object tagging.md#)|
-|[C++ SDK](../../../../intl.en-US/SDK Reference/C++/Object tagging/Configure object tagging.md#)|
+|[Java SDK](../../../../reseller.en-US/SDK Reference/Java/Object tagging/Configure object tagging.md#)|SDK demos in various languages|
+|[Python SDK](../../../../reseller.en-US/SDK Reference/Python/Object tagging/Configure object tagging.md#)|
+|[Go SDK](../../../../reseller.en-US/SDK Reference/Go/Object tagging/Configure object tagging.md#)|
+|[C++ SDK](../../../../reseller.en-US/SDK Reference/C++/Object tagging/Configure object tagging.md#)|
 
 ## Instructions {#section_utm_dxd_qgb .section}
 
 -   API operations related to object tagging
-    -   [PutObjectTagging](../../../../intl.en-US/API Reference/Object operations/PutObjectTagging.md#): Adds a tag to an object. If the target object already has a tag, the original tag is overwritten.
-    -   [GetObjectTagging](../../../../intl.en-US/API Reference/Object operations/GetObjectTagging.md#): reads tags of an object.
-    -   [DeleteObjectTagging](../../../../intl.en-US/API Reference/Object operations/DeleteObjectTagging.md#): deletes tags that are associated with an object.
-    -   [PutObject](../../../../intl.en-US/API Reference/Object operations/PutObject.md#): You can use the `x‑oss‑tagging` request header to specify tags when you upload an object.
-    -   [InitiateMultipartUpload](../../../../intl.en-US/API Reference/Multipart upload operations/InitiateMultipartUpload.md#): You can use the `x‑oss‑tagging` request header to specify tags when you initialize a multipart upload task.
-    -   [CopyObject](../../../../intl.en-US/API Reference/Object operations/CopyObject.md#): You can use the `x-oss-tagging-directive` request header to specify whether to replicate tags of source objects. You can use the `x‑oss‑tagging` request header to specify tags of destination objects.
-    -   [GetObject](../../../../intl.en-US/API Reference/Object operations/GetObject.md#): If you have permissions to read the object tags, the count of tags is included in the `x‑oss‑tagging‑count` response header.
-    -   [HeadObject](../../../../intl.en-US/API Reference/Object operations/HeadObject.md#): If you have permissions to read the object tags, the count of tags is included in the `x‑oss‑tagging‑count` response header.
+    -   [PutObjectTagging](../../../../reseller.en-US/API Reference/Object operations/PutObjectTagging.md#): Adds a tag to an object. If the target object already has a tag, the original tag is overwritten.
+    -   [GetObjectTagging](../../../../reseller.en-US/API Reference/Object operations/GetObjectTagging.md#): reads tags of an object.
+    -   [DeleteObjectTagging](../../../../reseller.en-US/API Reference/Object operations/DeleteObjectTagging.md#): deletes tags that are associated with an object.
+    -   [PutObject](../../../../reseller.en-US/API Reference/Object operations/PutObject.md#): You can use the `x‑oss‑tagging` request header to specify tags when you upload an object.
+    -   [InitiateMultipartUpload](../../../../reseller.en-US/API Reference/Multipart upload operations/InitiateMultipartUpload.md#): You can use the `x‑oss‑tagging` request header to specify tags when you initialize a multipart upload task.
+    -   [CopyObject](../../../../reseller.en-US/API Reference/Object operations/CopyObject.md#): You can use the `x-oss-tagging-directive` request header to specify whether to replicate tags of source objects. You can use the `x‑oss‑tagging` request header to specify tags of destination objects.
+    -   [GetObject](../../../../reseller.en-US/API Reference/Object operations/GetObject.md#): If you have permissions to read the object tags, the count of tags is included in the `x‑oss‑tagging‑count` response header.
+    -   [HeadObject](../../../../reseller.en-US/API Reference/Object operations/HeadObject.md#): If you have permissions to read the object tags, the count of tags is included in the `x‑oss‑tagging‑count` response header.
 -   Permission description
 
     Users, roles, or services that perform operations on tags must have the following permissions:
@@ -90,7 +90,7 @@ In the preceding rules,
 -   Objects that are prefixed with rule1 and whose tag configurations are xx=1 and yy=2 are deleted after 30 days.
 -   The storage class of objects that are prefixed with rule2 and whose tag configuration is xx=1 is converted to Archive after 60 days.
 
-**Note:** For more information, see [Manage object lifecycle](intl.en-US/Developer Guide/Object lifecycle/Manage lifecycle rules.md#).
+**Note:** For more information, see [Manage object lifecycle](reseller.en-US/Developer Guide/Object lifecycle/Manage lifecycle rules.md#).
 
 ## Object tagging and RAM policies {#section_p6p_nw9_al7 .section}
 
