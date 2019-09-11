@@ -1,6 +1,6 @@
 # 在URL中包含签名 {#concept_xqh_2df_xdb .concept}
 
-除了使用Authorization Header，用户还可以在URL中加入签名信息，这样用户就可以把该URL转给第三方实现授权访问。
+除了使用Authorization Header，您还可以在URL中加入签名信息，以便将该URL转给第三方实现授权访问。
 
 ## 示例代码 {#section_wcr_k2f_xdb .section}
 
@@ -17,7 +17,7 @@ h = hmac.new("OtxrzxIsfpFjA7SwPzILwy8Bw21TLhquhboDYROV",
 urllib.quote (base64.encodestring(h.digest()).strip())
 ```
 
-OSS SDK中提供了URL签名方法，详细请参考[SDK文档](../../../../cn.zh-CN/SDK 示例/SDK 文档简介.md)。
+OSS SDK中提供了URL签名方法，详细请参考[SDK文档](../../../../cn.zh-CN/SDK 示例/简介.md)。
 
 OSS SDK的URL签名实现，请参看下表：
 
