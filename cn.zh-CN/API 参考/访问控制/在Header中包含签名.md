@@ -1,6 +1,6 @@
 # 在Header中包含签名 {#concept_aml_vv2_xdb .concept}
 
-用户可以在HTTP请求中增加 `Authorization` 的Header来包含签名（Signature）信息，表明这个消息已被授权。
+您可以在HTTP请求中增加 `Authorization` 的Header来包含签名（Signature）信息，表明这个消息已被授权。
 
 ## SDK 签名实现 {#section_dbw_1bf_xdb .section}
 
@@ -19,9 +19,11 @@ OSS SDK已经实现签名，用户使用OSS SDK不需要关注签名问题。如
 |iOS SDK|[OSSModel.m](https://github.com/aliyun/aliyun-oss-ios-sdk/blob/master/AliyunOSSSDK/OSSModel.m)|
 |Android SDK|[OSSUtils.java](https://github.com/aliyun/aliyun-oss-android-sdk/blob/master/oss-android-sdk/src/main/java/com/alibaba/sdk/android/oss/common/utils/OSSUtils.java)|
 
+当您自己实现签名，访问OSS报 `SignatureDoesNotMatch` 错误时，请参见[自签名计算失败](../../../../cn.zh-CN/常见错误排查/排障工具/自签名计算失败.md#)排除错误。
+
 ## Authorization字段计算的方法 {#section_w3s_bw2_xdb .section}
 
-```
+``` {#codeblock_98l_zan_um8}
 Authorization = "OSS " + AccessKeyId + ":" + Signature
 Signature = base64(hmac-sha1(AccessKeySecret,
             VERB + "\n"
@@ -65,15 +67,15 @@ Signature = base64(hmac-sha1(AccessKeySecret,
 
 1.  将CanonicalizedResource置成空字符串 `""`。
 2.  放入要访问的OSS资源 `/BucketName/ObjectName`（如果没有ObjectName则CanonicalizedResource为”/BucketName/“，如果同时也没有BucketName则为“/”）。
-3.  如果请求的资源包括子资源\(SubResource\) ，那么将所有的子资源按照字典序，从小到大排列并以 `&` 为分隔符生成子资源字符串。在CanonicalizedResource字符串尾添加 `？`和子资源字符串。此时的CanonicalizedResource如：`/BucketName/ObjectName?acl&uploadId=UploadId`。
+3.  如果请求的资源包括子资源（SubResource） ，那么将所有的子资源按照字典序，从小到大排列并以 `&` 为分隔符生成子资源字符串。在CanonicalizedResource字符串尾添加 `？`和子资源字符串。此时的CanonicalizedResource如：`/BucketName/ObjectName?acl&uploadId=UploadId`。
 
 **说明：** 
 
--   OSS目前支持的子资源\(sub-resource\)包括：acl，uploads，location，cors，logging，website，referer，lifecycle，delete，append，tagging，objectMeta，uploadId，partNumber，security-token，position，img，style，styleName，replication，replicationProgress，replicationLocation，cname，bucketInfo，comp，qos，live，status，vod，startTime，endTime，symlink，x-oss-process，response-content-type，response-content-language，response-expires，response-cache-control，response-content-disposition，response-content-encoding等。
--   子资源\(sub-resource\)有三种类型：
-    -   资源标识，如子资源中的acl、append、uploadId、symlink等，详见[关于Bucket的操作](intl.zh-CN/API 参考/关于Bucket的操作/PutBucket.md#)和[关于Object的操作](intl.zh-CN/API 参考/关于Object操作/PutObject.md#)。
-    -   指定返回Header字段，如 `response-***`，详见[GetObject](intl.zh-CN/API 参考/关于Object操作/GetObject.md#)的`Request Parameters`。
-    -   文件（Object）处理方式，如 `x-oss-process`，用于文件的处理方式，如[图片处理](../../../../../intl.zh-CN/数据处理/图片处理指南/图片处理访问规则.md#)。
+-   OSS目前支持的子资源（sub-resource）包括：acl，uploads，location，cors，logging，website，referer，lifecycle，delete，append，tagging，objectMeta，uploadId，partNumber，security-token，position，img，style，styleName，replication，replicationProgress，replicationLocation，cname，bucketInfo，comp，qos，live，status，vod，startTime，endTime，symlink，x-oss-process，response-content-type，response-content-language，response-expires，response-cache-control，response-content-disposition，response-content-encoding等。
+-   子资源（sub-resource）有三种类型：
+    -   资源标识，如子资源中的acl、append、uploadId、symlink等，详见[关于Bucket的操作](cn.zh-CN/API 参考/关于Bucket的操作/PutBucket.md#)和[关于Object的操作](cn.zh-CN/API 参考/关于Object操作/PutObject.md#)。
+    -   指定返回Header字段，如 `response-***`，详见[GetObject](cn.zh-CN/API 参考/关于Object操作/GetObject.md#)的`Request Parameters`。
+    -   文件（Object）处理方式，如 `x-oss-process`，用于文件的处理方式，如[图片处理](../../../../cn.zh-CN/数据处理/图片处理指南/图片处理访问规则.md#)。
 
 ## 计算签名头规则 {#section_qcb_p1f_xdb .section}
 
@@ -93,11 +95,11 @@ Signature = base64(hmac-sha1(AccessKeySecret,
 |:-|:--------|:----|
 |PUT /nelson HTTP/1.0 Content-MD5: eB5eJF1ptWaXm4bijSPyxw== Content-Type: text/html Date: Thu, 17 Nov 2005 18:49:58 GMT Host: oss-example.oss-cn-hangzhou.aliyuncs.com X-OSS-Meta-Author: foo@bar.com X-OSS-Magic: abracadabra|Signature = base64\(hmac-sha1\(AccessKeySecret,VERB + “\\n” + Content-MD5 + “\\n”+ Content-Type + “\\n” + Date + “\\n” + CanonicalizedOSSHeaders+ CanonicalizedResource\)\)|“PUT\\n eB5eJF1ptWaXm4bijSPyxw==\\n text/html\\n Thu, 17 Nov 2005 18:49:58 GMT\\n x-oss-magic:abracadabra\\nx-oss-meta-author:foo@bar.com\\n/oss-example/nels|
 
-假如AccessKeyId是“44CF959\*\*\*\*\*\*252F707”，AccessKeySecret是“OtxrzxIsfpFjA7Sw\*\*\*\*\*\*8Bw21TLhquhboDYROV”，可用以下方法计算签名\(Signature\)：
+假如AccessKeyId是“44CF959\*\*\*\*\*\*252F707”，AccessKeySecret是“OtxrzxIsfpFjA7Sw\*\*\*\*\*\*8Bw21TLhquhboDYROV”，可用以下方法计算签名（Signature）：
 
 python示例代码：
 
-```
+``` {#codeblock_dlt_1dh_mis}
 import base64
 import hmac
 import sha
@@ -107,9 +109,9 @@ Signature = base64.b64encode(h.digest())
 print("Signature: %s" % Signature)
 ```
 
-签名\(Signature\)计算结果应该为 26NBxoKd\*\*\*\*\*\*Dv6inkoDft/yA=，因为Authorization = “OSS”+ AccessKeyId + “:” + Signature，所以最后Authorization为 “OSS 44CF95900\*\*\*BF252F707:26NBxoKd\*\*\*\*\*\*Dv6inkoDft/yA=”，然后加上Authorization头来组成最后需要发送的消息：
+签名（Signature）计算结果应该为 26NBxoKd\*\*\*\*\*\*Dv6inkoDft/yA=，因为Authorization = “OSS”+ AccessKeyId + “:” + Signature，所以最后Authorization为 “OSS 44CF95900\*\*\*BF252F707:26NBxoKd\*\*\*\*\*\*Dv6inkoDft/yA=”，然后加上Authorization头来组成最后需要发送的消息：
 
-```
+``` {#codeblock_26u_88a_5ds}
 PUT /nelson HTTP/1.0
 Authorization:OSS 44CF95900***BF252F707:26NBxoKd******Dv6inkoDft/yA=
 Content-Md5: eB5eJF1ptWaXm4bijSPyxw==
@@ -126,7 +128,7 @@ X-OSS-Magic: abracadabra
 -   若用户请求头中Authorization值的格式不对，返回400 Bad Request。错误码：InvalidArgument。
 -   OSS所有的请求都必须使用HTTP 1.1协议规定的GMT时间格式。其中，日期的格式为：
 
-    ```
+    ``` {#codeblock_43e_z9t_s1v}
     date1 = 2DIGIT SP month SP 4DIGIT; day month year (e.g., 02 Jun
             1982)
     ```
@@ -139,7 +141,7 @@ X-OSS-Magic: abracadabra
 
     返回示例：
 
-    ```
+    ``` {#codeblock_mzv_kfv_e8i}
     <?xml version="1.0" ?>
     <Error>
      <Code>
@@ -152,10 +154,10 @@ X-OSS-Magic: abracadabra
          47 45 54 0a 0a 0a 57 65 64 2c 20 31 31 20 4d 61 79 20 32 30 31 31 20 30 37 3a 35 39 3a 32 35 20 47 4d 54 0a 2f 75 73 72 65 61 6c 74 65 73 74 3f 61 63 6c
      </StringToSignBytes>
      <RequestId>
-         1E446260FF9B10C2
+         1E446260FF9B****
      </RequestId>
      <HostId>
-         oss-cn-hangzhou.aliyuncs.com
+         oss-cn-hangzhou.aliyuncs.***
      </HostId>
      <SignatureProvided>
          y5H7yzPsA/tP4+0tH1HHvPEwUv8=
@@ -166,7 +168,7 @@ X-OSS-Magic: abracadabra
     /oss-example?acl
      </StringToSign>
      <OSSAccessKeyId>
-         AKIAIVAKMSMOY7VOMRWQ
+         AKIAIVAKMSMOY7VO****
      </OSSAccessKeyId>
     </Error>
     ```
@@ -176,7 +178,7 @@ X-OSS-Magic: abracadabra
 
 Content-MD5的计算方法
 
-```
+``` {#codeblock_8rq_0ef_neo}
 Content-MD5的计算
 以消息内容为"123456789"来说，计算这个字符串的Content-MD5
 正确的计算方式：
