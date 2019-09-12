@@ -1,65 +1,74 @@
 # Introduction to storage classes {#concept_fcn_3xt_tdb .concept}
 
-OSS provides three storage classes: Standard, Infrequent Access, and Archive. These storage classes cover various data storage scenarios from frequently accessed \(hot\) data to infrequently accessed \(cold\) data.
+OSS provides three storage classes: Standard, Infrequent Access \(IA\), and Archive, covering various data storage scenarios from hot data to cold data.
 
 ## Standard {#section_r3z_lxt_tdb .section}
 
-OSS Standard storage provides highly reliable, highly available, and high-performance object storage service that supports frequent data access. The high throughput and low latency of OSS make it well suited for storing social networking content such as images, audio, and video. It is also great for storing large unstructured data sets for use in big data analytics.
+OSS Standard storage provides highly reliable, highly available, and high-performance object storage services that support frequent data access. The high-throughput and low-latency service response capability of OSS can effectively support access to hotspot data. Standard storage is ideal for storing various images that are used for social networking and sharing, and storing data for audio and video applications, large websites, and big data analytics.
 
-OSS Standard storage has the following features:
+-   Supported data redundancy mechanisms
+    -   Locally redundant storage \(LRS\): uses the data redundancy storage mechanism to store data of each object on multiple devices in the same region, ensuring data durability and availability in case of hardware failure.
 
--   Designed for 99.999999999% \(11 nines\) durability.
--   Designed for 99.99% availability.
--   High-throughput and low-latency access performance.
--   Supports HTTPS.
--   Supports Image Processing.
+        **Note:** Before zone-redundant storage was released, locally redundant storage was the storage mechanism for standard storage.
 
-## Infrequent Access {#section_t3z_lxt_tdb .section}
+    -   Zone-redundant storage \(ZRS\): uses the multi-zone mechanism to distribute user data across three zones within the same region. Even if one zone becomes unavailable, the data will still be accessible.
+-   Key features
+    -   Provides 99.9999999999% \(twelve 9's\) data durability.
+    -   Designed to provide 99.995% service availability.
+    -   Delivers high-throughput and low-latency access performance.
+    -   Supports HTTPS-based transmission.
+    -   Supports Image Processing \(IMG\).
 
-OSS Infrequent Access storage is suitable for storing long-lived, but less-frequently accessed data \(once or twice per month\). With a storage unit price lower than the Standard class, it is suitable for longer-term backup of various mobile apps, smart device data, and enterprise data. Objects of the Infrequent Access storage class have a minimum storage duration. Charges apply if you delete objects that have been stored for less than 30 days. Objects of the Infrequent Access storage class have a minimum billable size. Objects smaller than 64 KB are charged as 64 KB. Data retrieval incurs charges.
+## IA {#section_t3z_lxt_tdb .section}
 
-OSS Infrequent Access storage has the following features:
+OSS IA storage is suitable for storing long-lived, but less frequently accessed data \(an average of once or twice per month\). IA storage offers a storage unit price that is lower than Standard storage, and is suitable for long-term backup of various mobile apps, smart device data, and enterprise data. It also supports real-time data access. Objects of the IA storage class have a minimum storage duration. Fees occur if you delete objects that are stored for less than 30 days. Objects of the IA storage class have a minimum billable size. Objects smaller than 64 KB are charged as 64 KB. Data retrieval incurs fees.
 
--   Designed for 99.999999999% \(11 nines\) durability.
--   Designed for 99.99% service availability.
--   Supports real-time access.
--   Supports HTTPS.
--   Supports Image Processing.
--   Specified minimum storage duration and minimum billable size.
+-   Supported data redundancy mechanisms
+    -   Locally redundant storage \(LRS\): uses the data redundancy storage mechanism to store data of each object on multiple devices in the same region, ensuring data durability and availability in case of hardware failure.
+
+        **Note:** Before zone-redundant storage was released, locally redundant storage was the storage mechanism for IA storage.
+
+    -   Zone-redundant storage \(ZRS\): uses the multi-zone mechanism to distribute user data across three zones within the same region. Even if one zone becomes unavailable, the data will still be accessible.
+-   Key features
+    -   Provides 99.9999999999% \(twelve 9's\) data durability.
+    -   Designed to provide 99.995% service availability.
+    -   Supports real-time access.
+    -   Supports HTTPS-based transmission.
+    -   Supports IMG.
+    -   Requires a minimum storage duration and minimum billable size.
 
 ## Archive {#section_v3z_lxt_tdb .section}
 
-OSS Archive storage has the lowest price among the three storage classes. It is suitable for storing archival data for a long time \(more than half a year recommended\), such as medical images, scientific materials, and video footages. The data is infrequently accessed during the storage period and it may take about one minute to restore the data to a readable state. Objects of the Archive storage class have a minimum storage duration. Charges apply if you delete objects that are stored for less than 60 days. Objects of the Archive storage class have a minimum billable size. Objects smaller than 64 KB are charged as 64 KB. Data retrieval incurs charges.
+OSS Archive storage has the lowest price among the three storage classes. It is suitable for long-term storage \(at least half a year\) of data that is infrequently accessed. The data may take up to one minute to restore before it can be read. This storage option is suitable for data such as archival data, medical images, scientific materials, and video footage. Objects of the Archive storage class have a minimum storage period. Fees occur if you delete objects that are stored for less than 60 days. Objects of the Archive storage class have a minimum billable size. Objects smaller than 64 KB are charged as 64 KB. Data retrieval incurs fees.
 
-OSS Archive storage has the following features:
+The Archive storage class has the following features:
 
--   Designed for 99.999999999% \(11 nines\) durability.
--   Designed for 99.99% service availability \(restored data\).
--   It takes one minute to restore the stored data from the frozen state to the readable state.
--   Supports HTTPS.
--   Supports Image Processing, but data needs to be restored first.
--   Specified minimum storage duration and minimum billable size.
+-   Provides 99.999999999% \(eleven 9's\) data durability.
+-   Designed to provide 99.99% service availability.
+-   Takes about one minute to restore the data from the frozen state to the readable state.
+-   Supports HTTPS-based transmission.
+-   Supports IMG, but data needs to be restored first.
+-   Requires a minimum storage duration and minimum billable size.
 
-## Comparison of storage classes { .section}
+## Comparison of storage classes {#section_uj2_gz1_trv .section}
 
-|Item|Standard|Infrequent Access|Archive|
-|:---|:-------|:----------------|:------|
-|Data durability|99.999999999%|99.999999999%|99.999999999%|
-|Designed service availability|99.99%|99.99%|99.99% \(restored data\)|
-|Minimum billed size of objects|Calculate by actual size of objects|64 KB|64 KB|
-|Minimum storage duration|Not required|30 days|60 days|
-|Data retrieval fee|No data retrieval fee|Charged by the size of retrieved data, in GB|Charged by the size of restored data, in GB|
-|Latency|Latency in ms|Latency in ms|It takes one minute to restore data from the frozen state to the readable state.|
-|Images processing|Supported|Supported|Supported, but data needs to be restored first.|
+|Item|Standard|IA|Archive|
+|:---|:-------|:-|:------|
+|Supported data redundancy mechanisms|LRS and ZRS|LRS and ZRS|N/A|
+|Data durability|99.9999999999% \(twelve 9's\)|99.9999999999% \(twelve 9's\)|99.999999999% \(eleven 9's\)|
+|Service availability|99.995%|99.995%|99.99% \(restored data\)|
+|Minimum billable size of objects|Actual size of objects|64 KB|64 KB|
+|Minimum storage duration|No minimum storage duration|30 days|60 days|
+|Data retrieval fee|No data retrieval fee|Based on the size of retrieved data. Unit: GB|Based on the size of restored data. Unit: GB|
+|Data access|Real-time access with low latency \(within milliseconds\)|Real-time access with low latency \(within milliseconds\)|One minute after data is restored|
+|IMG|Supported|Supported|Supported after data is restored|
 
-**Note:** 
+**Note:** OSS charges a data retrieval fee based on the size of data read from the underlying distributed storage system. The data transmitted over the public network is billed as part of the outbound traffic.
 
- "Data" in "data retrieval fee" refers to the size of data read from the underlying distributed storage system. The data transferred over the public network is billed as part of the outbound traffic costs. 
+## Supported API operations {#section_pfz_1yt_tdb .section}
 
-## Supported APIs {#section_pfz_1yt_tdb .section}
-
-|API|Standard|Infrequent Access|Archive|
-|:--|:-------|:----------------|:------|
+|Operation|Standard|IA|Archive|
+|:--------|:-------|:-|:------|
 |Bucket creation, deletion, and query|
 |PutBucket|Supported|Supported|Supported|
 |GetBucket|Supported|Supported|Supported|
@@ -67,29 +76,29 @@ OSS Archive storage has the following features:
 |Bucket ACL|
 |PutBucketAcl|Supported|Supported|Supported|
 |GetBucketAcl|Supported|Supported|Supported|
-|Bucket logging|
+|Bucket logging|Supported|Supported|Supported|
 |PutBucketLogging|Supported|Supported|Supported|
 |GetBucketLogging|Supported|Supported|Supported|
-|Bucket default static page|
+|Bucket static website hosting|
 |PutBucketWebsite|Supported|Supported|Not supported|
 |GetBucketWebsite|Supported|Supported|Not supported|
-|Bucket anti-leech protection|
+|Bucket hotlink protection|Supported|Supported|Supported|
 |PutBucketReferer|Supported|Supported|Supported|
 |GetBucketReferer|Supported|Supported|Supported|
 |Bucket lifecycle|
-|PutBucketLifecycle|Supported|Supported|Supported, data deletion only|
+|PutBucketLifecycle|Supported|Supported|Supported for data deletion only|
 |GetBucketLifecycle|Supported|Supported|Supported|
 |DeleteBucketLifecycle|Supported|Supported|Supported|
-|Bucket Cross-Origin Replication|
+|Cross-region replication|Supported|Supported|Supported for restored data|
 |PutBucketReplication|Supported|Supported|Supported|
-|Bucket Cross-Origin Resource Sharing|
+|Cross-origin resource sharing \(CORS\)|
 |PutBucketcors|Supported|Supported|Supported|
 |GetBucketcors|Supported|Supported|Supported|
 |DeleteBucketcors|Supported|Supported|Supported|
 |Object operations|
 |PutObject|Supported|Supported|Supported|
 |PutObjectACL|Supported|Supported|Supported|
-|GetObject|Supported|Supported|Supported, but data needs to be restored first|
+|GetObject|Supported|Supported|Supported after data is restored|
 |GetObjectACL|Supported|Supported|Supported|
 |GetObjectMeta|Supported|Supported|Supported|
 |HeadObject|Supported|Supported|Supported|
@@ -109,5 +118,5 @@ OSS Archive storage has the following features:
 |AbortMultipartUpload|Supported|Supported|Supported|
 |ListMultipartUpload|Supported|Supported|Supported|
 |ListParts|Supported|Supported|Supported|
-|Image Processing|Supported|Supported|Supported|
+|IMG|Supported|Supported|Supported|
 
