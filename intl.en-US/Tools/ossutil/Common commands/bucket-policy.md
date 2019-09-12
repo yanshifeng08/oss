@@ -143,7 +143,7 @@ The following table describes the options you can add to the bucket-policy comma
 -   debug: generates detailed logs that contain corresponding HTTP request and response information.
 
  |
-|--proxy-host|Specifies the URL of the proxy server. HTTP, HTTPS, and SOCKS5 are supported. An example of the URL is https://120.79.128.211:3128 or socks5://120.79.128.211:1080.|
+|--proxy-host|Specifies the URL of the proxy server. HTTP, HTTPS, and SOCKS5 are supported. An example of the URL is https://120.79.\*\*.\*\*:3128 or socks5://120.79.\*\*.\*\*:1080.|
 |--proxy-user|Specifies the username of the proxy server. The default value is null.|
 |--proxy-pwd|Specifies the password of the proxy server. The default value is null.|
 
