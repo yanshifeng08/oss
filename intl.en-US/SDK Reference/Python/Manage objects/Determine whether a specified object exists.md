@@ -4,7 +4,7 @@ This topic describes how to determine whether a specified object exists.
 
 Run the following code to determine whether a specified object exists:
 
-```language-python
+``` {#codeblock_okz_ijx_1b5 .language-python}
 # -*- coding: utf-8 -*-
 import oss2
 
@@ -16,9 +16,9 @@ bucket = oss2.Bucket(auth, 'http://oss-cn-hangzhou.aliyuncs.com', '<yourBucketNa
 exist = bucket.object_exists('<yourObjectName>')
 # If the returned value is true, it indicates that the specified object exists. If the returned value is false, it indicates that the specified object does not exist.
 if exist:
-	print('object exist')
+    print('object exist')
 else:
-	print('object not eixst')
-
+    print('object not exist')
+		
 ```
 
