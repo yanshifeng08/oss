@@ -8,7 +8,7 @@ The compliant retention policy is in the beta testing phase. To use this policy,
 
 ## Video tutorial {#section_ied_f4o_53r .section}
 
-The following video provides a quick introduction to the compliance retention policy.  
+The following video provides a quick introduction to the compliant retention policy.  
 
 ## Procedure {#section_4qe_7zw_6ae .section}
 
