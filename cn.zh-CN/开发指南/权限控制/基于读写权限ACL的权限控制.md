@@ -42,7 +42,7 @@ OSS 为权限控制提供访问控制列表（ACL）。ACL 是授予 Bucket 和 
 
 -   Object ACL 介绍
 
-    Object ACL是Object 级别的权限访问控制。目前有四种访问权限：private, public-read, public-read-write, default。PutObjectACL 操作通过 Put 请求中的`x-oss-object-acl`头来设置，这个操作只有 Bucket Owner 有权限执行。
+    Object ACL是Object 级别的权限访问控制。目前有四种访问权限：private、public-read、public-read-write、default。PutObjectACL 操作通过 Put 请求中的`x-oss-object-acl`头来设置，这个操作只有 Bucket Owner 有权限执行。
 
     Object ACL 的四种访问权限含义如下：
 
@@ -76,7 +76,6 @@ OSS 为权限控制提供访问控制列表（ACL）。ACL 是授予 Bucket 和 
 
 如果您希望仅允许指定用户访问您的文件，可参考：
 
--   [教程示例：基于企业控制台外部人员实现跨账号访问OSS](cn.zh-CN/开发指南/权限控制/跨账号授权/教程示例：基于企业控制台外部人员实现跨账号访问OSS.md#)
 -   [教程示例：基于Bucket Policy实现跨账号访问OSS](cn.zh-CN/开发指南/权限控制/跨账号授权/教程示例：基于Bucket Policy实现跨账号访问OSS.md#)
 -   [基于 RAM 角色实现跨账号访问 OSS](https://help.aliyun.com/document_detail/69011.html)
 
