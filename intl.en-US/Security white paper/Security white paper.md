@@ -22,7 +22,7 @@ The following encryption methods are available in OSS: server-side encryption, c
 
         OSS supports using BYOK material for encryption. When sending a request to upload an object or modify the metadata of an object, you can include the `X-OSS-server-side-encryption` header in the request, specify its value as KMS, and specify the value of `X-oss-server-side-encryption-key-id` to a specified CMK ID. In this method. OSS generates an individual key to encrypt each object by using the specified CMK, and adds the CMK ID used to encrypt an object into the metadata of the object so that the object is automatically decrypted when it is downloaded by an authorized user
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/4384/156828759438833_en-US.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/4384/156828872638833_en-US.png)
 
     -   SSE-OSS: This encryption method is fully hosted by OSS.
 
@@ -36,15 +36,13 @@ The following encryption methods are available in OSS: server-side encryption, c
 
         Encrypt files on the client using a CMK hosted on KMS. When using KMS, you need only to specify the CMK ID. You do not need to provide additional data keys. The following flow chart shows the encryption process in detail.
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/1054111/156828759460492_en-US.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/1054111/156828872660492_en-US.png)
 
     -   Manually manage data keys
 
         BYOK allows you to generate and manage data keys using your own tools. When you implement client-side encryption, you can upload your symmetric or asymmetric key to the client. The following flow chart shows the encryption process in detail.
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/1054111/156828759560493_en-US.png)
-
-    **Note:** For more information, see [Client-side encryption](https://help.aliyun.com/document_detail/73332.html).
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/1054111/156828872660493_en-US.png)
 
 -   Transmission encryption
 
@@ -92,7 +90,7 @@ OSS provides the compliance retention policy, zone-redundant storage, and versio
 
     OSS uses the multi-zone mechanism to distribute user data across three zones within the same region. If one zone becomes unavailable, the data will still be accessible. OSS zone-redundant storage provides durability of 99.9999999999% \(twelve 9's\) and a guaranteed data availability of 99.95% in the SLA.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/1054111/156828759560495_en-US.jpg)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/1054111/156828872660495_en-US.jpg)
 
     The redundant storage mechanism provides OSS with the disaster recovery capability in the data center level, that is, OSS can provide services with strong consistency even if a data center is not available because of network disconnection, power outage, or other disaster events. During failover, services are switched without interruption and data loss, ensuring that the failover process is not perceived by users. With the disaster recovery capability, OSS can meet the strict requirement that the Recovery Time Objective \(RTO\) and Recovery Point Objective \(RPO\) of key services must be 0.
 
