@@ -24,7 +24,7 @@ The stat command is used to obtain the description of buckets or objects. For ex
 
 -   Obtain information of an object whose names contain special characters
 
-    ossutil only supports URL encoding for object names. If an object name contains special characters, you can encode these special characters before you use the object name in the command. For example, you can run the following command to obtain information of the 示例.txt object:
+    ossutil only supports URL encoding for object names. If an object name contains special characters, you can encode these special characters before you use the object name in the command.
 
     ``` {#codeblock_pya_uir_67f}
     ./ossutil stat oss://bucket1/%E7%A4%BA%E4%BE%8B.txt --encoding-type url
