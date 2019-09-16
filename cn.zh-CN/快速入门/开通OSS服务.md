@@ -11,7 +11,7 @@
 
     您也可以单击位于官网首页右上方菜单栏的**控制台**，进入阿里云管理控制台首页，然后单击左侧的**对象存储 OSS** 菜单进入 OSS 管理控制台界面。
 
-    **说明：** 开通 OSS 服务后，默认的计费方式是[按量付费](../../../../cn.zh-CN/计量计费/计费方式/按量计费.md#)。如果想进一步降低 OSS 费用，建议您[购买折扣套餐](https://common-buy.aliyun.com/?spm=a2c4g.11186623.2.12.72f97c285oprXD&commodityCode=ossbag&request=%7B%22region%22%3A%22china-common%22%7D#/buy)。
+    **说明：** 开通 OSS 服务后，默认的计费方式是[按量付费](../../../../cn.zh-CN/计量计费/计费方式/按量计费.md#)。如果想进一步降低 OSS 费用，建议您[购买资源包](https://common-buy.aliyun.com/?spm=a2c4g.11186623.2.12.72f97c285oprXD&commodityCode=ossbag&request=%7B%22region%22%3A%22china-common%22%7D#/buy)。
 
 
 [创建存储空间](cn.zh-CN/快速入门/创建存储空间.md#)
