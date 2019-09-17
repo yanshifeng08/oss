@@ -39,6 +39,7 @@ OSS 具有与平台无关的 RESTful API 接口，您可以在任何应用、任
 
 以下是您会经常使用到的阿里云产品和服务：
 
+-   图片处理（IMG）：对存储在 OSS 上的图片进行格式转换、缩放、裁剪、旋转、添加水印等各种操作。请参见[快速使用 OSS 图片处理服务](../../../../cn.zh-CN/数据处理/图片处理指南/快速使用OSS图片服务.md#)。
 -   云服务器（ECS）：提供简单高效、处理能力可弹性伸缩的云端计算服务。请参见 [ECS 产品详情页面](https://www.aliyun.com/product/ecs)。
 -   内容分发网络（CDN）：将源站资源缓存到各区域的边缘节点，供您就近快速获取内容。请参见 [CDN 产品详情页面](https://www.aliyun.com/product/cdn)。
 -   E-MapReduce：构建于 ECS 上的大数据处理的系统解决方案，基于开源的 Apache Hadoop 和 Apache Spark，方便您分析和处理自己的数据。请参见 [E-MapReduce 产品详情页面](https://www.aliyun.com/product/emapreduce)。
@@ -86,6 +87,6 @@ OSS 仅按照您的实际使用容量收费，您无需预先购买存储和流�
 -   钉钉群号：23331544
 -   钉钉群二维码：
 
-    ![OSS 钉钉群](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/4313/156687617950213_zh-CN.png)
+    ![OSS 钉钉群](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/4313/156872947150213_zh-CN.png)
 
 
