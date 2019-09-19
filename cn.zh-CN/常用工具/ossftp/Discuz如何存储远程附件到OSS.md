@@ -1,44 +1,50 @@
-# Discuz如何存储远程附件到OSS {#concept_n3l_ftt_vdb .concept}
+# Discuz如何存储远程附件到OSS {#concept_n3l_ftt_vdb .task}
 
 本文介绍如何基于Discuz论坛存储远程附件。
 
+-   已开通OSS服务，并创建了一个公共读权限的存储空间（Bucket）。
+    -   开通OSS服务请参见[开通OSS服务](../../../../cn.zh-CN/快速入门/开通OSS服务.md#)。
+    -   创建Bucket的步骤请参见[创建存储空间](../../../../cn.zh-CN/控制台用户指南/管理存储空间/创建存储空间.md#)。
+-   已搭建Discuz论坛。
+
 网站远程附件功能是指将用户上传的附件直接存储到远端的存储服务器，一般是通过FTP的方式存储到远程的FTP服务器。目前Discuz论坛、phpwind论坛、Wordpress个人网站等都支持远程附件功能。
 
-## 准备工作 {#section_v4b_jz1_wdb .section}
+本文档测试所用Discuz版本为Discuz! X3.1。
 
-申请OSS账号，并且创建一个public-read的bucket。权限设置为public-read主要是便于后续的匿名访问。
+## 配置步骤 {#section_za0_sos_63y .section}
 
-## 详细步骤 {#section_zwg_kz1_wdb .section}
+1.  使用管理员账号登录Discuz站点。
+2.  在管理界面单击**全局** \> **上传设置**。![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/4865/15688757042805_zh-CN.png)
 
-测试所用Discuz版本为Discuz! X3.1，以下是详细的设置流程：
 
-1.  登录Discuz站点，进入管理界面后，先单击**全局**，然后单击**上传设置**。
-2.  选择**远程附件**，然后开始设置。
+3.  单击**远程附件**，设置远程附件选项。![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/4865/15688757042806_zh-CN.png)
 
-    **说明：** 
+![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/4865/15688757042808_zh-CN.png)
 
-    -   启用远程附件，请选择是。
-    -   启用SSL连接，请选择否。
-    -   FTP服务器地址， 即运行ossftp工具的地址，通常填写 127.0.0.1 即可。
-    -   FTP服务的端口号，默认为 2048。
-    -   FTP登录用户名，格式为 AccessKeyID/BukcetName。注意这里的 / 不是或的意思。
-    -   FTP的登录密码，即AccessKeySecret。
-    -   被动模式连接，默认选择是。
-    **说明：** 
+ 
 
-    -   远程附件目录，填 . 表示在Bucket的根目录下创建上传目录。
-    -   远程访问URL， 填 `http://BucketName.Endpoint`即可。
+    |配置项|说明|
+    |---|--|
+    |**启用远程附件**|选择**是**。|
+    |**启用SSL连接**|选择**否**。|
+    |**FTP服务器地址**|即运行ossftp工具的地址，通常填写127.0.0.1即可。|
+    |**FTP服务器端口**|默认为2048。|
+    |**FTP帐号**|格式为AccessKeyID/BukcetName。注意这里的正斜线（/）不是或的意思。|
+    |**FTP密码**|即AccessKeySecret。|
+    |**被动模式连接**|选择**是**。|
+    |**远程附件目录**|填半角句号（.）即可，表示在Bucket的根目录下创建上传目录。|
+    |**远程访问URL**|填写Bucket的外网访问域名，格式为http://BucketName.Endpoint。测试所用Bucket名为test-hz-jh-002，属于杭州地域。所以这里填写的是http://test-hz-jh-002.oss-cn-hangzhou.aliyuncs.com。关于访问域名的详情请参见[OSS访问域名使用规则](../../../../cn.zh-CN/开发指南/访问域名（Endpoint）/OSS访问域名使用规则.md#) 。|
+    |**超时时间**|设置为0，表示服务器默认。|
 
-        **说明：** 这里测试所用bucket为test-hz-jh-002，属于杭州区域，所以这里填写的是`http://test-hz-jh-002.oss-cn-hangzhou.aliyuncs.com`。注意BucketName要和Endpoint匹配。
+4.  完成设置后，可以单击**测试远程附件**确认配置是否正常。![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/4865/15688757042809_zh-CN.png)
 
-    -   超时时间，设置为0即可，表示服务器默认。
-    -   完成设置后，可以点击测试远程附件。
-3.  发帖验证
 
-    发贴时上传图片附件。
+5.  发帖验证配置是否成功。 
+    1.  发贴时上传图片附件。![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/4865/15688757042810_zh-CN.png)
 
-    在图片上右键单击，选择**在新标签页中打开图片**。
 
-    通过图中的URL，我们可以判断图片已经上传到OSS的test-hz-jh-002 Bucket中。
+    2.  在图片上右键单击，之后单击**在新标签页中打开链接**。 通过图中的URL，可以判断图片已经上传到OSS的test-hz-jh-002 Bucket。
+
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/4865/15688757042811_zh-CN.png)
 
 
