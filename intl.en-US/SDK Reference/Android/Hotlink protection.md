@@ -7,6 +7,8 @@ To configure hotlinking protection, you need to set the following parameters:
 -   Referer Whitelist: the referer whitelist that specifies the domains that are allowed to access OSS resources.
 -   Allow Empty Referer: indicates whether the Referer field can be left empty in a request. If the Referer field cannot be left empty, users must include the Referer field in the HTTP or HTTPS request header so as to access OSS resources.
 
+For more information about hotlink protection, see [Configure hotlink protection](../../../../reseller.en-US/Developer Guide/Buckets/Configure hotlinking protection.md#).
+
 ## Configure hotlink protection {#section_jxy_lh4_wxx .section}
 
 ``` {#codeblock_ovl_v25_kgs}
