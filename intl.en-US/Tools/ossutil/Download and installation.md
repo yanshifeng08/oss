@@ -4,22 +4,22 @@ This topic describes how to download and install ossutil.
 
 ## Version and runtime environment {#section_g0u_8gm_953 .section}
 
--   Current version: 1.6.6
+-   Current version: 1.6.7
 -   Runtime environment
     -   Windows/Linux/macOS
     -   Supported architectures: x86 \(32-bit and 64-bit\)
 
 ## Download URLs {#section_xla_1lk_s3b .section}
 
--   [Linux x86 32-bit](http://gosspublic.alicdn.com/ossutil/1.6.6/ossutil32)
--   [Linux x86 64-bit](http://gosspublic.alicdn.com/ossutil/1.6.6/ossutil64) 
+-   [Linux x86 32-bit](http://gosspublic.alicdn.com/ossutil/1.6.7/ossutil32)
+-   [Linux x86 64-bit](http://gosspublic.alicdn.com/ossutil/1.6.7/ossutil64) 
 
     **Note:** When copying the preceding URLs into the wget command to download ossutil, delete the ? spm=xxxx section from the URLs.
 
--   [Windows x86 32-bit](http://gosspublic.alicdn.com/ossutil/1.6.6/ossutil32.zip)
--   [Windows x86 64-bit](http://gosspublic.alicdn.com/ossutil/1.6.6/ossutil64.zip)
--   [macOS x86 32-bit](http://gosspublic.alicdn.com/ossutil/1.6.6/ossutilmac32)
--   [macOS x86 64-bit](http://gosspublic.alicdn.com/ossutil/1.6.6/ossutilmac64)
+-   [Windows x86 32-bit](http://gosspublic.alicdn.com/ossutil/1.6.7/ossutil32.zip)
+-   [Windows x86 64-bit](http://gosspublic.alicdn.com/ossutil/1.6.7/ossutil64.zip)
+-   [macOS x86 32-bit](http://gosspublic.alicdn.com/ossutil/1.6.7/ossutilmac32)
+-   [macOS x86 64-bit](http://gosspublic.alicdn.com/ossutil/1.6.7/ossutilmac64)
 
 ## Quick installation {#section_j39_lrf_j5i .section}
 
@@ -29,7 +29,7 @@ Download the package based on your operating system and run the corresponding bi
     1.  Download the ossutil installation package:
 
         ``` {#codeblock_0ds_9yl_7rs}
-        wget http://gosspublic.alicdn.com/ossutil/1.6.6/ossutil64                           
+        wget http://gosspublic.alicdn.com/ossutil/1.6.7/ossutil64                           
         ```
 
     2.  Modify the file execution permissions:
@@ -70,7 +70,7 @@ Download the package based on your operating system and run the corresponding bi
     1.  Download the ossutil installation package.
 
         ``` {#codeblock_zex_iy6_ta5}
-        curl -o ossutilmac64 http://gosspublic.alicdn.com/ossutil/1.6.6/ossutilmac64
+        curl -o ossutilmac64 http://gosspublic.alicdn.com/ossutil/1.6.7/ossutilmac64
         ```
 
     2.  Modify the file execution permissions:
