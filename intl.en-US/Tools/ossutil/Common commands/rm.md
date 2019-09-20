@@ -5,7 +5,7 @@ The `rm` command is used to delete a bucket, object, or part.
 ## Command syntax {#section_1tw_5i4_1rv .section}
 
 ``` {#codeblock_wro_vje_8m2}
-./ossutil rm oss://bucket[/prefix] [-r] [-b] [-f]undefined[-c file] [--include include-pattern] [--payer requester] [--exclude exclude-pattern]
+./ossutil rm oss://bucket[/prefix] [-r] [-b] [-f][-c file] [--include include-pattern] [--payer requester] [--exclude exclude-pattern]
 ```
 
 ## Examples {#section_5ha_5jq_rv3 .section}
